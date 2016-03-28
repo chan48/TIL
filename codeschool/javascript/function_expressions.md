@@ -25,8 +25,9 @@ var functionExpression = function (str) {
 * map() method will always take in a funtion as a parameter, and return a new array with the results.
 ```javascript
 var numbers = [12,4,3];
-var results = numbers.map(input a function here);
+var results = numbers.map("input a function here");
 ```
+
 * map() works like a loop that applies a function to each array index
 map()을 사용하게 되면 위의 코드가 아래 코드의 효과를 갖게 된다.
 ```javascript
