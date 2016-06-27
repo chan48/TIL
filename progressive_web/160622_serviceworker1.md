@@ -23,3 +23,7 @@
 
 ## Service Worker Overview Image
 ![ServiceWorker Lifecycle](/Users/user2/Documents/Programming/TIL/progressive_web/sw-lifecycle.png "Title")
+
+## Service Worker Reference
+- [서비스워커 지원하는 브라우저 확인](https://jakearchibald.github.io/isserviceworkerready/)
+- [서비스워커 스펙](https://slightlyoff.github.io/ServiceWorker/spec/service_worker/)
