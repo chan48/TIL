@@ -1,4 +1,4 @@
-# Service Worker
+# Service Worker Introduction I
 
 ## Service Worker 란 무엇인가
 - Rich offline experiences, periodic background syncs, push notifications 등 네이티브 앱에서만 가능했던 기능들을 웹에서 사용할 수 있도록 지원하는 스크립트
@@ -13,5 +13,13 @@
 - 사용하지 않을 때는 종료된다. 따라서, onfetch & onmessage 핸들러를 통한 global state에 접근이 불가능 하지만, 원한다면 [IndexedDB API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API)를 이용하여 상태를 보존할 수 있다.
 
 ## Service Worker Lifecycle
-(이어서 진행)
-https://developers.google.com/web/fundamentals/primers/service-worker/service-worker-lifecycle?hl=en
+- 웹 페이지와 완전 별개의 라이프싸이클을 갖고 있다.
+- **[등록]** 서비스워커 사용을 위해서는 먼저 페이지의 자바스크립트를 사용하여 등록해야 한다.
+- **[설치]** 설치하는 과정에서 static한 자원들을 캐싱하고, 캐싱이 완료되면 서비스 워커가 설치가 된다. 한 개의 파일일라도 캐싱에 실패하면, 설치가 종료되고, 서비스워커는 다시 활성화되지 않는다.
+- **[활성]** 설치가 되고 나면, 활성 스텝으로 넘어오고, 이 떄 이전(오래된) 캐쉬들을 다룰 수 있는 상태가 된다.
+- **[제어]** 활성화 스텝 이후에는 서비스 워커가 본격적으로 모든 페이지를 제어하기 시작한다. 서비스워커에게 제어권이 돌아가면, 보통 아래 2가지 상태(Fetch, Terminated)로 나뉘게 된다.
+- **[페치/메시지]** 네트워크 요청을 받거나 메시지를 페이지로부터 전달받았을 때 데이터를 fetch하거나 메시지 이벤트를 처리한다
+- **[종료]** 메모리 효율을 위해 서비스워커를 종료한다
+
+## Service Worker Overview Image
+![ServiceWorker Lifecycle](/Users/user2/Documents/Programming/TIL/progressive_web/sw-lifecycle.png "Title")
