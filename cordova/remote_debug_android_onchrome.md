@@ -5,24 +5,10 @@ Cordova Hybrid Android 앱의 레이아웃 또는 서버와의 통신을 디버�
 Google Chrome에서 제공하는 Device Debugging 옵션을 사용한다.
 해당 링크는 아래를 참조한다. [Chrome Device Debugging](https://developer.chrome.com/devtools/docs/remote-debugging)
 
-
-
-- 마이너스 적용
-    + 레벨링 적용 
-* 아스타 적용
-**아스타 2개 적용**
-1. 순서 리스
-1. 순서 리스트 투
-
-## Body
-[네이버 링크 걸기](http://www.naver.com)
-![이미지 삽입]()
-```javascript
-var babo = 3;
+## WebView 디버깅 가능옵션 추가하기
+아래 옵션을 추가한다.
+```java
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+    WebView.setWebContentsDebuggingEnabled(true);
+}
 ```
-
-조슈아 장은 `인라인 코드 문법`을 좋아합니다.
-
-> 인용구입니다. (>)
-
-## Conclusion
