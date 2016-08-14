@@ -36,7 +36,7 @@
 [Web Application Tuning Guide by Google](https://developers.google.com/speed/docs/insights/rules)
 - 그 후 Mobile Application에 들어가는 Image 용량 최소화를 비롯하여 미사용 Plugin 자원들을 제거해 모바일의 앱 성능을 향상
 ※ WebView 렌더링의 성능에 대해서는 여기서 다루지 않는다 / Reference - [Hybrid Application Tuning Guideline](http://www.tricedesigns.com/2013/03/11/performance-ux-considerations-for-successful-phonegap-apps/)
-
+- 어플리케이션 튜닝에 대한 상세한 가이드를 여기에서 확인할 수 있다. [Mobile Analysis in PageSpeed Insights](https://developers.google.com/speed/docs/insights/mobile)
 
 ## Lesson & Learned
 - 5 개월 프로젝트 기간 중 실질 개발 기간 1.5개월 정도
