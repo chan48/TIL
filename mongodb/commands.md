@@ -1,0 +1,2 @@
+- dump : `mongodump -o(out) /home/swdev/burgerking/dump/날짜`
+- 
