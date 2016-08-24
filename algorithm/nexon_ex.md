@@ -51,7 +51,3 @@
   # 아래와 같은 형태로 relations에 저장된다.
   # [['kephi', 'dizni'], ['bazzi', 'gabriel'], ['evan', 'gabriel'], ['marid', 'evan'], ['pungjin', 'dizni'], ['evan', 'bazzi'], ['marid', 'fiona'], ['fiona', 'gabriel'], ['pungjin', 'kephi']]
   ```
-
-## string 값 비교
-- `is` :
-- `==` :

@@ -30,9 +30,7 @@ print(len(ret)) # stub
 print('\n'.join(ret)) # stub
 
 
-
-
-# 답 (1)
+# 문제풀이 정답
 N = int(input())                                # stub
 names = [input() for y in range(N)]             # stub
 M = int(input())                                # stub
@@ -41,18 +39,12 @@ relations = [input().split() for y in range(M)] # stub
 def solve(N, M, names, relations):
 
     jjik = ["dizni"]
-    # cnt = 0
     for x in jjik:
-        # cnt += 1
-        # print ("jjik's count"+str(cnt)+" "+jjik[cnt-1])
         for (first, last) in relations:
             if first == x and last not in jjik:
                 jjik.append(last)
-                # print("last : "+last)
             elif last == x and first not in jjik:
                 jjik.append(first)
-                # print("first : "+first)
     return jjik
-
 
 solve(N, M, names, relations)
