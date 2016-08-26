@@ -6,7 +6,7 @@
 ## 구현? 사용법?
 - Web App 에 Native 느낌을 더하기 위해 Apple 이 추가한 몇 가지 태그는 아래와 같다.
 
-  ``` html
+  ``` xml
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
@@ -17,7 +17,7 @@
 
 - 그리고 이후에 Google 이 다음과 같은 태그를 추가한다.
 
-  ``` html
+  ``` xml
   <meta name="mobile-web-app-capable" content="yes">
   <link rel="icon" sizes="72x72"href="/icon72.png">
   <link rel="icon" sizes="114x114"href="/icon114.png">
@@ -27,7 +27,7 @@
 
 - 결국 이들의 종착지는 바로 [Web App Manifest File](https://w3c.github.io/manifest/) 이다.
 
-  ``` html
+  ``` xml
   <link rel="manifest" href="manifest.json">
   ```
 
@@ -79,3 +79,7 @@
 ## Lesson & Learned
 - iOS 에서 즐겨찾기로 추가한 아이콘으로 웹 앱을 실행하면, 웹 내에서 href 태그 접근 시 새로운 브라우저를 띄우면서 scope 이 바뀐다.
 - 해결책 : `<a href="#">` 없앤다.
+
+
+#### Reference
+[Understanding the Manifest for Web App](https://thishereweb.com/understanding-the-manifest-for-web-app-3f6cd2b853d6#.njt00wk6c)
