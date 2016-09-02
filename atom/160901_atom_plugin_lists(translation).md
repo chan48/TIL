@@ -1,12 +1,12 @@
 ## Atom Editor 는 무엇인가요?
-- Github 에서 제작한 hackable 에디터로 뛰어난 접근성과 현대적이고 유용한 기능들을 제공하는 것이 특징
-- 개인적으로 필요한 기능들에 대해 config file 을 건드리지 않고 커스텀화가 가능하다.
+- **Github 에서 제작한 hackable 에디터**로 뛰어난 접근성과 현대적이고 유용한 기능들을 제공하는 것이 특징
+- 개인적으로 필요한 기능을 제작하여 패키지로 배포할 수 있어, 공유가 가능하다.
 
 ## Atom Editor 를 쓰게된 계기?
 - 오픈소스로 관리되고, 100% 무료인 *Code Editing Tool*
-- 코드 개발과 소스 관리를 쉽게 해주는 [Github](https://github.com/) 이 지원하고 있는 *Editing Tool*
+- 코드 개발과 소스 관리에 특화된 [Github](https://github.com/) 이 지원하고 있는 *Editing Tool*
 
-  > Github has a lot of resources to put in the process of developing an application. It has the ability to create a stable product fast and improve it over time.
+> Github has a lot of resources to put in the process of developing an application. It has the ability to create a stable product fast and improve it over time.
 
 - 테마부터 코드 동기화까지 모두 *개인화가 가능한 맞춤형 툴*
 - Chrome 요소 검사로 에디팅 툴을 접근할 수 있는 것도 장점
