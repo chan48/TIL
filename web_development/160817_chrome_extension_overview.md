@@ -54,7 +54,7 @@
 - 기존에 확장 프로그램에 포함된 페이지 이외에 사용자가 로딩하는 다른 페이지들을 조작하기 위해서는 *content script*가 있어야 한다.
 
 ### The background page
-- 백그라운드 페이지에는 [persistent background](https://developer.chrome.com/extensions/background_pages) 와 [event](https://developer.chrome.com/extensions/event_pages) 두 종류의 페이지가 있다.
+- 백그라운드 페이지에는 [persistent background](https://developer.chrome.com/extensions/background_pages)ㅡㅍㅗㅇ 와 [event](https://developer.chrome.com/extensions/event_pages) 두 종류의 페이지가 있다.
 - `persistent background` 페이지 는 항상 열려 있다.
 - `event` 페이지 는 필요에 따라 페이지가 열고 닫힌다.
 - 항상 `background` 페이지를 사용해야 하는 상황이 아니면 가급적 `event` 페이지를 사용한다.
@@ -67,14 +67,14 @@
 
 ### Content Scripts
 - **content scripts** : 브라우저에 로딩된 페이지의 컨텍스트에서 실행되는 javascript
+- **브라우저에 로딩되어 있는 웹 페이지에 접근하기 위한 javascript**
 - 확장프로그램의 일부가 아니라 브라우저에 로딩된 페이지의 일부라고 생각하면 된다.
-- 확장프로그램을 이용하여 웹 페이지와 인터랙션할 때 사용한다.
 - 브라우저가 로딩하는 페이지의 정보들에 접근이 가능하고, 페이지를 변경할 수 있다.
-- 로딩된 페이지의 DOM 조작은 가능하나, 확장프로그램의 `background` 페이지의 DOM 조작은 불가능하다.
+- 로딩된 페이지의 DOM 조작은 가능하나, **확장프로그램의 `background` 페이지의 DOM 조작은 불가능**하다.
 - 한가지 주의할 점은, `content script`와 `확장프로그램` 간의 소통이 아예 안되는 것은 아니다. 예를 들어, 브라우저 페이지에서 RSS feed를 찾을 떄 마다 `content script`에서 메시지를 보낸다고 하자. 그러면, `background` 페이지에서 `content script` 에 브라우저 페이지 모양을 바꿀지 묻는게 가능하다.
 
 ## Chrome.* API 사용하기
-- 웹 페이지와 앱이 사용할 수 있는 모든 API 뿐만 아니라, `chrome.* APIs` 라고 불리는 크롬 전용 API에도 접근이 가능하다.
+- 크롬 확장프로그램은 웹 페이지와 앱이 사용할 수 있는 모든 API 뿐만 아니라, `chrome.* APIs` 라고 불리는 크롬 전용 API에도 접근이 가능하다.
 - 예를 들어, `window.open()` 등의 웹앱 API 사용시에, 어느 탭을 열지 구체적으로 정하고 싶다면 Chrome의 `tabs.create` API를 사용할 수 있다.
 - 대부분의 `chrome.* API`는 **비동기** 방식이다. `string chrome.runtime.getURL()` 같은 일부 API는 **동기** 방식이다.
 

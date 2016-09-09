@@ -1,6 +1,7 @@
 # Chrome Extension Program 개발하는 법
 
 ## 개요
+- **크롬 확장프로그램 (Chrome Extension)** : 크롬 브라우저의 기능을 강화하거나 변경할 수 있는 소프트웨어 프로그램. HTML / Javascript / CSS 와 같은 웹 기술로 구현이 가능하다. 구현된 파일들을 하나의 파일로 압축하여, [Chrome Web Store](http://chrome.google.com/webstore)에 배포 및 설치가 가능하다.
 - [browser action](https://developer.chrome.com/extensions/browserAction) 을 이용해서 URL 주소창 옆의 확장 프로그램 아이콘을 생성할 수 있다.
 - 확장 프로그램을 만들기 위해서는 `manifest.json` 파일이 필요한데, 이 [매니페스트 파일](https://developer.chrome.com/extensions/manifest) 안에 확장 프로그램의 *이름, 설명, 버전 정보* 등을 설정할 수 있다.
 
