@@ -50,16 +50,16 @@
 
 - 이 예제가 의미하는 것은 다음과 같습니다. **시간복잡도에서 중요한 것은 정해진 표현식에 가장 큰 영향을 미치는 n 의 단위이다**
 - 대표적인 시간 복잡도들을 간단하게 정의해봅니다.
-  1. O(1) - 상수 시간 : 입력값 n 이 주어졌을 때, 알고리즘이 문제를 해결하는데 오직 한 단계만 거칩니다.
-  2. O(log n) - 로그 시간 : 입력값 n 이 주어졌을 때, 문제를 해결하는데 필요한 단계들이 연산마다 특정 요인에 의해 줄어듭니다.
-  3. O(n) - 직선적 시간 : 문제를 해결하기 위한 단계의 수와 입력값 n이 1:1 관계를 가집니다.
-  4. O(n²) - 2차 시간 : 문제를 해결하기 위한 단계의 수는 입력값 n의 제곱입니다.
-  5. O(C^n) - 지수 시간 : 문제를 해결하기 위한 단계의 수는 주어진 상수값 C 의 n 제곱입니다.
+  1. **O(1) - 상수 시간** : 입력값 n 이 주어졌을 때, 알고리즘이 문제를 해결하는데 오직 한 단계만 거칩니다.
+  2. **O(log n) - 로그 시간** : 입력값 n 이 주어졌을 때, 문제를 해결하는데 필요한 단계들이 연산마다 특정 요인에 의해 줄어듭니다.
+  3. **O(n) - 직선적 시간** : 문제를 해결하기 위한 단계의 수와 입력값 n이 1:1 관계를 가집니다.
+  4. **O(n^2) - 2차 시간** : 문제를 해결하기 위한 단계의 수는 입력값 n의 제곱입니다.
+  5. **O(C^n) - 지수 시간** : 문제를 해결하기 위한 단계의 수는 주어진 상수값 C 의 n 제곱입니다.
 
 - 위 정의를 가지고 아래 예제의 시간복잡도를 계산해보겠습니다.
 
   ``` text
-  let n = 16; -- 입력값 n 이 16일 때
+  var n = 16; -- 입력값 n 이 16일 때
   O (1) = 1 step "(awesome!)" -- O(1)는 시간복잡도가 1입니다.
   O (log n) = 4 steps  "(awesome!)" -- O(log n)는 시간복잡도가 4입니다. (log 의 밑이 2라고 가정)
   O (n) = 16 steps "(pretty good!)" -- O(n)는 시간복잡도가 16
@@ -72,11 +72,11 @@
   ``` javascript
   // 아래와 같은 데이터 구조 기준으로 시간복잡도를 적용해봅니다.
   var friends = {
-   'Mark' : true,
-   'Amy' : true,
-   'Carl' : false,
-   'Ray' :  true,
-  'Laura' : false,
+    'Mark' : true,
+    'Amy' : true,
+    'Carl' : false,
+    'Ray' :  true,
+    'Laura' : false,
   }
   var sortedAges = [22, 24, 27, 29, 31]
   ```
@@ -95,36 +95,36 @@
   }
   ```
 
-#### O(log n) — Logarithmic Time
+#### O(log n) — Logarithmic Time (로그 시간)
 - 배열에서 값을 찾을 때, 어느 쪽에서 시작할지를 알고 있으면 검색하는 시간이 두배로 줄어듭니다.
 
   ```javascript
-  //You decrease the amount of work you have to do with each step
-  function thisOld(num, array){
-    var midPoint = Math.floor( array.length /2 );
-    if( array[midPoint] === num) return true;
-    if( array[midPoint] < num ) --> only look at second half of the array
-    if( array[midpoint] > num ) --> only look at first half of the array
-    //recursively repeat until you arrive at your solution
+    //You decrease the amount of work you have to do with each step
+    function thisOld(num, array){
+      var midPoint = Math.floor( array.length /2 );
+      if( array[midPoint] === num) return true;
+      if( array[midPoint] < num ) // only look at second half of the array
+      if( array[midpoint] > num ) // only look at first half of the array
+      //recursively repeat until you arrive at your solution
 
-  }
-  thisOld(29, sortedAges) // returns true
-  //Notes
-   //There are a bunch of other checks that should go into this example for it to be truly functional, but not necessary for this explanation.
-   //This solution works because our Array is sorted
-   //Recursive solutions are often logarithmic
-   //We'll get into recursion in another post!
+    }
+    thisOld(29, sortedAges) // returns true
+    //Notes
+    //There are a bunch of other checks that should go into this example for it to be truly functional, but not necessary for this explanation.
+    //This solution works because our Array is sorted
+    //Recursive solutions are often logarithmic
+    //We'll get into recursion in another post!
   ```
 
-#### O(n) — Linear Time
+#### O(n) — Linear Time (직선적 시간)
 - 배열에서 모든 값을 검색하는 것은 직선적 시간입니다. 이와 마찬가지로 **for loops** 또는 **indexOf** 는 항상 linear 한 시간복잡도를 갖습니다.
 
   ``` javascript
   //The number of steps you take is directly correlated to the your input size
-  function addAges(array){
+  function addAges(arr){
     var sum = 0;
-    for (let i=0 ; i < array.length; i++){  //has to go through each value
-      sum += array[i]
+    for (var i=0 ; i < arr.length; i++){  //has to go through each value
+      sum += arr[i]
     }
    return sum;
   }
@@ -132,33 +132,30 @@
   ```
 
 
-#### O(n^2) — Quadratic Time
+#### O() — Quadratic Time (2차 시간)
 - 중첩된 **for loops** 는 2차 시간을 갖습니다.
 
   ``` javascript
   // The number of steps you take is your input size squared
-  function addedAges(array){
+  function addedAges(arr){
     var addedAge = [];
-      for (let i=0 ; i < array.length ; i++) { //has to go through each value
-        for(let j=i+1 ; j < array.length ; j++) { //and go through them again
-          addedAge.push(array[i] + array[j]);
+      for (var i=0 ; i < arr.length ; i++) {
+        for (var j=i+1 ; j < arr.length ; j++) {
+          addedAge.push(arr[i] + arr[j]);
         }
       }
     return addedAge;
   }
-  addedAges(sortedAges); // [ 46, 49, 51, 53, 51, 53, 55, 56, 58, 60 ]
-  // Notes
-  // Nested for loops. If one for loop is linear time (n)
-  // Then two nested for loops are (n * n) or (n^2) Quadratic.
+  addedAges(sortedAges);
   ```
 
-#### O(2^n) — Exponential Time
+#### O(2^n) — Exponential Time (지수 시간)
 - 지수 시간은 보통 문제를 풀기 위해 모든 조합과 방법을 시도할 때 사용됩니다.
 
   ``` text
   //The number of steps it takes to accomplish a task is a constant to the n power
   //Thought example
-  //Trying to find every combination of letters for a password of length n
+  //Trying to find every combination of varters for a password of length n
   ```
 
 ## 마무리
@@ -170,5 +167,5 @@
   1. **O(1) - 상수 시간** : 알고리즘이 문제를 해결하는데 오직 한 단계만 거칩니다.
   2. **O(log n) - 로그 시간** : 문제를 해결하는데 필요한 단계들이 연산마다 특정 요인에 의해 줄어듭니다.
   3. **O(n) - 직선적 시간** : 문제를 해결하기 위한 단계의 수와 입력값 n이 1:1 관계를 가집니다.
-  4. **O(n²) - 2차 시간** : 문제를 해결하기 위한 단계의 수는 입력값 n의 제곱입니다.
+  4. **O(n^2) - 2차 시간** : 문제를 해결하기 위한 단계의 수는 입력값 n의 제곱입니다.
   5. **O(C^n) - 지수 시간** : 문제를 해결하기 위한 단계의 수는 주어진 상수값 C 의 n 제곱입니다. (상당히 큰수가 됩니다)
