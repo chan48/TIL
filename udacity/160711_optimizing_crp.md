@@ -57,3 +57,13 @@
 ![crp_diagram](/Users/user2/Documents/Programming/TIL/udacity/crp_diagram.png "crp_diagram")
 
 ## Preload Scanner
+- picks ahead in the document
+  - When the browser is blocked on a script, a second lightweight parser scans the rest of the markup looking for other resources e.g. stylesheets, scripts, images etc., that also need to be retrieved.
+- Critical Rendering Path length / Critical Resources / The number of critical bytes
+
+## Conclusion
+- Reducing
+  1. the number of critical bytes
+  2. the number of critical resources
+  3. the critical rendering path length
+- My job is to make the critical rendering path as small and as short as possible
