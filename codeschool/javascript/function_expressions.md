@@ -70,15 +70,3 @@ alert(applyAndEmpty(start, puzzlers));
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-

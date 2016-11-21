@@ -10,6 +10,7 @@ Gulp를 설치하기 위해서는 node.js가 pc에 설치되어 있어야 한다
 - 프로젝트의 devDependencies에 Gulp를 추가하기 위해서, `npm install --save-dev gulp` 를 입력한다.
 - gulpfile.js 파일을 프로젝트 루트에 위치 시킨다.
 - gulpfile.js 파일에 다음의 내용을 추가해보자.
+
 ``` javascript
 /* File: gulpfile.js */
 
@@ -54,11 +55,9 @@ gulp.task('copyHtml', function() {
 });
 ```
 
-- gulp.watch 
+- gulp.watch
     + 두 개의 인자를 받는데, 앞의 인자가 지정한 조건에 대해서 변경이 일어나면 array 안에 들어 있는 두 번째 인자의 조건이 수행된다.
 ```javascript
 gulp.watch('source/javascript/**/*.js', ['jshint']);
 ```
 위의 예제에서는, `source/javscript`의 밑에 위치한 어느 서브폴더든, 해당 위치의 js 파일이 변경이 되면, 뒤에 지정한 jshint 가 동작을 한다.
-
-## Gulp 기본 세팅

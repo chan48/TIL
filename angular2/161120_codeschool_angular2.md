@@ -19,7 +19,7 @@
 - 후자가 당연히 더 빠르고, 실제 서비스 할 때 권고하는 방법이다.
 
 ## Backtic
-- Angular 2 에서는 Double Quote 대신에 Backtic 이라는 \`\` 를 사용하여 템플릿을 설정할 수 있다.
+- Angular 2 에서는 Double Quote 대신에 Backtic 이라는 **\` \`** 를 사용하여 템플릿을 설정할 수 있다.
 
 ## Angular 2 라이브러리 로딩
 - [사이트](http://go.codeschool.com/angular2start)를 참고하여 Angular 2 에 필요한 라이브러리 로딩에 대해서 알아본다.
@@ -64,7 +64,7 @@
   }
   ```
 
-## Splitting things into pieces
+## 파일 구조화 하기
 - `main.ts` 파일을 다음 3개의 파일로 분할
   1. main.ts : 앱 초기화 및 첫번째 컴포넌트 로딩
   2. app.component.ts : 페이지 헤더
@@ -118,7 +118,6 @@
 ## Mocks & Models
 - `const` : 해당 변수의 내용이 재정의 되지 않도록 설정 (ES2015)
 - `ngOnInit()` : 해당 컴포넌트가 생성되고 나면 바로 실행된다. 따라서, 프로퍼티 값을 초기화하기에 가장 안성맞춤인 장소. 컴포넌트 내의 다른 장소에서 프로퍼티 값 초기화도 가능하지만, 테스트하기에 어려움이 있다. 따라서 ngOnInit 에서 초기화 하도록 한다.
--
 
 ## 현재까지의 Component 구조
 1. index.html 로딩 : `<my-app>` 을 포함하고 있고, main.ts 를 호출
@@ -130,7 +129,7 @@
   - car-parts.component.html : html 템플릿
   - car-parts.component.css : css 스타일
 
-- 스크린샷 포함하기
+  - ![구조 이미지](/Users/user2/Documents/Programming/TIL/angular2/img/1.png)
 
 ## Best Practices about Mocks and Models
 - TypeScript 에서는 클래스를 이용하여 데이터를 모델링한다.
@@ -148,7 +147,7 @@
 - 투 웨이 바인딩을 하기 위해서는 2가지 방법이 있다.
   1. `<input [value]="carPart.quantity" (input)="carPart.quantity = $event.target.value">`
   2. *FormsModule* 임포트 후 추가
-- Model 의 Banana in a box : 네모 괄호 안에 둥근 괄호를 넣으면 Model 이 양방향으로 바인딩 된다. [()]
+- Model 의 *Banana in a box* : 네모 괄호 안에 둥근 괄호를 넣으면 Model 이 양방향으로 바인딩 된다. **`[( )]`**
 
   ```javascript
   [(ngModel)] = "cash"
@@ -157,7 +156,7 @@
 ## Services
 - 서비스 : 앱의 코드를 공유하거나 구성하는데 사용되고, 주로 데이터 접근 메서드를 생성할 때 사용한다.
 
-  그림 [Introducing Services](Introducing Services)
+  - ![서비스 그림](/Users/user2/Documents/Programming/TIL/angular2/img/2.png)
 
 - Dependency Injection 은 서비스를 생성하고 클래스에 보낼 때 사용된다.
 - DI 에 Provider 를 제공함으로써 어떤 클래스가 서비스 생성이 필요한지를 알 수 있다.
@@ -165,10 +164,14 @@
 - **The injector knows how to inject our dependencies**
   - inject : Create (if needed) and send
   - dependencies : Classes we depend on
+
 - DI 에 Providers 를 등록하는 법 (RacingDataService)
   1. 주입할 수 있는 데코레이터를 Service 에 추가
   2. 인젝터에 서비스를 프로바이더로 명명하여 알게한다
   3. 디펜던시를 ts 파일에 주입한다.
+
+  - ![DI Provider 등록](/Users/user2/Documents/Programming/TIL/angular2/img/3.png)
+  -
 
 #### 주입할 수 있는 데코레이터를 Service 에 추가
 
@@ -248,7 +251,7 @@
   ```
 
   - 위 코드에 관한 설명은 다음 이미지 참조
-  - ![그림]()
+  - ![http response](/Users/user2/Documents/Programming/TIL/angular2/img/4.png)
 
 - http 는 Observable 이라는 형태의 데이터로 반환해준다.
 - 테스트나 오프라인시에는 RacingDataServiceMock 같은 서비스 명을 활용하여 테스트 하도록 한다.

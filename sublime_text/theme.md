@@ -3,11 +3,11 @@ Front-End 개발자라면 누구나 한번쯤 들어봤을 법한, 만인의 Edi
 남들처럼 그냥 다운받아 사용하지 말고 남들과는 구분이 되는 서브라임 유저가 되보자.
 
 ## Famous Theme - Seti UI
-Google 엔지니어 Addy는 말한다. "It's got really nice vibrant colors for pretty much all different types of syntax."
+Google 엔지니어 Addy의 말이다. "It's got really nice vibrant colors for pretty much all different types of syntax."
 https://developers.google.com/web/shows/ttt/series-1/mt-addys-theme?hl=en
 
-그렇다. 말 그대로 이건 죽여주는 Theme 이다.
-다운로드는 다음 링크를 이용하거나 [Seti_UI](https://packagecontrol.io/packages/Seti_UI)
+그렇다. 말 그대로 이건 죽여주는 Theme 이다. <br>
+다운로드는 이 [링크](https://packagecontrol.io/packages/Seti_UI)를 이용하거나
 Install Package를 이용하여 Seti_UI 를 찾아 설치한다.
 
 ## 코딩이 쉬워집니다. Key Bindings Customization
@@ -26,11 +26,12 @@ Install Package를 이용하여 Seti_UI 를 찾아 설치한다.
 ```
 
 ## 코딩을 도와줍니다. User Setting Customization
-**Preferences → Settings - User** 로 가서 다음 내용을 추가한다.
-- 커서가 위치한 줄을 눈에 띄기! 
-`"highlight_line": true` 를 추가
+- **Preferences → Settings - User** 로 가서 다음 내용을 추가한다.
 
-- 맥 에어를 이용하는 유저들에게 강추하는 라인 간격 넓히기 
+- 커서가 위치한 줄을 눈에 띄기!
+` "highlight_line": true ` 를 추가
+
+- 맥 에어를 이용하는 유저들에게 강추하는 라인 간격 넓히기
 ``` javascript
 "line_padding_bottom": 1,
  "line_padding_top": 1
@@ -40,4 +41,3 @@ Install Package를 이용하여 Seti_UI 를 찾아 설치한다.
 ``` javascript
 "bold_folder_labels": true
 ```
-

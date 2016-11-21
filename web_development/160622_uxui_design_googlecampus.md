@@ -1,4 +1,4 @@
-# UX / UI Design
+# Google UX / UI Design by Jacob Chalkley (Google Interaction Designer)
 ## 1
 - Is the user able to complete the task as they intended?
 - Is ~ as the designer intended?
@@ -18,7 +18,7 @@
 - [25 Mobile App Principles](http://think.storage.googleapis.com/docs/principles-of-mobile-app-design-engage-users-and-drive-conversions.pdf)
 - [More about Design at Google](https://design.google.com/)
 
-## Futrue trends
+## Future trends
 - (Audience) Voice Commands (get rid of unnecessary steps to get to where they want to go to)
 - The Returns of Texture
   - Less flat colors
