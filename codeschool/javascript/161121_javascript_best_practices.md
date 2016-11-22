@@ -1,114 +1,116 @@
+> 이 글은 CodeSchool 의 Javascript Best Practices 를 듣고, 주요 내용을 정리한 글입니다.
+
 ## Ternary Conditional (삼항 연산자)
 - 다음과 같은 예문이 있다.
 
-``` javascript
-var isArthur = true;
-var weapon;
+  ``` javascript
+  var isArthur = true;
+  var weapon;
 
-if(isArthur) {
-  weapon = "Excalibur";
-} else {
-  weapon = "Longsword";
-}
-```
+  if(isArthur) {
+    weapon = "Excalibur";
+  } else {
+    weapon = "Longsword";
+  }
+  ```
 
 - 삼항연산자를 이용하면 위의 if else 문을 아래와 같이 바꿀수 있다.
 
-``` javascript
-var weapon = isArthur ? "Excalibur" : "Longsword";
-```
+  ``` javascript
+  var weapon = isArthur ? "Excalibur" : "Longsword";
+  ```
 
 - 또한 삼항 연산자를 다음과 같은 형태로도 사용이 가능하다.
 
-``` javascript
-// 두개 이상의 변수를 이용하여 값을 받는 경우
-isArthur && isKing ? (weapon = "Ex", helmet = "Goose")
-                     :
-                     (weapon = "ln", helmet = "Iron")
+  ``` javascript
+  // 두개 이상의 변수를 이용하여 값을 받는 경우
+  isArthur && isKing ? (weapon = "Ex", helmet = "Goose")
+                       :
+                       (weapon = "ln", helmet = "Iron")
 
-// 즉시 실행함수로 값을 받는 경우
-isArthur && isKing ? function () {
-                        // ...
-                     }();
-                     :
-                     function () {
-                        // ...
-                     }();
-```
+  // 즉시 실행함수로 값을 받는 경우
+  isArthur && isKing ? function () {
+                          // ...
+                       }();
+                       :
+                       function () {
+                          // ...
+                       }();
+  ```
 
 ## Logical Assignment 1 (OR)
 - OR 연산자 : "falsy" 하지 않은 가장 첫번째 마주친 값을 갖는다.
 - 아래의 삼항 연산자를 OR 연산자를 이용하여 다음과 같이 줄일 수 있다.
 
-``` javascript
-// 삼항연산자 사용
-function addSword(sword) {
-  this.swords = this.swords ? this.swords : [ ];
-  this.swords = push.(sword);
-}
+  ``` javascript
+  // 삼항연산자 사용
+  function addSword(sword) {
+    this.swords = this.swords ? this.swords : [ ];
+    this.swords = push.(sword);
+  }
 
-// OR 연산자 사용
-function addSword(sword) {
-  this.swords = this.swords || [ ];
-  this.swords = push.(sword);
-}
+  // OR 연산자 사용
+  function addSword(sword) {
+    this.swords = this.swords || [ ];
+    this.swords = push.(sword);
+  }
 
-// OR 연산자 잘못 사용한 예
-function addSword(sword) {
-  this.swords = [ ] || this.swords;
-  this.swords = push.(sword);
-}
-// 위의 경우 계속 new array 를 할당함.
-```
+  // OR 연산자 잘못 사용한 예
+  function addSword(sword) {
+    this.swords = [ ] || this.swords;
+    this.swords = push.(sword);
+  }
+  // 위의 경우 계속 new array 를 할당함.
+  ```
 
 - OR 연산자의 잘못된 사용 예를 더 본다.
 
-```javascript
-// 잘못된 OR 연산자 사용 예
-var result1 = 42 || undefined; // undefined 를 절대로 마주치지 않는다.
-var result2 = ["Sweet", "array"] || 0; // 0을 절대로 마주치지 않는다.
-var result3 = {type: "ring", stone: "diamond"} || ""; // "" 를 절대로 맞추지지 않는다.
+  ```javascript
+  // 잘못된 OR 연산자 사용 예
+  var result1 = 42 || undefined; // undefined 를 절대로 마주치지 않는다.
+  var result2 = ["Sweet", "array"] || 0; // 0을 절대로 마주치지 않는다.
+  var result3 = {type: "ring", stone: "diamond"} || ""; // "" 를 절대로 맞추지지 않는다.
 
-// 위를 고쳐보면,
-var result1 = undefined || 42;
-var result2 = 0 || ["Sweet", "array"]; // 0을 절대로 마주치지 않는다.
-var result3 = "" || {type: "ring", stone: "diamond"}; // "" 를 절대로 맞추지지 않는다.
-```
+  // 위를 고쳐보면,
+  var result1 = undefined || 42;
+  var result2 = 0 || ["Sweet", "array"]; // 0을 절대로 마주치지 않는다.
+  var result3 = "" || {type: "ring", stone: "diamond"}; // "" 를 절대로 맞추지지 않는다.
+  ```
 
 ## Logical Assignment 2 (And)
 - OR 연산자와는 다르게 두개의 "truthy" 값이 있으면, 마지막으로 확인한 truthy 값이 리턴된다.
 - "falsy" 값의 경우에는 OR 연산자와 동일하게 동작한다.
 
-``` javascript
-var result1 = "King" && "Arthur";
-console.log(result1); //Arthur
-var result2 = "Arthur" && "King";
-console.log(result2); // King
-```
+  ``` javascript
+  var result1 = "King" && "Arthur";
+  console.log(result1); //Arthur
+  var result2 = "Arthur" && "King";
+  console.log(result2); // King
+  ```
 
 ## Switch Blocks
 - 반복되는 `if else` 문과 `switch` 문의 차이점은, 순차적으로 모든 if 문을 도느냐. 아니면 해당하는 case 로 바로 가서 불필요한 연산을 줄이느냐의 차이이다.
 
-``` javascript
-var regimnet = 3;
+  ``` javascript
+  var regimnet = 3;
 
-if (regiment == 1) {
-  ...
-} else if (regiment == 2) {
-  ...
-} else if (regiment == 3) { // 앞 1,2 를 거쳐 3으로 온다.
-  ...
-}
+  if (regiment == 1) {
+    ...
+  } else if (regiment == 2) {
+    ...
+  } else if (regiment == 3) { // 앞 1,2 를 거쳐 3으로 온다.
+    ...
+  }
 
-switch (regiment) {
-  case 1:
-    ...
-  case 2:
-    ...
-  case 3: // 3으로 바로 온다.
-    ...
-}
-```
+  switch (regiment) {
+    case 1:
+      ...
+    case 2:
+      ...
+    case 3: // 3으로 바로 온다.
+      ...
+  }
+  ```
 
 - break 문을 사용하지 않고, 공통된 property 를 상위 case 에서 부터 순차적으로 접근하여 추가하는 방법도 있다.
 
