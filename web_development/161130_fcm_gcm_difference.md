@@ -27,3 +27,4 @@
 - 분석, 인증, 푸쉬, 크래쉬 리포팅, 동적 연결, 알림, 초대 등은 무료
 - 그외 DB, 호스팅, 클라우드 플랫폼을 사용할 때 등급별로 가격이 발생한다.
 - 자세한 가격 정책에 대해선 [사이트](https://firebase.google.com/pricing/) 를 참조하자.
+- [스택오버플로우 설명 참고](http://stackoverflow.com/questions/37311188/migration-from-gcm-to-fcm-needed/37314483#37314483)
