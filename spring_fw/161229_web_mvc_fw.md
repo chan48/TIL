@@ -86,3 +86,62 @@ public class MyWebApplicationInitializer implements WebApplicationInitializer {
 ```
 
 - 위의 경우 `/WEB-INF/golfing-servlet.xml` 라는 파일이 존재해야 `/golfing` 이름으로 들어오는 url 요청이 해당 서블릿으로 전달된다.
+
+## Web Application Context 의 Bean 종류
+- Handler Mapping : 들어오는 요청을 핸들러에 매핑해준다. 구현방식에 따라 전처리 후처리가 가능하다.
+- Handler Adapter : DispatcherServlet 이 실제로 일어나는 핸들러의 종류와 관계 없이 요청에 매핑된 핸들러를 발생시킬 수 있도록 돕는다.
+- Handler Exception Resolver : View 의 예외 처리를 담당하고, 복잡한 예외처리에 대해서도 구현할 수 있다.
+- View Resolver : 실제 뷰 이름과 뷰를 매핑하는 역할을 한다.
+- Multipart Resolver : HTML 폼의 파일 업로드 처리를 지원하기 위해 multi-part 요청을 파싱한다.
+
+## DispatcherServlet 처리 순서
+1. URL 요청이 들어오고 이 URL에 매핑된 DispatcherSerlvet 를 찾게 된다.
+2. WebApplicationContext 가 locale, theme, multipart 와 같은 Resolver 가 설정되어 있는지 확인하고 해당 작업을 처리한다.
+3. 요청을 처리할 적절한 핸들러를 발견하면 handler 처리와 관련된 실행 체인 (전처리기, 후처리기, 컨트롤러) 이 동작하고 모델과 렌더링 작업을 준비한다.
+4. 모델에서 데이터를 반환하면 뷰가 뿌려지지만, 모델이 반환되지 않으면 뷰도 부려지지 않는다.
+
+
+## Controller 구현하기 [레퍼런스](https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-controller)
+- `<context:component-scan base-package="org.springframework.samples.petclinic.web"/>` : 해당 패키지 주소 아래 @Controller 어노태이션을 찾아 자동으로 빈을 등록해준다.
+- `@RequestMapping("/appointments")` : URL 패턴이 /appointments 로 들어오는 요청에 대해서 클래스나 메서드로 받아 처리할 수 있다.
+
+``` java
+// Controller 샘플
+@Controller
+@RequestMapping("/appointments")
+public class AppointmentsController {
+
+    private final AppointmentBook appointmentBook;
+
+    @Autowired
+    public AppointmentsController(AppointmentBook appointmentBook) {
+        this.appointmentBook = appointmentBook;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Map<String, Appointment> get() {
+        return appointmentBook.getAppointmentsForToday();
+    }
+
+    @RequestMapping(path = "/{day}", method = RequestMethod.GET)
+    public Map<String, Appointment> getForDay(@PathVariable @DateTimeFormat(iso=ISO.DATE) Date day, Model model) {
+        return appointmentBook.getAppointmentsForDay(day);
+    }
+
+    @RequestMapping(path = "/new", method = RequestMethod.GET)
+    public AppointmentForm getNewForm() {
+        return new AppointmentForm();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String add(@Valid AppointmentForm appointment, BindingResult result) {
+        if (result.hasErrors()) {
+            return "appointments/new";
+        }
+        appointmentBook.addAppointment(appointment);
+        return "redirect:/appointments";
+    }
+}
+```
+
+- @RequestMapping 에서 사용되는 URL 패턴은 다음 [게시글](file://~)을 참고한다.
