@@ -25,9 +25,28 @@ var arr = ["a", "b", "c"];
 arr.indexOf("b"); // 1
 ```
 
-##
+## Array.forEach()
+- 배열의 인덱스를 접근하는 반복문
+- 일반 for 반복문보다 95% 느리다.
+- IE 하위 버전에서는 호환되지 않는 경우가 있다.
 
+``` javascript
+var arr = ["a", "b", "c"];
+arr.forEach(function (a) {
+  console.log(a);
+});
+// a
+// b
+// c
+```
 
+## Array.join()
+- 각 배열의 인덱스 값을 모두 합쳐서 한 길이의 문자열로 만든다.
+
+``` javascript
+var arr = ["Hello", "World", "!"];
+arr.join(""); // "HelloWorld!"
+```
 
 # String
 ## String.toLowerCase()
