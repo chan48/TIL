@@ -1,91 +1,42 @@
-var test = ["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"];  // ["WEST"]
+var test1 = ["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"];  // ["WEST"]
+var test2 = ["NORTH", "EAST"];
+var test3 = ["NORTH", "WEST", "SOUTH", "EAST"];
+var test4 =
+['EAST','WEST','NORTH','SOUTH','NORTH','EAST','EAST','WEST','NORTH','SOUTH'];
+var test5 =
+['NORTH','SOUTH','WEST','EAST','NORTH','SOUTH','NORTH','EAST','WEST','EAST','SOUTH','NORTH','WEST', 'EAST'];
 
 function dirReduc(arr){
-  var horizontalValue = 0,
-      verticalValue = 0,
+  var verFlag = false,
+      horFlag = false,
       result = [];
 
-  if (arr.length <= 4) {
-    switch (horizontalValue) {
-      case 0:
-        result.push("NORTH");
-        result.push("SOUTH");
-        break;
-      case 1:
-        result.push("NORTH");
-        break;
-      case -1:
-        result.push("SOUTH");
-        break;
-      default:
-        console.log("[Horizontal] arr.length is less than 5");
-        break;
-    }
-    switch (verticalValue) {
-      case 0:
-        result.push("EAST");
-        result.push("WEST");
-        break;
-      case 1:
-        result.push("EAST");
-        break;
-      case -1:
-        result.push("WEST");
-        break;
-      default:
-        console.log("[Vertical] arr.length is less than 5");
-        break;
-    }
-    return result;
-  }
+  console.log("@@@ Array : ", arr);
 
   for (var i = 0, length = arr.length; i < length; i++) {
     switch (arr[i]) {
       case "NORTH":
-        horizontalValue += 1;
+        var southIdx = result.lastIndexOf("SOUTH");
+        southIdx > -1 ? result.splice(southIdx, 1) : result.push("NORTH");
         break;
       case "SOUTH":
-        horizontalValue -= 1;
+        var northIdx = result.lastIndexOf("NORTH");
+        northIdx > -1 ? result.splice(northIdx, 1) : result.push("SOUTH");
         break;
       case "EAST":
-        verticalValue += 1;
+        var westIdx = result.lastIndexOf("WEST");
+        westIdx > -1 ? result.splice(westIdx, 1) : result.push("EAST");
         break;
       case "WEST":
-        verticalValue -= 1;
+        var eastIdx = result.lastIndexOf("EAST");
+        eastIdx > -1 ? result.splice(eastIdx, 1) : result.push("WEST");
         break;
       default:
         console.log("nth has been given yet");
         return "";
     }
-    console.log(" i : " + i + ". horizontalValue : " + horizontalValue +
-    ". verticalValue : " + verticalValue + ".");
+    console.log(" result : ", result);
   }
 
-  if (horizontalValue > 0) {
-    while (horizontalValue > 0) {
-      result.push("NORTH");
-      horizontalValue -= 1;
-    }
-  } else if (horizontalValue < 0){
-    while (horizontalValue < 0) {
-      result.push("SOUTH");
-      horizontalValue += 1;
-    }
-  }
-
-  if (verticalValue > 0) {
-    while (verticalValue > 0) {
-      result.push("EAST");
-      verticalValue -= 1;
-    }
-  } else if (verticalValue < 0){
-    while (verticalValue < 0) {
-      result.push("WEST");
-      verticalValue += 1;
-    }
-  }
-
-  // horizontalValue == 0 ? result.push("NORTH") : result.push("SOUTH");
-  // verticalValue == 0 ? result.push("EAST") : result.push("SOUTH");
   return result;
 }
