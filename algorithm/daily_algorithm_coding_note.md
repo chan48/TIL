@@ -48,6 +48,32 @@ var arr = ["Hello", "World", "!"];
 arr.join(""); // "HelloWorld!"
 ```
 
+## Array.indexOf()
+- 입력된 값의 배열 인덱스를 반환해준다.
+- 만약, 해당 값이 배열 안에 없다면 -1 을 반환한다.
+
+``` javascript
+var arr = ["Hello", "World", "!"];
+arr.indexOf("World"); // 1
+```
+
+## Array.lastIndexOf()
+- indexOf 는 앞에서부터 시작하지만, lastIndexOf 는 뒤에서부터 탐색한다.
+
+``` javascript
+var arr = ["Hello", "World", "!", "World"];
+arr.indexOf("World"); // 3
+```
+
+## Array.filter()
+- 해당 배열의 필터 조건에 해당되는 배열을 반환하여준다.
+
+``` javascript
+var arr = [0, 0, 2, 0, 1];
+arr.filter(function (x) { return x === 0; }); // [0, 0, 0]
+arr.filter(function (x) { return x !== 0; }); // [2, 1]
+```
+
 # String
 ## String.toLowerCase()
 - 매개변수로 입력받은 값을 모두 소문자로 변경하여 반환한다.
