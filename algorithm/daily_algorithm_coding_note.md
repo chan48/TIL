@@ -74,6 +74,24 @@ arr.filter(function (x) { return x === 0; }); // [0, 0, 0]
 arr.filter(function (x) { return x !== 0; }); // [2, 1]
 ```
 
+## Array 배열 스트링 값의 인덱스 접근
+- 배열이 아래와 같이 있을 때, 각 배열 인덱스의 스트링의 문자열을 인덱스로 접근이 가능하다.
+
+``` javascript
+var arr = ["hello", "world"];
+console.log(arr[0]); // hello
+console.log(arr[0][0]); // h
+```
+
+- **하지만 위처럼 배열 인덱스의 문자열의 캐릭터를 인덱스로 접근하는 경우 변경은 되지 않는다.**
+
+``` javascript
+// 위와 동일
+arr[0][0] = "H";
+console.log(arr[0]); // hello
+```
+
+
 # String
 ## String.toLowerCase()
 - 매개변수로 입력받은 값을 모두 소문자로 변경하여 반환한다.

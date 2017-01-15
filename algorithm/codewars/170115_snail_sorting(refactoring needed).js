@@ -14,8 +14,8 @@ var snail = function (arr) {
   var length = arr.length,
       result = [];
 
-  if (length == 1) return arr[0];
   if (length == 0) return result;
+  if (length == 1) return arr[0];
 
   for (var i = 0; i < length; i++) {
     result.push(arr[0][i]);
@@ -25,20 +25,18 @@ var snail = function (arr) {
   }
   for (var i = length-1; i > 0; i--) {
     result.push(arr[length-1][i-1]);
-    // console.log("[length-1][i] : " + arr[length-1][i]);
   }
   // console.log("result : ", result); // [1, 2, 3, 4, 5, 6, 7]
   for (var i = length-1; i > 1; i--) {
     result.push(arr[i-1][0]);
   }
-  console.log("result : ", result);
 
-  var subArray = [];
-  for (var i=1;i<length-1;i++) {
-    subArray.push(arr[i].splice(1,length-2));
+  var subArr = [];
+  for (var i = 1 ; i < length-1 ; i++) {
+    subArr.push(arr[i].splice(1, length-2));
   }
 
-  result = result.concat(snail(subArray));
+  result = result.concat(snail(subArr));
   return result;
 }
 snail([[1,2,3],[8,9,4],[7,6,5]]);
@@ -64,51 +62,20 @@ arr[1][1]   arr[3][1]
             arr[2][1] -
 
 
-
-// @@ for 문 풀이 실패
-// for (var i = 0; i < arr.length; i++) {
-//   if (!switched) {
-//     result.push(arr[i][arr.length-1]);
-//   } else {
-//     for (var j = 0; j < arr[i].length; j++) {
-//       result.push(arr[i][j]);
-//     }
-//     switched = !switched;
-//   }
-//
-//   if (i == arr.length) switched = !switched;
-// }
-
-
-// @@ Solution with for 문
-// if (arr.length == 0) return result;
-//
-// var max = arr[0].length - 1;
-// for (var i = 0; i <= max; i++) {
-//   result.push(arr[0][i]);
-// }
-//
-// for (var i = 1; i < max; i++) {
-//   result.push(arr[i][max]);
-// }
-//
-// for (var i = max; i >= 0; i--) {
-//   result.push(arr[max][i]);
-// }
-//
-// for (var i = max-1; i > 0; i--) {
-//   result.push(arr[i][0]);
-// }
-//
-//
-// var subArray = [];
-// for (var i=1;i<max;i++) {
-//   subArray.push(arr[i].splice(1,max-1));
-// }
-//
-// console.log("subArray : ", subArray);
-//
-// // //call it recursively
-// result = result.concat(snail(subArray));
-//
-// return result;
+// Best Solution
+snail = function(array) {
+  var result;
+  while (array.length) {
+    // Steal the first row.
+    result = (result ? result.concat(array.shift()) : array.shift());
+    // Steal the right items.
+    for (var i = 0; i < array.length; i++)
+      result.push(array[i].pop());
+    // Steal the bottom row.
+    result = result.concat((array.pop() || []).reverse());
+    // Steal the left items.
+    for (var i = array.length - 1; i >= 0; i--)
+      result.push(array[i].shift());
+  }
+  return result;
+}
