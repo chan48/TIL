@@ -42,7 +42,6 @@ function sumStrings(a,b) {
 
 
 
-
 // sum strings
 add("135","27");
 function add(a, b) {

@@ -1,4 +1,10 @@
 # Array
+## Array.map()
+- s
+
+## Array.reduce()
+-
+
 ## Array.unshift()
 - 배열의 맨 처음에 element 를 추가해준다.
 
@@ -104,7 +110,6 @@ console.log(arr[0][0]); // h
 arr[0][0] = "H";
 console.log(arr[0]); // hello
 ```
-
 
 # String
 ## String.toLowerCase()
