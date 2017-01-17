@@ -145,3 +145,6 @@ public class AppointmentsController {
 ```
 
 - @RequestMapping 에서 사용되는 URL 패턴은 다음 [게시글](file://~)을 참고한다.
+
+## Composed @RequestMapping Variants
+https://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html#mvc-ann-requestmapping-composed
