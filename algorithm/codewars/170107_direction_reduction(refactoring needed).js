@@ -1,15 +1,38 @@
-// var test1 = ["NORTH", "SOUTH", "SOUTH", "EAST", "WEST", "NORTH", "WEST"];  // ["WEST"]
-// var test2 = ["NORTH", "EAST"];
-// var test3 = ["NORTH", "WEST", "SOUTH", "EAST"];
-// var test4 =
-// ['EAST','WEST','NORTH','SOUTH','NORTH','EAST','EAST','WEST','NORTH','SOUTH'];
-var test5 =
-['NORTH','SOUTH','WEST','EAST','NORTH','SOUTH','NORTH','EAST','WEST','EAST','SOUTH','NORTH','WEST', 'EAST'];
-
-
-// 바로 인접하지 않은 N-S W-E 쌍에 대해서는 줄이지 않는다를 구현
 var test3 = ["NORTH", "WEST", "SOUTH", "EAST"];
 
+dirReduc(test3);
+function dirReduc(arr){
+  var result = [];
+
+  for (var i = 0; i < arr.length; i++) {
+    switch (arr[i]) {
+      case "NORTH":
+        if (result[result.length - 1] != "SOUTH") result.push("NORTH");
+        else if (result[result.length - 1] == "SOUTH") result.pop("SOUTH");
+        break;
+      case "SOUTH":
+        if (result[result.length - 1] != "NORTH") result.push("SOUTH");
+        else if (result[result.length - 1] == "NORTH") result.pop("NORTH");
+        break;
+      case "EAST":
+        if (result[result.length - 1] != "WEST") result.push("EAST");
+        else if (result[result.length - 1] == "WEST") result.pop("WEST");
+        break;
+      case "WEST":
+        if (result[result.length - 1] != "EAST") result.push("WEST");
+        else if (result[result.length - 1] == "EAST") result.pop("EAST");
+        break;
+      default:
+    }
+  }
+
+  return result;
+}
+
+
+// 오리지날 소스
+// 바로 인접하지 않은 N-S W-E 쌍에 대해서는 줄이지 않는다를 구현
+var test3 = ["NORTH", "WEST", "SOUTH", "EAST"];
 function dirReduc(arr){
   var verFlag = false,
       horFlag = false,
