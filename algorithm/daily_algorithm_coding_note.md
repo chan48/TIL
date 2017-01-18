@@ -1,9 +1,9 @@
 # Array
 ## Array.map()
-- s
+- [참고](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ## Array.reduce()
--
+- [참고](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce)
 
 ## Array.unshift()
 - 배열의 맨 처음에 element 를 추가해준다.
