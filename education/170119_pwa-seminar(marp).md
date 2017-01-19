@@ -124,13 +124,13 @@
 - PWA 를 적용한 Solution Portal
 
 	- Responsive : 반응형 웹 디자인을 적용한 Mobile 기기 지원
-	
+
 	![반응형 적용 35%](C:\TIL\TIL\education\new-sp.png)
 
 ---
 - PWA 를 적용한 Solution Portal
 	- App-like : 모바일 Icon 을 이용한 사이트 접속 및 모바일 UX 제공
-	
+
     ![솔루션 팟 아이콘](C:\TIL\TIL\education\app-icon.png)
 
 ---
@@ -138,7 +138,7 @@
 	- Engageable : Web & Mobile Push 알람을 이용한 **실시간** 게시글 알림
 
 	![알람](C:\TIL\TIL\education\chrome-push.png)
-    
+
 ---
 ## PWA 주요 기술
 
@@ -264,6 +264,13 @@ self.addEventListener('install', function(event) {
   - Opera
   - Samsung Mobile Browser
   - Safari (지원 예정)
+
+---
+## 마무리 하며
+- 아직은 디버깅이 어려운 서비스 워커
+- 기 개발된 서비스에 적용하기에는 제약사항이 존재
+- HTTP 와 HTTPS 의 어마어마한 차이
+- 일부 모바일 앱을 대체할 수 있는 사용자 경험
 
 ---
 ## 참고 자료
