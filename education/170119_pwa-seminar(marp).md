@@ -8,8 +8,8 @@
 2. PWA 배경
 3. PWA 특징
 4. PWA 사례
-	- Facebook
 	- Ali Express
+	- The Washington Post
 	- Solution Portal
 5. PWA 기술
 	- Wep App Manifest (Icon, Banner)
@@ -27,8 +27,6 @@
 ---
 ## PWA 소개
 > "Progressive Web Apps are experiences that combine the best of the web and the best of apps" 최고의 모바일 앱과 최고의 웹 앱을 결합한 경험
-
-<br>
 
 - Progressive Web Apps 는 무엇인가?
 
@@ -69,7 +67,7 @@
 <br>
 <br>
 
-- **Discoverable : 검색 엔진으로 탐색하여 원클릭 설치 가능 (banner)**
+- **Discoverable : URL 로 사이트 접근 후 원클릭 설치 가능 (banner)**
 
 ![인스톨배너 110%](C:\TIL\TIL\education\add-to-home-screen.png)
 
@@ -116,7 +114,6 @@
 
 	- Mobile 기기 미지원 : 게시글 내용 확인이 어렵고, Mobile 솔루션 홍보에 부적절
 	- 실시간 게시글 확인 미지원 : 고객의 게시글 여부를 Manual 하게 일일이 확인해야함
-	- 잦은 서버 재기동 : Backend 단의 특정 문제로 인해 주기적으로 서버 셧다운 발생
 
     ![참고 이미지 50%](C:\TIL\TIL\education\old-sp-w-frame.png)
 
@@ -172,6 +169,9 @@
 	- 런쳐화면 방향, 크기, 배경색 설정
 
 ---
+- 인스톨 배너를 이용한 앱 설치 및 실행
+	- [데모](https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/)
+
 - 홈 화면 Icon 추가 시연
 	- [안드로이드 폰]()
 
@@ -185,10 +185,6 @@
 - 오프라인 서비스, 푸쉬 알람 등의 모바일 기능을 웹에서 가능하게 하는 코어 기술
 - 브라우저의 백그라운드에서 돌아가는 스크립트, 브라우저와 네트워크의 미들웨어
 	- ex) 네이티브 모바일 앱과 비교하였을 때, 브라우저의 화면 쓰레드 이외에 브라우저 뒷단에서 돌아가는 쓰레드가 하나 더 있다고 생각
-
-<br>
-
-> 참고 : 자바스크립트는 브라우저의 UI 쓰레드 위에서 동작한다.
 
 ---
 - 웹 페이지에서 네트워크 요청 발생시 해당 요청을 가로챔
@@ -246,6 +242,10 @@ self.addEventListener('install', function(event) {
   - 실행중인 서비스 워커 확인은 `chrome://inspect/#service-workers`
 
 ---
+- 서비스 워커를 이용한 Push 알람 구현
+
+	- [솔루션 포탈](https://www.solutionpot.co.kr:9443/license/)
+
 - Facebook 서비스 워커 소스 디버깅 실습
 
 	- [페이스북 링크](https://www.facebook.com/)
@@ -266,11 +266,12 @@ self.addEventListener('install', function(event) {
   - Safari (지원 예정)
 
 ---
-## 마무리 하며
+## 마무리
 - 아직은 디버깅이 어려운 서비스 워커
 - 기 개발된 서비스에 적용하기에는 제약사항이 존재
 - HTTP 와 HTTPS 의 어마어마한 차이
 - 일부 모바일 앱을 대체할 수 있는 사용자 경험
+- 현재 보다는 앞으로가 더 기대되는 PWA
 
 ---
 ## 참고 자료
