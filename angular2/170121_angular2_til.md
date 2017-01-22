@@ -31,4 +31,48 @@ template:`
   2. `new` 로 서비스를 생성하면, heroes 캐쉬 값을 다른 컴포넌트와 공유를 할 수 없다.
   3. 오프라인이나 임시 데이터를 사용하는 등의 다른 시나리오에서의 사용이 어려워진다.
 
--
+## ngOnInit
+- 서비스를 이용하여 데이터를 받아와서 화면에 표시해주는 작업을 constuctor 에 넣을 필요는 없다.
+- constructor 에는 보통 간단하게 프로퍼티에 값을 매핑해주는 정도의 간단한 초기화 작업만 넣는 것이 정석이다.
+- 따라서, 이러한 데이터 fetch 초기화 작업을 angular 2 에서는 `ngOnInit` 에서 한다.
+- `lifecycle hook` 이라는 앵귤러의 컴포넌트 생명주기가 각 데이터의 생성, 변경, 삭제 시 이에 해당하는 작업을 자동으로 수행한다.
+
+## 비동기 Promise 를 이용한 데이터 fetch
+
+``` javascript
+// app.component.ts
+this.heroes = this.heroService.getHeroes();
+```
+
+- 앱 컴포넌트에서는 서비스로 서버에서 데이터를 얻어오는 과정을 기다려주지 않는다.
+- 따라서 브라우저나 UI 에서 막히지 않고 얻어온 데이터를 표시하기 전에 표시해버리면 오류가 난다.
+- 이런 경우 화면 렌더링을 효과적으로 수행하기 위해 Promise 사용이 필요하다.
+
+``` javascript
+// hero.service.ts
+// 기존 코드
+getHeroes(): Hero[] {
+  return HEROES;
+}
+
+// Promise 를 이용한 코드
+getHeroes(): Promise<Hero[]> {
+  return Promise.resolve(HEROES);
+}
+```
+
+- Promise 는 원하는 결과가 준비 되었을 때 콜백을 호출해준다.
+- Service 의 메서드를 Promise 로 변경하였으니, AppComponent 에도 동일하게 적용해주자.
+
+``` javascript
+// app.component.ts
+// 기존
+getHeroes(): void {
+  this.heroes = this.heroService.getHeroes();
+}
+
+// 변경
+getHeroes(): void {
+  this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+}
+```
