@@ -120,7 +120,7 @@ var str = "Hello World";
 str.toLowerCase(); // "hello world"
 ```
 
-## String.split();
+## String.split()
 - 입력받은 매개변수로 문자열을 잘라 배열로 저장한다.
 - "abbc" 형태의 문자열을 ["a", "b", "b", "c"] 의 배열 형태로 변경할 수 있다.
 
@@ -130,6 +130,16 @@ str.split(""); // ["a", "a", "b", "b", "c", "c", "d"]
 
 var commaStr = "a,bdf,es";
 commaStr.split(","); // ["a", "bdf", "es"]
+```
+
+## String.replace()
+- 문자열의 param1 값을 param2 로 치환한다.
+- 주의할 점 : replace() 로 치환한 값은 기존 값을 덮어쓰지 않으므로 변수 할당이 필요하다.
+
+``` javascript
+var str = "hello";
+str = str.replace("ll", "oo"); // "heooo"
+console.log(str);
 ```
 
 # Object

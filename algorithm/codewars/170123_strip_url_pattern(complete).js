@@ -17,19 +17,19 @@ function stripUrlParams(url, paramsToStrip){
     url.split(/\?/)[1].split(/\&/).map(function (x) {
         queryKey = x.split(/=/)[0];
 
-        if(queryKey == paramsToStrip || ) {
+        if(queryKey == paramsToStrip || queryMap[queryKey]) {
           url = url.replace("&" + x, "");
         } else if (!queryMap[queryKey]){
           queryMap[queryKey] = 1;
-        } else if (queryMap[queryKey]){
-          url = url.replace("&" + x, "");
         }
     });
   }
   return url;
 }
 
-// Regex replace
-var b = "hello";
-var c = b.replace("ll", "oo");
-console.log(c);
+// Best Solution
+function stripUrlParams(url, paramsToStrip){
+  return url.replace(/&?([^?=]+)=.+?/g, function(m, p1, qPos) {
+    return url.indexOf(p1 + '=') < qPos || (paramsToStrip||[]).indexOf(p1) > -1 ? "": m;
+   });
+}
