@@ -8,20 +8,26 @@ stripUrlParams('www.codewars.com', ['b']) // returns 'www.codewars.com'
 
 stripUrlParams('www.codewars.com?a=1&b=2&a=2', ['b'])
 function stripUrlParams(url, paramsToStrip){
-  // if (!paramsToStrip) return url;
-  var result = "";
+  var result = "",
+      queryKey = "",
+      queryMap = {};
 
-  // eliminate the second param (comes with & before)
-  var a = url.split(/\?/)[1].split(/\&/).map(function (x) {
-      if(x.split(/=/)[0] == paramsToStrip) {
-        result += x;
-      }
-  });
+  // eliminate the second param (type : &params)
+  if (url.split(/\?/)[1]) {
+    url.split(/\?/)[1].split(/\&/).map(function (x) {
+        queryKey = x.split(/=/)[0];
 
-  // return result;
-  return url.replace(result+"&", "");
+        if(queryKey == paramsToStrip || ) {
+          url = url.replace("&" + x, "");
+        } else if (!queryMap[queryKey]){
+          queryMap[queryKey] = 1;
+        } else if (queryMap[queryKey]){
+          url = url.replace("&" + x, "");
+        }
+    });
+  }
+  return url;
 }
-
 
 // Regex replace
 var b = "hello";
