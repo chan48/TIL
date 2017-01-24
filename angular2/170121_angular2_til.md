@@ -76,3 +76,6 @@ getHeroes(): void {
   this.heroService.getHeroes().then(heroes => this.heroes = heroes);
 }
 ```
+
+## Router
+-
