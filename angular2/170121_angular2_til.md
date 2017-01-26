@@ -76,3 +76,9 @@ getHeroes(): void {
   this.heroService.getHeroes().then(heroes => this.heroes = heroes);
 }
 ```
+
+## Angular 2 와 Node 프로젝트 병합시 오류 해결
+- 아래 명령어로 추가 모듈 설치
+  - npm install -g concurrently
+  - npm install -g lite-server
+  - npm install -g typescript

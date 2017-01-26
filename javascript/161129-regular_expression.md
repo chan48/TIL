@@ -28,3 +28,27 @@ alert(url.split("captain_pangyo/")[1]); // APIkey
 "Apple".search(/\w/gi); // 0
 "!!1!!".search(/[A-Za-z0-9_]/gi); // 2
 ```
+
+## 특수문자 (?, &) 검색하기
+- 정규표현식을 이용하여 "?" 와 같은 특수문자를 검색하려면, "\" backlash 를 이용하여 찾는다.
+
+``` javascript
+var str = "www.abc.com/?a=1";
+str.match("/\?/"); // ["/"]
+```
+
+## ? 문자 역할
+-
+
+``` javascript
+var a = "123abc";
+
+// d (digital character) : 0~9 까지 해당되는 숫자 (디지털 문자)
+a.match(/\d/); // "1"
+a.match(/\d+/); // "abc"
+a.match(/\d+?/); // "a"
+```
+
+## `/&?([^?=]+)=.+?/g` 해석
+- "?" 는 영어로 quantifier 라고 한다..
+- [참고](https://jex.im/regulex/#!embed=false&flags=&re=%26%3F(%5B%5E%3F%3D%5D%2B)%3D.%2B%3F)
