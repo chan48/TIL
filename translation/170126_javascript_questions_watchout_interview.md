@@ -149,4 +149,4 @@ let elem = document.getElementById('container');
 elem.addEventListener('scroll', debounce(foo, 2000));
 ```
 
-쓰로틀링 (Throttling) 은 함수가 호출되기 전에 특정 시간을 기다리는 것만 제외하고는 디바운싱과 비슷한 다른 기술입니다. 
+쓰로틀링 (Throttling) 은 함수가 호출되기 전에 특정 시간을 기다리는 것만 제외하고는 디바운싱과 비슷한 다른 기술입니다.
