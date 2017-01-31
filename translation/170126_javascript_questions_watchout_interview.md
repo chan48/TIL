@@ -1,6 +1,6 @@
-## 서론
-> 해당 글은 Medium 글입니다.
+> 해당 글은 미디엄의 "3 JavaScript questions to watch out for during coding interviews" 의 한글로 번역한 글입니다.
 
+## 서론
 자바스크립트는 현대의 최신 브라우저들에서 사용되는 공식 언어입니다. 그렇기 때문에 개발자 면접에서 다양한 형태로 질문을 받습니다. 이 글은 자바스크립트 라이브러리, 개발 방법론, ES6 의 새로운 함수 등의 내용을 다루는 게 아니라 자바스크립트 개발자 면접에서 자주 나오는 3가지 유형의 질문에 대해서 분석합니다. 물론 자바스크립트 면접을 위해 이 3가지 질문만 공부하면 되는 것은 아니지만, 면접관들은 이 3가지 질문으로 당신이 얼마나 자바스크립트의 언어 특성과 DOM 을 이해하고 있는지 판단할 것입니다. 자 그럼 본격적으로 시작하기에 앞서 말씀 드릴 것은 아래에 나오는 예제들은 모두 *바닐라 자바스크립트* 를 사용합니다. 면접관들은 당신이 jQuery 나 라이브러리의 도움 없이 얼마나 자바스크립트를 잘 구현할 수 있을지 궁금해 하기 떄문이죠.
 
 ## 질문 1 : 이벤트 위임하기
@@ -112,7 +112,7 @@ for (let i = 0; i < arr.length; i++) {
 
 면접에서 어플리케이션 제작에 대해 논할 때, 스크롤링이나 화면 재조정 그리고 키 눌림과 같은 이벤트에 대해서는 페이지 속도와 성능을 향상시키기 위한 디바운싱(Debouncing) 또는 쓰로틀링(Throttling) 를 꼭 짚고 넘어가야 합니다. 이에 대한 실제 사례를 봅시다.
 
-> 트위터~
+> 2011 년 트위터 웹 사이트에는 다음과 같은 문제가 발생했습니다. "사용자가 트위터 피드 화면을 내리면 갑자기 굉장히 느려지고 무반응 상태가 됩니다." John Resig 는 해당 문제에 대해 블로그 글을 올렸고 그 글에서 스크롤 이벤트에 복잡도가 높은 함수를 직접 붙이는게 얼마나 위험한지에 대해서 설명 하였습니다.
 
 디바운싱은 위 같은 문제 유형에서 실제로 함수가 다시 호출되기 전까지 시간 간격을 두어 성능 이슈를 해결하는 한가지 방법입니다. 디바운싱의 올바른 구현방법은 몇가지 함수 호출을 한 개의 그룹으로 묶고 특정 시간이 지난 후에야만 호출될 수 있도록 구조화 하는 것이죠. 아래는 플레인 자바스크립트로 스코프, 클로져, this, timing 이벤트를 구현한 예제입니다.
 
@@ -149,4 +149,14 @@ let elem = document.getElementById('container');
 elem.addEventListener('scroll', debounce(foo, 2000));
 ```
 
-쓰로틀링 (Throttling) 은 함수가 호출되기 전에 특정 시간을 기다리는 것만 제외하고는 디바운싱과 비슷한 다른 기술입니다.
+쓰로틀링 (Throttling) 은 함수가 호출되기 전에 특정 시간을 기다리는 것만 제외하고는 디바운싱과 비슷한 다른 기술입니다. 쓰로틀링은 함수 호출을 긴 시간 간격으로 발생하게끔 퍼뜨리는 기술입니다. 만약 이벤트가 100 ms 안에 10 번 발생한다면, 쓰로틀링을 이용해 각 실행이 100 ms 대신에 2 초 마다 발생하게끔 조정이 가능합니다.
+
+만약 디바운싱과 쓰로틀링에 대해 더 자세히 알고 싶으시면, 아래 기사들을 참고하시기 바랍니다.
+
+- [자바스크립트에서의 쓰로틀링과 디바운싱](https://medium.com/@_jh3y/throttling-and-debouncing-in-javascript-b01cad5c8edf#.ly8uqz8v4)
+- [쓰로틀링과 디바운싱의 차이점](https://css-tricks.com/the-difference-between-throttling-and-debouncing/)
+- [쓰로틀링과 디바운싱 예제](https://css-tricks.com/debouncing-throttling-explained-examples/)
+- [쓰로틀링 함수 호출 예제](https://remysharp.com/2010/07/21/throttling-function-calls)
+
+## 원문
+- [3 JavaScript questions to watch out for during coding interviews](https://medium.freecodecamp.com/3-questions-to-watch-out-for-in-a-javascript-interview-725012834ccb#.w16yelast)
