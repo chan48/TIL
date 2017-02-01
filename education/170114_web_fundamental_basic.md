@@ -97,7 +97,7 @@ function clickButton() {
   - Javscript : button action, facebook comment plugin
 
 ---
-- 웹 개발 실습 2 
+- 웹 개발 실습 2
   - jQuery : ajax 를 이용한 페이지 부분 갱신
   - DB : 데이터 호출 및 화면 표시
   - Node : 클라이언트 - 서버 통신 및 데이터 베이스 연결
@@ -110,3 +110,5 @@ function clickButton() {
   - IP
   - DNS
   - URL
+
+---
