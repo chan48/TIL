@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>자기소개 페이지</title>
+    <style>
+      span {
+        padding-left: 10px;
+      }
+      button {
+        margin: 10px;
+        display: inline-block;
+        height: 30px;
+        border-radius: 5px;
+        color: white;
+        background-color: #3366ff;
+      }
+      button img {
+        width: 15px;
+        height: 15px;
+        padding-right: 5px;
+        vertical-align: text-top;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="profile.png" alt="프로필 사진">
+    <p>
+      <span>이름 : 장기효</span><br>
+      <span>직무 : SW 개발</span><br>
+      <span>주소 : 판교로 255</span><br>
+      <button onclick="clickButton()">
+        <img src="like.png">좋아요
+      </button>
+    </p>
+    <script type="text/javascript">
+      function clickButton() {
+        alert("프로필을 좋아합니다.");
+      }
+
+      // Facebook SDK
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : 'your-app-id',
+          xfbml      : true,
+          version    : 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </body>
+</html>

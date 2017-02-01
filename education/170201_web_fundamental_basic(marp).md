@@ -1,6 +1,5 @@
 <!-- $size: 16:9 -->
 <!-- page_number: true -->
----
 # 비 개발자를 위한 웹 개발 기초
 
 ---
@@ -17,7 +16,7 @@
 ---
 ## 웹 브라우저는 무엇인가?
 - 웹에 있는 문서들을 사용자가 보기 편하게 표시해주는 소프트웨어
-- URL (Uniform Resource Identifier) 을 통해 해당 문서에 접근이 가능하도록 구성되어있음
+- URL (Uniform Resource Locator) 을 통해 해당 문서에 접근이 가능하도록 구성되어있음
 
 ---
 ## 웹은 어떻게 돌아갈까?
@@ -48,7 +47,7 @@
 ---
 ## HTML
 - Hyper Text Markup Language : 웹 페이지를 제작하기 위한 표준 언어
-- Markup Lanugage : 태그를 이용하여 데이터를 구조화하는 방식
+- Markup Lanugage : 태그를 이용하여 데이터를 구조화하는 언어
 - 시작 태그 / 끝 태그 형식으로 구성
 
 ---
@@ -90,8 +89,8 @@
 ---
 ## Javascript
 - 웹 페이지 상에서 요소들의 동작을 제어하는 스크립트 언어
-- 현대의 최신 브라우저에서 지배적으로 사용하는 중
-- 과거에는 클라이언트 언어, 최근에는 풀스택 언어
+- 현대의 최신 브라우저에서 지배적으로 사용하고 있음
+- 과거에는 클라이언트 언어, 최근에는 풀스택 언어로 사용
 - 자바와 자바스크립트는 전혀 [다른 언어](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%86%8C%EA%B0%9C#JavaScript_and_Java)
 	- 자바스크립트의 초기 이름은 LiveScript 였으나 자바의 인기에 편승하기 위해 변경
 
@@ -118,56 +117,108 @@
 ## 웹 개발 실습
 - 목표 : HTML5, CSS3, Javscript 를 이용하여 자기소개 페이지를 만들어보자
   - HTML5 : p, br, img, button 태그
-  - CSS3 : text color, img border
-  - Javscript : button action, facebook comment plugin
+  - CSS3 : text color, img border 속성
+  - Javscript : button action 동작, facebook comment plugin 오픈 API
 
 ---
-- 이미지 모서리 효과
-
-``` css
-img {
-  border-radius: 25px;
-}
-```
-
-- 텍스트 컬러 효과
-
-``` css
-p {
-  color : blue;
-}
-```
-
-- 버튼 클릭 효과
-
-``` html
-<button onclick="clickButton()">click</button>
-<script>
-function clickButton() {
-  alert("좋아요");
-}
-</script>
-```
+## 실습 #1 - 화면 요소 생성
+- HTML 파일 생성
+- html, head, body 추가
+- 자기소개 내용 작성 (p, span 태그)
+- 프로필 사진 추가 (img 태그)
+- 좋아요 버튼 추가 (button 태그)
 
 ---
-- 웹 개발 실습 1 (자기소개 페이지)
-  - HTML5 : p, br, img, button 태그
-  - CSS3 : text color, img border
-  - Javscript : button action, facebook comment plugin
+## 실습 #2 - 화면 요소 스타일링
+- 텍스트 색, 버튼 배경색 변경
+
+  ``` css
+  button {
+    color: white;
+    background-color: #3366ff;
+  }
+  ```
+
+- 버튼 모서리 효과
+
+  ``` css
+  button {
+    border-radius: 5px;
+  }
+  ```
 
 ---
-- 웹 개발 실습 2
-  - jQuery : ajax 를 이용한 페이지 부분 갱신
-  - DB : 데이터 호출 및 화면 표시
-  - Node : 클라이언트 - 서버 통신 및 데이터 베이스 연결
+- 버튼 이미지 수직 정렬
+
+  ``` css
+  button {
+    display: inline-block;
+  }
+  
+  button img {
+  	vertical-align: text-top;
+  }
+  ```
 
 ---
-## 참고 : 웹 동작방식 관련 용어들
+## 실습 #3 - 화면 요소 동작제어
+- 버튼 클릭 이벤트 추가
+
+  ``` html
+  <button onclick="clickButton()">click</button>
+  
+  <script>
+  function clickButton() {
+    alert("프로필을 좋아합니다.");
+  }
+  </script>
+  ```
+
+---
+## 실습 #4 - 반응형 웹 디자인 적용
+- Responsive Web Design : 웹 페이지가 해당 기기의 크기에 맞춰 레이아웃이 자동 조절되는 디자인 기법
+
+  ``` html
+  <header>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </header>
+  ```
+
+---
+## 실습 #5 - Facebook Comment API
+- [Github Page](https://pages.github.com/) 를 활용하여 자기소개 웹 페이지 업로드
+	- [Github](https://github.com/) 가입
+	- Repository 생성
+	- Repository 클론
+	- HTML, 이미지 파일 업로드
+	- http://*username*.github.io 에서 페이지 확인
+
+---
+- [Facebook Developer](https://developers.facebook.com/) 에서 Comment API 플러그인 다운
+	- [Facebook](https://www.facebook.com/) 계정 생성
+	- [Facebook Developer](https://developers.facebook.com/) 에서 페이스북 계정 연동 후 App 생성
+	- App 의 Settings 에서 Github Page 추가
+	- Facebook SDK [설치](https://developers.facebook.com/docs/javascript/quickstart)
+	- Comment Plugin [설치](https://developers.facebook.com/docs/plugins/comments/)
+
+---
+## 완성된 페이지
+![완성된 화면 80%](C:\TIL\TIL\education\f_result.png)
+
+---
+## 참고 #1 - 웹 동작방식 관련 용어들
   - 클라이언트
   - 서버
-  - 웹 브라우저
+  - HTTP
   - IP
   - DNS
   - URL
 
 ---
+## 참고 #2 - 웹 개발 관련 사이트
+- [W3C School](http://www.w3schools.com/)
+- [Mozilla Developer Network](https://developer.mozilla.org/ko/docs/Web)
+- [Google Web Fundamentals](https://developers.google.com/web/fundamentals/)
+
+---
+# 끝
