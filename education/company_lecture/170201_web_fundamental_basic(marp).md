@@ -102,7 +102,7 @@
       alert("you clicked it");
   }
   ```
-  
+
   ``` html
   <button onclick="clickButton()">click me</button>
   ```
@@ -154,7 +154,7 @@
   button {
     display: inline-block;
   }
-  
+
   button img {
   	vertical-align: text-top;
   }
@@ -166,7 +166,7 @@
 
   ``` html
   <button onclick="clickButton()">click</button>
-  
+
   <script>
   function clickButton() {
     alert("프로필을 좋아합니다.");
