@@ -77,12 +77,11 @@ getHeroes(): void {
 }
 ```
 
-<<<<<<< HEAD
 ## Angular 2 와 Node 프로젝트 병합시 오류 해결
 - 아래 명령어로 추가 모듈 설치
   - npm install -g concurrently
   - npm install -g lite-server
   - npm install -g typescript
+
 ## Router
 -
->>>>>>> 820274e567bfe30215887e16a48706322c005d71
