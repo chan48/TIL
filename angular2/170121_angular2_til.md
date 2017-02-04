@@ -82,6 +82,7 @@ getHeroes(): void {
   - npm install -g concurrently
   - npm install -g lite-server
   - npm install -g typescript
+  - npm install tsd
 
 ## Router
 -
