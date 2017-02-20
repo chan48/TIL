@@ -26,8 +26,9 @@
 
 ---
 ## PWA 소개
-> "Progressive Web Apps are experiences that combine the best of the web and the best of apps" 최고의 모바일 앱과 최고의 웹 앱을 결합한 경험
+> "Progressive Web Apps are experiences that combine the best of the web and the best of apps" - 최고의 모바일 앱과 최고의 웹 앱을 결합한 경험
 
+---
 - Progressive Web Apps 는 무엇인가?
 
 	- 진보한 웹 앱
@@ -37,9 +38,11 @@
 
 ---
 ## PWA 등장 배경
-- 모바일 시장의 양분화 : Android, iOS 중심의 모바일 생태계 / 각 OS 특화된 개발 필요
-- Hybrid App 이라는 기존의 대안 : Native UI 의 성능을 따라가기가 어려움
-- Offline Web App 의 필요성 대두 : 느린 인터넷의 보급으로 모바일 단말기에서 웹 앱의 사용성이 떨어짐
+- 모바일 확산에 따른 Mobile Web 사용 증가 : PC -> Mobile 브라우저 사용자 증가
+- 양분화된 Web, Mobile 시장 : 웹 개발자, 모바일 앱 개발자, 하이브리드 앱 개발자
+- Hybrid App 의 단점 : Native UI 의 성능을 따라가기가 어려움
+- 번거로운 Mobile 앱 개발 주기 : 앱 개발 & 빌드 -> 스토어 배포 & 검색 -> 다운로드 & 설치
+- Offline Web App 의 필요성 : 느린 인터넷의 보급으로 모바일에서 웹 앱의 사용성이 떨어짐
 
 ---
 ## PWA 기술 특징
@@ -88,7 +91,7 @@
 	![HTTPS SSL](C:\TIL\TIL\education\https.png)
 
 ---
-## 외부 적용 사례
+## PWA 적용 사례
 - Alibaba
   - 전세계 최대 규모의 B2B 전자상거래 시스템
   - Add-Home Screen 기능으로 모바일 Active Users 44% 증가
@@ -103,16 +106,15 @@
 ![참고 이미지 35%](C:\TIL\TIL\education\washington-post.gif)
 
 ---
-## 내부 적용 사례
-- SW 기반솔루션 포탈 (Solution Portal)
+- POSCO ICT
 
-	- 포스코 ICT 솔루션 (Glue, Glue Mobile, Posbee) 기술질의 게시판
+	- 포스코 ICT 기반 솔루션 (Glue, Glue Mobile, Posbee) 기술질의 게시판
 	- Web Push 알람을 이용한 기술질의 응답속도 3배 증가
 
 ---
-- 기존 [Solution Portal](http://solutionpot.co.kr/) 의 문제점
+- 기존 [Solution Portal](https://solutionpot.co.kr/) 의 문제점
 
-	- Mobile 기기 미지원 : 게시글 내용 확인이 어렵고, Mobile 솔루션 홍보에 부적절
+	- Mobile 기기 미지원 : 게시글 내용 확인이 어렵고, Mobile 에서 솔루션 홍보에 부적절
 	- 실시간 게시글 확인 미지원 : 고객의 게시글 여부를 Manual 하게 일일이 확인해야함
 
     ![참고 이미지 50%](C:\TIL\TIL\education\old-sp-w-frame.png)
@@ -183,8 +185,7 @@
 ---
 #### Service Worker (Offline, Cache, Web Push)
 - 오프라인 서비스, 푸쉬 알람 등의 모바일 기능을 웹에서 가능하게 하는 코어 기술
-- 브라우저의 백그라운드에서 돌아가는 스크립트, 브라우저와 네트워크의 미들웨어
-	- ex) 네이티브 모바일 앱과 비교하였을 때, 브라우저의 화면 쓰레드 이외에 브라우저 뒷단에서 돌아가는 쓰레드가 하나 더 있다고 생각
+- 브라우저의 백그라운드에서 돌아가는 script 파일, 브라우저와 네트워크의 미들웨어
 
 ---
 - 웹 페이지에서 네트워크 요청 발생시 해당 요청을 가로챔
