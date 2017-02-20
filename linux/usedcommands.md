@@ -2,6 +2,7 @@
 
 - 디렉토리 재명명 `mv /home/user/oldname /home/user/newname`
 - 현재 디렉토리 위치 파악 `pwd`
+- 프로세스 찾기 ``
 - 관련된 모든 프로세스 죽이기 `killall mongod`
 - `sudo apt-get install`
 - `sudo apt-get remove`
@@ -10,5 +11,3 @@
 
 
 Install - Subversion Edge
-
-

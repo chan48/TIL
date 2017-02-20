@@ -51,6 +51,35 @@
   <Connector SSLEnabled="true" clientAuth="false" keyAlias="tomcat_https" keystoreFile="C:/https_setup_for_push/.keystore" keystorePass="changeit" maxThreads="150" port="8443" protocol="HTTP/1.1" scheme="https" secure="true" sslProtocol="TLS"/>
   ```
 
+## 5. http 에서 https 로 리다이렉트 설정
+- tomcat 의 server.xml 구성 파일의 설정을 아래와 같이 변경한다.
+
+  ``` xml
+  <Connector port="8080" protocol="HTTP/1.1"
+
+           connectionTimeout="20000"
+           URIEncoding="UTF-8"
+           redirectPort="8443" />
+
+  <Connector port="8080" enableLookups="false"
+             redirectPort="8443" />
+  ```
+
+- web.xml 파일 설정도 아래와 같이 변경한다.
+
+  ``` xml
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>Automatic SSL Forward</web-resource-name>
+      <url-pattern>/*</url-pattern>
+    </web-resource-collection>
+    <user-data-constraint>
+      <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  ```
+
+
 ## 기타) Keystore 의 cer을 txt 파일형태로 생성하는 법
 - 아래의 명령어를 보자.
 
@@ -67,3 +96,4 @@
 ## 참조 사이트
 - [Tomcat SSL 설정](https://www.crosscert.com/symantec/board/tomcat5.pdf)
 - [Keytool 을 이용한 Keystore 만들기](http://i5on9i.blogspot.kr/2015/10/keytool-keystore.html)
+- [Redirect http to https](http://tkurek.blogspot.kr/2013/07/tomcat-7-http-to-https-redirect.html)
