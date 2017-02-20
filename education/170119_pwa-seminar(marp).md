@@ -41,8 +41,8 @@
 - 모바일 확산에 따른 Mobile Web 사용 증가 : PC -> Mobile 브라우저 사용자 증가
 - 양분화된 Web, Mobile 시장 : 웹 개발자, 모바일 앱 개발자, 하이브리드 앱 개발자
 - Hybrid App 의 단점 : Native UI 의 성능을 따라가기가 어려움
-- 번거로운 Mobile 앱 개발 주기 : 앱 개발 & 빌드 -> 스토어 배포 & 검색 -> 다운로드 & 설치
-- Offline Web App 의 필요성 : 느린 인터넷의 보급으로 모바일에서 웹 앱의 사용성이 떨어짐
+- 번거로운 Mobile 앱 개발 주기 : 앱 개발 & 빌드 -> 스토어 배포 -> 다운로드 & 설치
+- Offline Web App 의 필요성 : 느린 인터넷의 보급으로 모바일 웹의 사용성 저하
 
 ---
 ## PWA 기술 특징
@@ -111,13 +111,15 @@
 	- 포스코 ICT 기반 솔루션 (Glue, Glue Mobile, Posbee) 기술질의 게시판
 	- Web Push 알람을 이용한 기술질의 응답속도 3배 증가
 
+	![참고 이미지 70%](C:\login.png)
+
 ---
 - 기존 [Solution Portal](https://solutionpot.co.kr/) 의 문제점
 
-	- Mobile 기기 미지원 : 게시글 내용 확인이 어렵고, Mobile 에서 솔루션 홍보에 부적절
+	- Mobile 기기 미지원 : Mobile 게시글 확인 및 솔루션 홍보에 부적절
 	- 실시간 게시글 확인 미지원 : 고객의 게시글 여부를 Manual 하게 일일이 확인해야함
 
-    ![참고 이미지 50%](C:\TIL\TIL\education\old-sp-w-frame.png)
+	![참고 이미지 50%](C:\TIL\TIL\education\old-sp-w-frame.png)
 
 ---
 - PWA 를 적용한 Solution Portal
