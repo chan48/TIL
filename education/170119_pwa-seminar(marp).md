@@ -18,6 +18,7 @@
 
 ---
 ## 프로필
+- [Captain Pangyo](https://joshua1988.github.io/)
 - Open Source Contributor
 	- Google Web Fundamentals (The Fundamental Knowledge for Web)
 	- Google HTML5 Rocks (Top Notch Resources for Web Developer)
@@ -38,11 +39,11 @@
 
 ---
 ## PWA 등장 배경
-- 모바일 확산에 따른 Mobile Web 사용 증가 : PC -> Mobile 브라우저 사용자 증가
-- 양분화된 Web, Mobile 시장 : 웹 개발자, 모바일 앱 개발자, 하이브리드 앱 개발자
-- Hybrid App 의 단점 : Native UI 의 성능을 따라가기가 어려움
-- 번거로운 Mobile 앱 개발 주기 : 앱 개발 & 빌드 -> 스토어 배포 -> 다운로드 & 설치
-- Offline Web App 의 필요성 : 느린 인터넷의 보급으로 모바일 웹의 사용성 저하
+- Mobile 기기 확산으로 Mobile 사용자 증가 : PC -> Mobile 브라우저
+- 양분화된 어플리케이션 시장과 개발자의 고민 : Web, Mobile, Hybrid 앱
+- Hybrid 앱의 단점 : Native UI 의 성능을 따라가기가 어려움
+- 번거로운 Mobile 앱 개발 주기 : 앱 개발, 빌드, 배포, 검색, 다운로드, 설치
+- Offline Web App 의 필요성 : 느린 인터넷의 보급으로 Mobile Web 의 사용성 저하
 
 ---
 ## PWA 기술 특징
@@ -99,17 +100,17 @@
 ![참고 이미지 13%](C:\TIL\TIL\education\alibaba.png)
 
 ---
-- The Washington Post
-  - 미국 메이저 신문사
-  - AMP로 사이트 재방문 사용자수 23% 증가
-  - [Case Study 자료](https://developers.google.com/web/showcase/2016/pdfs/wapo.pdf)
-![참고 이미지 35%](C:\TIL\TIL\education\washington-post.gif)
+- Carnival Cruise Line
+  - 세계 10대 크루저 여행사
+  - Web & Mobile Push 알람을 이용하여 결제 전환율 48% 증가
+  - [Case Study 자료](https://developers.google.com/web/showcase/2016/pdfs/carnival.pdf)
+	![참고 이미지 50%](C:\TIL\TIL\education\carnival.png)
 
 ---
 - POSCO ICT
 
 	- 포스코 ICT 기반 솔루션 (Glue, Glue Mobile, Posbee) 기술질의 게시판
-	- Web Push 알람을 이용한 기술질의 응답속도 3배 증가
+	- WebPush 알람을 이용한 기술질의 응답속도 3배 증가
 
 	![참고 이미지 70%](C:\login.png)
 
@@ -174,10 +175,8 @@
 
 ---
 - 인스톨 배너를 이용한 앱 설치 및 실행
+	
 	- [데모](https://developers.google.com/web/fundamentals/engage-and-retain/app-install-banners/)
-
-- 홈 화면 Icon 추가 시연
-	- [안드로이드 폰]()
 
 ---
 - 크롬 개발자 콘솔의 Application 탭에서 디버깅 및 조작 가능
@@ -201,7 +200,7 @@
 ![서비스워커 라이프싸이클 80%](C:\TIL\TIL\education\sw-lifecycle.png)
 
 ---
-#### Service Worker 실습
+#### Service Worker 코드
 - 서비스 워커 등록 : `navigator.serviceWorker.register()`
 
 ``` javascript
@@ -245,13 +244,9 @@ self.addEventListener('install', function(event) {
   - 실행중인 서비스 워커 확인은 `chrome://inspect/#service-workers`
 
 ---
-- 서비스 워커를 이용한 Push 알람 구현
+- 서비스 워커를 이용한 Push 알람 시연
 
-	- [솔루션 포탈](https://www.solutionpot.co.kr:9443/license/)
-
-- Facebook 서비스 워커 소스 디버깅 실습
-
-	- [페이스북 링크](https://www.facebook.com/)
+	- [POSCO ICT 솔루션 포탈](https://www.solutionpot.co.kr)
 
 ---
 - 서비스 워커 개발 환경
