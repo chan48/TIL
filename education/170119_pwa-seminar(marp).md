@@ -107,7 +107,7 @@
 	![참고 이미지 50%](C:\TIL\TIL\education\carnival.png)
 
 ---
-- POSCO ICT
+- Solution Portal
 
 	- 포스코 ICT 기반 솔루션 (Glue, Glue Mobile, Posbee) 기술질의 게시판
 	- WebPush 알람을 이용한 기술질의 응답속도 3배 증가
@@ -246,7 +246,7 @@ self.addEventListener('install', function(event) {
 ---
 - 서비스 워커를 이용한 Push 알람 시연
 
-	- [POSCO ICT 솔루션 포탈](https://www.solutionpot.co.kr)
+	- [POSCO ICT 솔루션 포탈](https://youtu.be/PaIh3ty5gT0)
 
 ---
 - 서비스 워커 개발 환경
