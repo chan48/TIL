@@ -127,7 +127,7 @@
 
 	- Responsive : 반응형 웹 디자인을 적용한 Mobile 기기 지원
 
-	![반응형 적용 35%](C:\TIL\TIL\education\new-sp.png)
+	![반응형 적용 40%](C:\TIL\TIL\education\new.png)
 
 ---
 - PWA 를 적용한 Solution Portal
