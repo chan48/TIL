@@ -9,7 +9,7 @@
 3. PWA 특징
 4. PWA 사례
 	- Ali Express
-	- The Washington Post
+	- Carnival Cruise Line
 	- Solution Portal
 5. PWA 기술
 	- Wep App Manifest (Icon, Banner)
