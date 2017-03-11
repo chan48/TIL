@@ -1,6 +1,6 @@
 ## AMP (Accelarated Mobile Page)
 - 모바일 기기에서 웹 사이트의 접근성을 높이기 위한 가속화 모바일 페이지
-- 거의 즉시에 가까운 페이지 로딩을 위해 여러 기법들이 최적화 되어 있고, AMP HTML / JS / CSS 로 구성되어 있다.
+- 거의 즉시에 가까운 페이지 로딩을 위해 여러 기법들로 최적화 하였고, AMP HTML / JS / CSS 로 구성되어 있다.
 
 ## AMP 동작 원리
 - AMP 에 포함되는 모든 자바스크립트를 비동기 방식으로 실행합니다.
@@ -54,3 +54,101 @@
   - DNS Lookup, TCP Handshake 등을 미리 처리하는 [preconnect API](https://www.w3.org/TR/resource-hints/#dfn-preconnect) 로 HTTP 요청을 최대한 빨리 합니다.
   - prerending 의 경우 모든 웹 컨텐츠의 적용되며 많은 양의 대역폭과 CPU 를 소비합니다.
   - AMP 는 위의 단점들을 보완하는 최적화가 되어 있으며, CPU 가 많이 소비되는 rendering 의 경우에는 prerendering 을 하지 않습니다.
+
+## AMP 시작하기
+- AMP 의 기본적인 코드 구조는 다음과 같다.
+
+```html
+<!doctype html>
+<html amp lang="en">
+  <head>
+    <meta charset="utf-8">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <title>Hello, AMPs</title>
+    <link rel="canonical" href="http://example.ampproject.org/article-metadata.html" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "Open-source framework for publishing content",
+        "datePublished": "2015-10-07T12:02:41Z",
+        "image": [
+          "logo.jpg"
+        ]
+      }
+    </script>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  </head>
+  <body>
+    <h1>Welcome to the mobile web</h1>
+  </body>
+</html>
+```
+
+- 위 문서에서 AMP 와 관련된 부분은
+
+```html
+<!-- AMP 자바스크립트 라이브러리 로딩 -->
+<script async src="https://cdn.ampproject.org/v0.js"></script>
+
+<!-- AMP CSS 스타일 -->
+<style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+```
+
+## AMP 이미지 추가
+- AMP 에서 이미지 태그는 아래와 같이 추가한다.
+
+``` html
+<amp-img src="welcome.jpg" alt="Welcome" height="400" width="800"></amp-img>
+```
+
+- AMP 에서 일반적인 HTML 태그들은 그대로 사용되지만, 위와 같이 img 태그는 amp-img 로 변환하여 사용한다.
+- amp-img 와 같은 태그를 사용하는 이유는 해당 리소스가 로딩되기 전에 페이지 레이아웃을 정하고 레이지 로딩에 대한 네트워크 제어와 리소스 로딩 우선순위를 효율적으로 관리하기 위해서다. **(Foot Note 로 쓰면 좋을 듯)**
+- embed, param 등등 몇 개의 HTML 표준 태그들은 AMP 에서 사용할 수 없다. [참고](https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md)
+
+## AMP CSS 스타일링 추가
+- AMP 의 요소에 대한 스타일링은 `<style amp-custom>` 태그를 이용한다.
+
+```html
+<style amp-custom>
+  /* any custom style goes here */
+  body {
+    background-color: white;
+  }
+  amp-img {
+    background-color: gray;
+    border: 1px solid black;
+  }
+</style>
+```
+
+- AMP CSS 스타일링에 대해 주의할 점은 다음과 같다.
+  - 모든 AMP 페이지는 `<style amp-custom>` 태그 한 개만 포함할 수 있다.
+  - HTML 요소 인라인 속성을 사용할 수 없다. 모든 스타일 규칙은 head 안에 선언되어야 함.
+  - `!important` 를 비롯하여 몇몇 표준 스타일 규칙을 사용할 수 없고, 외부 스타일 시트 참조도 불가능하다. (커스텀 폰트 제외)
+
+## AMP 미리보기와 유효성 검사
+- 일반 HTML 문서와 동일하게 브라우저에서 파일을 보거나, 간단한 웹서버로 미리 보기가 가능하다.
+- 해당 문서가 AMP 규칙을 잘 따랐는지는 URL 끝에 `#development=1` 추가 하여 개발자 도구에서 콘솔에서 유효성 검사로 알 수 있다.
+
+## AMP 검색과 배포
+- 같은 웹 콘텐츠에 대해 AMP, non AMP 페이지 2 개를 모두 갖고 있는 경우가 있다.
+- 이러한 경우 `<link>` 를 이용해서 두 페이지를 연결한다.
+- 일반 HTML 페이지에는
+
+```html
+<link rel="amphtml" href="https://www.example.com/url/to/amp/document.html">
+```
+
+- AMP 페이지에는
+
+```html
+<link rel="canonical" href="https://www.example.com/url/to/full/document.html">
+```
+
+- 만약 구분없이 AMP 페이지만 가지고 있을 경우
+
+```html
+<link rel="canonical" href="https://www.example.com/url/to/amp/document.html">
+```
