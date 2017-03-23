@@ -55,8 +55,20 @@ average // 38.66...
 위와 같이 평균을 이용하는데 Reduce 메서드를 사용할 수 있으면 어떤 방법이든 원하는대로 Reduce 를 사용할 수 있다.
 
 예를 들면, total 값을 두 배로 한다든지, 모든 값을 합산하기 전에 각 값을 절반으로 나눈다든지,
-또는 if 문을 이용하여 값이 오직 10 이상일 때만 합산한다든지가 가능하다.
+또는 if 문을 이용하여 값이 오직 10 이상일 때만 합산하는게 가능하다
 
+Reduce 의 장점은 계산 후 단일 값 반환이 아니라 계산을 반영한 새로운 배열 반환이 가능한 점이다.
+
+예를 들어, 배열의 모든 요소 값을 두 배로 곱한 새 배열을 Reduce 로 만든다고 하자.
+
+```javascript
+const average = euros.reduce((total, amount, index, array) => {
+  total + amount
+  return total/array.length
+}, 0); // 0 은 total 의 초기 값
+```
+
+두 번째 매개변수로 total 값의 초기 값을 설정할 수 있다. (여기서는 0)
 
 
 ## 참고
