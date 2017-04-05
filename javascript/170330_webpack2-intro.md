@@ -1,3 +1,11 @@
+## Webpack 은 무엇인가?
+- 모듈 번들러
+- 아래 사진은 직관적으로 webpack 의 역할을 설명
+
+![what is webpack](C:\github\TIL\javascript\what-is-webpack.png)
+
+- 서로 연관 관계가 있는 웹 자원들을 (js, css, img) 스태틱한 자원으로 번들링 (묶어서) 해주는 web task manager
+
 ## Webpack 에 필요한 NPM 명령어
 - `npm init` 웹팩 초기 설정에 필요한 명령어로 package.json 파일을 생성
 - `npm install` (i) 라이브러리 명 (여러개 한번에 가능)
@@ -39,12 +47,27 @@ module.exports = {
 -
 
 ## Loader?
-- s
+> webpack can only process JavaScript natively, but loaders are used to transform other resources into JavaScript. By doing so, every resource forms a module.
+
+- 웹팩은 자바스크립트 파일만 처리가 가능하도록 되어 있다.
+- 하지만 loader 를 이용하여 다른 형태의 웹 자원들을 (img, css, ...) 자바스크립트 형태로 변환이 가능하여 로딩할 수 있다.
+
+#### expose-loader
+-
+
+#### exports-loader
+- df
+
+#### imports-loader
+- 특정 전역 변수에 의존하는 모듈을 사용할 수 있다.
+-
 
 ## Alias
 - d
 
-## Plugins
+## ProvidePlugins
+- 모든 모듈에서 사용할 수 있도록 해당 모듈을 변수로 변환한다.
+- 
 
 ## Externals
 - sdf
