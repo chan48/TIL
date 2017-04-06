@@ -165,7 +165,46 @@ document.write(" private academy - ");
 ```
 
 - 위의 경우 로그는 페이지가 모두 로딩되고 나면 실행이 됩니다.
+- 렌더링에 방해되지 않도록 js 를 설정하는 또 다른 방법은 `async` 속성을 추가하는 것입니다.
 
-TBD
-https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-blocking-css
-https://classroom.udacity.com/courses/ud884/lessons/1469569174/concepts/15657086130923#
+```html
+<script src="non-parser-blocking.js" async></script>
+```
+
+- async 속성은 해당 스크립트를 가져오기 위한 요청을 날린 후 응답을 받을 때 까지 기다리지 않고, DOM 생성을 계속 진행합니다.
+- async 속성을 추가하기 전에, 해당 자바스크립트에서 DOM 접근이나 css 조작을 하는지 꼭 확인합니다.
+- 또한, CSSOM 의 생성도 방해하지 않고, 인라인 스크립트에는 async 속성을 붙일 수가 없습니다.
+
+## 퀴즈
+- inline / blocking / async 를 구분할 수 있도록, 크롬 개발자 도구 네트워크 패널에서 해당 이미지 스크린 샷 후 첨부
+
+## 중간정리
+지금까지 배운 최적화 기법을 정리해보면,
+
+- 바이트 최소화, 파일 압축, 파일 캐쉬
+- 초기 렌더링을 지연시키는 CSS 요소를 최소화 (media query, inline css)
+- HTML 파일 파싱을 지연시키는 js 요소를 최소화 (async, inline)
+
+이를 종합해보면 아래와 같이 요약된다.
+
+1. 서버로 보내는 바이트 숫자를 줄인다.
+2. 렌더링에 방해되는 요소들을 줄인다.
+3. 렌더링을 하기 위한 단계들을 줄인다.
+
+## 주요 렌더링 요소 측정법
+아래 표를 참고
+
+![basic-crp](C:\github\TIL\education\fast_campus\css-stylesheet-n-js-exec.PNG)
+
+## Preload Scanner
+-
+
+## 실습
+- 실제 사이트의 동작과정을 분석하고, 다이어그램을 그려보자.
+- 렌더링을 하기 위한 단계들을 파악하고, 최적화 할 부분들을 찾아본다.
+- 마지막으로 크롬 개발자 도구의 Network 패널을 이용하여 사이트 타임라인과 비교해본다.
+
+[실습자료 - 따로 만들어서 추가 필요](https://github.com/igrigorik/udacity-webperf/blob/master/assets/ex2-diagram.html)
+
+## 최종 프로젝트
+- [crp-repo - 커스터마이징 및 새로 추가 필요](https://github.com/udacity/frontend-nanodegree-mobile-portfolio/blob/master/index.html)
