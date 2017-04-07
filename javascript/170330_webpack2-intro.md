@@ -51,8 +51,19 @@ module.exports = {
 
 - 웹팩은 자바스크립트 파일만 처리가 가능하도록 되어 있다.
 - 하지만 loader 를 이용하여 다른 형태의 웹 자원들을 (img, css, ...) 자바스크립트 형태로 변환이 가능하여 로딩할 수 있다.
+- loader 에서 모듈 로딩 순서는 배열의 요소 오른쪽에서 왼쪽으로 진행된다.
 
-#### expose-loader
+```javascript
+{
+  test: /backbone/,
+  use: [
+    'expose-loader?Backbone',
+    'imports-loader?underscore,jquery,this=>window' // 순서대로 (1) jquery , (2) underscore 로딩
+  ]
+}
+```
+
+#### expose-loader vs exoirts-loader ??
 -
 
 #### exports-loader
@@ -60,14 +71,24 @@ module.exports = {
 
 #### imports-loader
 - 특정 전역 변수에 의존하는 모듈을 사용할 수 있다.
--
+- 로딩시에 아래와 같이 해당 모듈을 특정 변수로 변경하여 받을 수 있다.
+
+```javascript
+{
+  test: /backbone/,
+  use: [
+    'expose-loader?Backbone',
+    'imports-loader?_=underscore,jquery,this=>window' // underscore 라이브러리가 로딩 후 _ 값에 저장
+  ]
+}
+```
 
 ## Alias
 - d
 
 ## ProvidePlugins
 - 모든 모듈에서 사용할 수 있도록 해당 모듈을 변수로 변환한다.
-- 
+-
 
 ## Externals
 - sdf
