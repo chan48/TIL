@@ -197,7 +197,31 @@ document.write(" private academy - ");
 ![basic-crp](C:\github\TIL\education\fast_campus\css-stylesheet-n-js-exec.PNG)
 
 ## Preload Scanner
--
+- Preload Scanner 를 쓰기 전에 먼저 브라우저가 웹 페이지를 동작하는 방식에 대해 알아보면,
+  1. HTML 문서를 다운 받고 나서, 브라우저가 파싱을 시작한다.
+  2. DOM 생성 중에 외부 스타일 시트 (css) 를 만나면 이를 다운로드 하기 위해 네트워크 요청을 서버에 보낸다.
+  3. css 를 다운로드 하는 동안, DOM 생성을 계속 진행하다가 외부 js 스크립트 파일을 만난다.
+  4. 외부 css 파일과 마찬가지로 외부 js 파일을 다운받기 위한 네트워크 요청을 발생시키고, 다운로드 하고 나서 실행할 때 까지 DOM 생성을 멈춘다.
+
+- 위와 같은 브라우저의 동작방식에서 예상되는 문제점은 로딩할 외부 스크립트 파일이 많을 때, 스크립트 태그를 마주칠 때마다 지연이 발생해서 전체 페이지 로딩이 더뎌진다는 점이다.
+- Preload Scanner 는 이를 해결하기 위해 메인 파서 이외에 보조 light weight 파서를 이용해서 js, css, img 등을 미리 다운로드 한다.
+- 따라서, 외부 스크립트를 다운로드 받을 때, 메인 파서가 멈춰 있더라도 백그라운드에서 보조 파서를 이용하여 향후 지연이 발생될만한 요소들을 제거한다.
+- 사용법은 아래와 같다.
+
+```html
+<link rel="dns-prefetch" href="hostname_to_resolve.com">
+<link rel="subresource"  href="/javascript/myapp.js">
+<link rel="prefetch"  href="/images/big.jpeg">
+<link rel="prerender"  href="//domain.com/next_page.html">
+```
+
+- `dns-prefetch` : 해당 파일의 DNS Resolving 을 미리 해놓고 나중에 사용한다. (DNS Resolving 시간이 단축되어 더 빠른 로딩 가능)
+- `subresource` : 현재 페이지를 위한 리소스 요청을 최대한 빨리 한다. (Chrome 만 가능)
+- `prefetch` : 다음 페이지 탐색을 위한 리소스를 미리 다운받고 캐쉬에 저장하여 사용
+- `prerender` : href 에 설정된 페이지를 미리 렌더링 해놓고, 필요할 때 지연없이 바로 화면에 표시
+
+[참고 - 일리야 슬라이드](https://docs.google.com/presentation/d/18zlAdKAxnc51y_kj-6sWLmnjl6TLnaru_WH0LJTjP-o/present?slide=id.g33211238_0_2)
+[참고 - 일리야 성능 관련 글](https://www.igvita.com/posa/high-performance-networking-in-google-chrome/)
 
 ## 실습
 - 실제 사이트의 동작과정을 분석하고, 다이어그램을 그려보자.
