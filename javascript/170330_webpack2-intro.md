@@ -77,7 +77,7 @@ module.exports = {
   test: /backbone/,
   use: [
     'expose-loader?Backbone',
-    'imports-loader?underscore,jquery,this=>window'
+    'imports-loader?_=underscore,jquery,this=>window'
     // 순서대로 (1) jquery , (2) underscore 로딩
   ]
 }
@@ -86,8 +86,13 @@ module.exports = {
 - 위 설정 파일을 webpack 으로 번들링 한 결과물은 아래와 같다.
 
 ```javascript
-bundle.js 참고
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*** IMPORTS FROM imports-loader ***/
+var _ = __webpack_require__(0);
+var jquery = __webpack_require__(1);
 ```
+
+- 아래 설명할 3 개 로더들의 로딩 순서
+  - expose!imports!exports, 1) expose 2) imports 3) exports.
 
 #### expose-loader
 -
