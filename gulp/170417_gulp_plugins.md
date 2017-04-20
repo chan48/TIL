@@ -13,7 +13,7 @@ var uglify = require('gulp-uglify');
 // ...
 ```
 
-- pump 를 사용하는 [이유?](https://github.com/terinjokes/gulp-uglify/blob/master/docs/why-use-pump/README.md#why-use-pump)?
+- pump 를 사용하는 [이유?](https://github.com/terinjokes/gulp-uglify/blob/master/docs/why-use-pump/README.md#why-use-pump)
 
 ## JS concatenation - [gulp-concat](https://github.com/contra/gulp-concat)
 - 자바스크립트 파일을 압축하는 것 이외에도, 여러 개의 js 파일을 한 개로 병합하면 왕복 네트워크 요청을 줄여 성능이 개선될 수 있다.
