@@ -1,8 +1,49 @@
+# Utility plugins
+
+## Gulp Utility - [gulp-util](https://github.com/gulpjs/gulp-util)
+- gulp 사용에 필요할만한 유틸 라이브러리 집합
+- log 결과에 색깔을 주는 기능등이 있다.
+
+```javascript
+gutil.log(gutil.colors.magenta('123'));
+```
+
+## Clean files - [gulp-del](https://www.npmjs.com/package/del)
+- 해당 위치의 파일을 삭제
+
+```javascript
+var del = require('del');
+
+del(['tmp/*.js', '!tmp/unicorn.js']).then(function(path) {
+    console.log('Deleted files and folders:\n', paths.join('\n'));
+});
+```
+
+## Run synchronously - [gulp-runsequence](https://www.npmjs.com/package/run-sequence)
+- 태스크들을 병행으로 처리하지 않고, 정한 순서대로 처리한다.
+
+```javascript
+// This will run in this order:
+// * build-clean
+// * build-scripts and build-styles in parallel
+// * build-html
+// * Finally call the callback function
+var runSequence = require('run-sequence');
+
+gulp.task('build', function(callback) {
+  runSequence('build-clean',
+              ['build-scripts', 'build-styles'],
+              'build-html',
+              callback);
+});
+```
+
 ## [gulp-plumber](https://github.com/floatdrop/gulp-plumber)
 - Gulp 를 사용할 때 까다로운 점은 에러 처리를 하기 위한 로직을 별도로 추가해야 한다.
 - 에러 핸들러를 추가하는 것 이외에도 Plumber 를 이용하여 에러를 catch 하고 pipe 가 깨지는 것을 막을 수 있다.
 
-# Optimization & Minification
+
+# Optimization & Minification plugins
 
 ## JS minification - [gulp-uglify](http://browsenpm.org/package/gulp-uglify)
 - 자바스크립트 파일의 바이트를 최소화
@@ -102,7 +143,7 @@ gulp.task('default', function () {
 ```
 
 
-## Images minification - [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
+## Image minification - [gulp-imagemin](https://www.npmjs.com/package/gulp-imagemin)
 - 이미지 파일의 품질을 떨어뜨리지 않는 선에서 용량을 최소화 한다.
 
 ```javascript
@@ -120,7 +161,7 @@ gulp.task('default', function() {
 });
 ```
 
-## Image optimization [gulp-image-optimzation](https://www.npmjs.com/package/gulp-image-optimization)
+## Image optimization - [gulp-image-optimzation](https://www.npmjs.com/package/gulp-image-optimization)
 - imagemin 플러그인과 함께 사용
 
 ```javascript
@@ -146,44 +187,6 @@ gulp.src('./css/*.css')
     //all your gulp tasks
     .pipe(gulp.dest('./dist/'))
     .pipe(size()); // [gulp] Size example.css: 265.32 kB
-```
-
-## Gulp Utility - [gulp-util](https://github.com/gulpjs/gulp-util)
-- gulp 사용에 필요할만한 유틸 라이브러리 집합
-- log 결과에 색깔을 주는 기능등이 있다.
-
-```javascript
-gutil.log(gutil.colors.magenta('123'));
-```
-
-## Clean files - [gulp-del](https://www.npmjs.com/package/del)
-- 해당 위치의 파일을 삭제
-
-```javascript
-var del = require('del');
-
-del(['tmp/*.js', '!tmp/unicorn.js']).then(function(path) {
-    console.log('Deleted files and folders:\n', paths.join('\n'));
-});
-```
-
-## Run synchronously - [gulp-runsequence](https://www.npmjs.com/package/run-sequence)
-- 태스크들을 병행으로 처리하지 않고, 정한 순서대로 처리한다.
-
-```javascript
-// This will run in this order:
-// * build-clean
-// * build-scripts and build-styles in parallel
-// * build-html
-// * Finally call the callback function
-var runSequence = require('run-sequence');
-
-gulp.task('build', function(callback) {
-  runSequence('build-clean',
-              ['build-scripts', 'build-styles'],
-              'build-html',
-              callback);
-});
 ```
 
 ## 참고
