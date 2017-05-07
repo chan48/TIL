@@ -6,3 +6,22 @@
 ## 학습 필요한 부분
 - WebPack
 - RXjs
+
+## 1st Week
+- 개발환경 구성
+  - Chrome Browser Install
+  - Atom Editor Install
+  - Atom Theme 설명
+  - Atom Plugin 설명
+- How Web Application works
+- HTML
+  - HTML History
+  - HTML5 Spec
+  - Web Accessiblity
+- CSS
+  - class naming convention : 많은 양의 css 를 다룰 때
+  - AirBnb CSS guide
+  - Sass & Less
+- JS
+  - JS History
+  - AirBnb JS Guide
