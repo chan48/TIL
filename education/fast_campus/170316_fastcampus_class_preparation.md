@@ -14,14 +14,13 @@
   - Atom Theme 설명
   - Atom Plugin 설명
 - How Web Application works
-- HTML
+- HTML (Done)
   - HTML History
   - HTML5 Spec
-  - Web Accessiblity
 - CSS
   - class naming convention : 많은 양의 css 를 다룰 때
   - AirBnb CSS guide
-  - Sass & Less
+  - CSS Pre-processor (Sass)
 - JS
   - JS History
   - AirBnb JS Guide
