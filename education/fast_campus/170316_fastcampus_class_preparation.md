@@ -26,7 +26,9 @@
     - JS
   - Web Development Terms
     - DOM
+    - Client
     - Server
+    - HTTP
     - IP
     - DNS
     - Web Protocols
@@ -74,3 +76,4 @@
   - AirBnb JS Guide
 
 - Web App Project - Facebook Profile with OPEN API
+  - Possible Quiz on Javascript with Code Wars
