@@ -76,4 +76,5 @@
   - AirBnb JS Guide
 
 - Web App Project - Facebook Profile with OPEN API
-  - Possible Quiz on Javascript with Code Wars
+  - (At the very beginning) Javascript Quiz - Making Caculator or Code Wars)
+  - (Last Session) Possible Quiz on Javascript with Code Wars
