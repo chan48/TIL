@@ -75,6 +75,19 @@
   - JS History
   - AirBnb JS Guide
 
-- Web App Project - Facebook Profile with OPEN API
+- Web App Project - Facebook Profile with OPEN API (Done & **Quiz preparation needed** & **js hoisting review**)
   - (At the very beginning) Javascript Quiz - Making Caculator or Code Wars)
   - (Last Session) Possible Quiz on Javascript with Code Wars
+
+## 2nd Week
+- Chrome Developer Tools
+  - 
+
+- CRP
+  - How browser works
+  - Browser rendering
+
+- Performance Tuning Tips
+  - V8 Engines
+  - HTML
+  - Compression (Gzip)
