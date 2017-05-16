@@ -55,50 +55,63 @@
 ## 소스 (Sources)
 - 로딩한 웹 페이지의 자바스크립트를 디버깅 할 수 있는 패널
 - 하단의 `{}` 를 이용하면 minified 버전의 소스를 보기 좋게 정렬
-- [디버깅 실습](https://googlechrome.github.io/devtools-samples/debug-js/get-started)
+- [디버깅 실습](https://joshua1988.github.io/DevCampWAP-DevTools/js-debug/index.html)
 
 	![소스 35%](C:\TIL\TIL\education\company_lecture\sources.png)
 
 ---
 ## 네트워크 (Network)
 - 웹 페이지와 관련된 네트워크 요청들을 확인할 수 있는 패널
-- [실습 예제](https://googlechrome.github.io/devtools-samples/network/gs/v1.html)
-- [실습 답안](https://googlechrome.github.io/devtools-samples/network/gs/v2.html)
+- 웹 페이지를 로딩하기 위해 필요한 순서들 (서버 요청, 스크립트 실행, 이미지, HTML 다운로드) 을 모두 확인할 수 있고 각 파일들의 상세한 정보까지 확인 가능
+- `Capture screenshots` 를 활성화 하여 페이지의 로딩과정을 촬영할 수 있다.
+- `Throttling` 과 `disable cache` 기능을 이용하면 저 사양 모바일 기기에서의 웹 페이지 로딩을 체험 가능
+- [실습 예제](https://joshua1988.github.io/DevCampWAP-DevTools/network/index.html)
+	- 실습 순서 #1, 웹 페이지 로딩과정 확인
+	- 실습 순서 #2, 스크린샷 및 Throttling 활성화
+	- 실습 순서 #3, `DOMContentLoaded` 에 주목하여 페이지 렌더링 방해 요소 파악 (script, request for image, jpg to svg)
+- [실습 답안](https://joshua1988.github.io/DevCampWAP-DevTools/network/index-complete.html)
 
 	![네트워크 30%](C:\TIL\TIL\education\company_lecture\network.png)
 
 ---
 ## 타임라인 (Timeline)
-- 사이트 로딩, 화면 렌더링 등 모든 활동들의 기록을 측정할 수 있는 패널
-- [타임라인 측정 실습](https://googlechrome.github.io/devtools-samples/network/gs/v2.html)
+- 사이트 로딩, 화면 렌더링 등 모든 활동들의 기록을 측정하고 분석하는 패널
+- 브라우저 렌더링에 관한 과정을 직접 눈으로 확인할 수 있다.
+- [타임라인 측정 실습](https://joshua1988.github.io/DevCampWAP-DevTools/network/index-complete.html)
 
 	![타임라인 35%](C:\TIL\TIL\education\company_lecture\performance.png)
 
 ---
 ## 프로필 (Profiles)
 - 페이지 성능과 관계된 메모리 릭(leak) 등의 이슈를 진단할 수 있는 패널
+- 타임라인 패널의 `Memory` 옵션을 활용하여 추이를 보는 것이 더 효과적
 
 	![프로필 40%](C:\TIL\TIL\education\company_lecture\memory.png)
+
 ---
 ## 어플리케이션 (Application)
 - 웹 스토리지, 쿠키, 세션 등의 저장소와 PWA의 주요 기능들을 확인할 수 있는 패널
+- [Alibaba](http://www.alibaba.com/) 로 Application 패널 실습
 
 	![sw 40%](C:\TIL\TIL\education\company_lecture\application.png)
 
 ---
 ## 보안 (Security)
 - 개인정보 보안이나 인증서와 관계된 사항을 확인할 수 있는 패널
+- [HTTPS 사이트](https://www.google.com)
+- [Non HTTP 사이트](http://www.stealmylogin.com/)
 
 	![보안 40%](C:\TIL\TIL\education\company_lecture\security.png)
 
 ---
 ## 마무리
-- 웹 개발자, 디자이너에게 필수 도구인 크롬개발자 도구
+- 웹 개발자, 웹 디자이너에게 필수 도구인 크롬개발자 도구
 - 웹 페이지 성능 최적화를 위한 기능들은 숙지
 
 ---
 ## 참고
-- [Google Chrome Developer Tools](https://developers.google.com/web/tools/chrome-devtools/)
+- [Chrome Developer Tools - Docs](https://developers.google.com/web/tools/chrome-devtools/)
+- [Dev Tools Tutorial - Code School](https://www.codeschool.com/courses/discover-devtools)
 
 ---
 # 끝

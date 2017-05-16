@@ -1,12 +1,10 @@
-## 강의 준비
-1. Udacity 브라우저 렌더링 최적화, 웹 사이트 성능 최적화 정리 및 강의 자료 작성
-2. 브라우저 동작원리 정리 및 강의 자료 작성
-3. 크롬 개발자 도구 실습 자료 Github repo 생성
+## 목표
+- 수강생을 고급 개발자로 만들어주는 수업이 아닌, 고급 개발자로 성장할 가능성을 열어주는 수업
+- 고급 개발자의 스킬을 수강생에게 주입시키는 수업이 아닌, 수업에서 전달하는 지식과 토이 프로젝트 제작 경험을 통해 스스로 학습 가능한 인재가 되도록 돕는 수업
+- 수강료가 얼마가 됐건 아깝지 않은 A/S - 취준생에게는 취업 노하우와 면접 팁을, 입문자에게는 방향을 잡아주고 개발 기본기를 잡아주는, 실무자에게는 트렌디한 기술 공유와 고급 개발자 네트워킹 기회를 제공
 
-## 학습 필요한 부분
-- WebPack
-- RXjs
-
+---
+# 상세 커리큘럼
 ## 1st Week
 - 개발환경 구성
   - Chrome Browser Install
@@ -80,14 +78,56 @@
   - (Last Session) Possible Quiz on Javascript with Code Wars
 
 ## 2nd Week
-- Chrome Developer Tools
-  - 
+- Chrome Developer Tools (Done)
+  - Elements
+  - Console
+  - Sources
+  - Network
+  - Timeline
+  - Profile
+  - Application
+  - Security
 
 - CRP
-  - How browser works
-  - Browser rendering
+  - How browser works + Browser rendering (crp.md)
+  - CRP optimization (crp_optimize.md)
 
 - Performance Tuning Tips
   - V8 Engines
   - HTML
-  - Compression (Gzip)
+  - **Compression (Gzip)**
+    - Images : Logo & Icon (SVG), common - High compression (JPG)
+  - Samples for tuning including all of the points above.
+
+## 3rd Week
+- Page Insights
+  -
+
+- Lighthouse
+  -
+
+- Gulp
+  - Intro
+  - plugin lists
+
+- Webpack
+  -
+
+- s
+
+## 4th Week
+- Progressive Web App - Slide share
+
+- Web App Manifest
+  - Install Banner
+  - Splash Image
+
+- Service Worker
+  - Cache
+  - Push
+
+- Progressive Web App Sample
+  - Install Banner
+  - Splash Image
+  - Cache (Offline Service)
+  - Push sample
