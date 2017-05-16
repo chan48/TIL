@@ -93,8 +93,8 @@
   - CRP optimization (crp_optimize.md)
 
 - Performance Tuning Tips
-  - V8 Engines
-  - HTML
+  - JS (Done)
+  - V8 Engines (Done)
   - **Compression (Gzip)**
     - Images : Logo & Icon (SVG), common - High compression (JPG)
   - Samples for tuning including all of the points above.
@@ -104,7 +104,8 @@
   -
 
 - Lighthouse
-  -
+  - Node js + Lighthouse Module Install & Setup
+  - Lighthouse Best Practices
 
 - Gulp
   - Intro

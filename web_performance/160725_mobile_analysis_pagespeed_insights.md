@@ -29,7 +29,7 @@
 
 ### (1) Server must render the response (< 200 ms)
 - 서버의 응답시간은 서버가 초기 HTML 파일을 클라이언트에 전달하는데 걸리는 시간이다.
-- Optimization 을 위한 시간이 많지 않기 떄문에 최대한 200 ms 이내가 걸리도록 한다.
+- Optimization 을 위한 시간이 많지 않기 때문에 최대한 200 ms 이내가 걸리도록 한다.
 
 ### (2) Number of redirects should be minimized
 - HTTP redirect 요청이 늘어날 때마다 최소 1개에서 2개의 네트워크 왕복이 늘어난다. (추가적인 DNS 이용이 필요할 시 2개)
