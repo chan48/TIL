@@ -217,4 +217,8 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 ---
 ## Compression Tuning
 #### 이미지 압축
--
+- ㄴㅇ
+
+---
+#### Gzip 압축
+- [Google App Engine & Node.js 가이드 참고 후 실습 예제 작성](https://github.com/h5bp/server-configs)

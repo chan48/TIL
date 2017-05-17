@@ -100,8 +100,11 @@
   - Samples for tuning including all of the points above.
 
 ## 3rd Week
-- Page Insights
-  -
+- Page Insights (Done)
+  - PageSpeed Insights?
+  - 성능 분석이 필요한 이유와 배경
+  - PageSpeed Insights 에서 제시하는 최적화 전략
+  - PageSpeed 설치 및 실습
 
 - Lighthouse
   - Node js + Lighthouse Module Install & Setup
@@ -112,9 +115,7 @@
   - plugin lists
 
 - Webpack
-  -
-
-- s
+  - Intro
 
 ## 4th Week
 - Progressive Web App - Slide share
