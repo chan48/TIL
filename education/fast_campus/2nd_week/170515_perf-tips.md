@@ -221,4 +221,17 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 
 ---
 #### Gzip 압축
+- ㄴ
+
+#### Gzip 의 동작 원리
+- Gzip 을 지원하는 브라우저에서 자원 요청 -> Gzip 설정이 된 서버에서 응답을 받아 해당 자원 반환 -> 브라우저에서 파일 수신 및 압축 해제 후 사용
+
+#### Node.js 의 Gzip 압축
+- Node.js 의 설정에 아래의 패키지를 설치하여 추가해준다.
+  - Node v2.x : [gzippo](https://github.com/tomgco/gzippo)
+  - Node v3.x : [compression](https://github.com/expressjs/compression)
+
+#### Gzip 참고
 - [Google App Engine & Node.js 가이드 참고 후 실습 예제 작성](https://github.com/h5bp/server-configs)
+- [How to optimize your site with Gzip compression](https://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/)
+- [Gzip compression](http://javascript.tutorialhorizon.com/2016/01/12/gzip-compress-cache-api-response-express/)
