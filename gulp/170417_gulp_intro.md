@@ -1,4 +1,4 @@
-## Gulp 란?
+ Gulp 란?
 Gulp는 Sass(Css Extension language) 컴파일이나 웹 리소스 최적화 같이 번거로운 작업들을 자동화 하는 Build Automation Tool 이다.
 Stream 기반으로 압축, 병합, 에러 처리 등의 여러 플러그인의 결과를 이어받아 최종 결과물을 출력할 수 있다.
 
@@ -6,19 +6,17 @@ Stream 기반으로 압축, 병합, 에러 처리 등의 여러 플러그인의 
 Gulp를 설치하기 위해서는 node.js가 pc에 설치되어 있어야 한다. [node.js](https://nodejs.org/en/)
 노드를 설치 후 다음 절차를 따라한다.
 
-- `npm install --global gulp` 를 이용하여 Gulp 를 설치한다.
-- `npm init` 명령어를 이용하여 package.json 파일을 생성한다 (config 관련된 정보는 추가로 업데이트 할 예정)
+- `npm i gulp --global` 를 이용하여 Gulp 를 설치한다.
+- `npm init` 명령어를 이용하여 package.json 파일을 생성한다
     + name, description, commands... etc
-- 프로젝트의 devDependencies에 Gulp를 추가하기 위해서, `npm install --save-dev gulp` 를 입력한다.
+- 프로젝트의 devDependencies에 Gulp를 추가하기 위해서, `npm i gulp --save-dev` 를 입력한다.
 - gulpfile.js 파일을 프로젝트 루트에 위치 시킨다.
 - gulpfile.js 파일에 다음의 내용을 추가해보자.
 
 ``` javascript
 /* File: gulpfile.js */
-
-// grab our gulp packages
-var gulp  = require('gulp'),
-    gutil = require('gulp-util');
+var gulp  = require('gulp');
+var gutil = require('gulp-util');
 
 // create a default task and just log a message
 gulp.task('default', function() {
@@ -29,7 +27,7 @@ gulp.task('default', function() {
 - 추가 후 gulp를 치면, `Gulp is running` 이라는 콘솔이 찍혀야 구성이 제대로 된 것 이다.
 
 ## gulp.task()
-- 어떤 동작을 할 지 정하는 명령어다.
+- 특정 작업을 지정하고 수행하는 명령어
 
 ``` javascript
 gulp.task('taskname', function() {
@@ -47,15 +45,15 @@ gulp.task(name, [deps], fn)
 - `deps` : 해당 task 를 수행하기 전에 실행 및 완료되어야 할 tasks 의 목록. array 형태며 선택 사항이다.
 
 ``` javascript
-gulp.task('mytask', function() {
+gulp.task('task1', function() {
   var a = 1,
       b = 2;
   console.log(a+b); // 3
-  console.log("mytask 실행 후 아래가 실행 됨");
+  console.log("task1 실행완료");
 });
 
-gulp.task('yourtask', ['mytask'], function() {
-  console.log("yourtask 실행");
+gulp.task('task2', ['task1'], function() {
+  console.log("task2 실행");
 });
 ```
 
@@ -148,12 +146,12 @@ gulp.task('copyHtml', function() {
 ```
 
 ## gulp.watch()
-- 두 개의 인자를 받는데, 앞의 인자가 지정한 조건에 대해서 변경이 일어나면 array 안에 들어 있는 두 번째 인자의 조건이 수행된다.
-- API 수행 결과로는 change 이벤트를 발생시키는 EventEmitter 를 반환한다.
+- 두 개의 인자 중 첫 번째 지정한 인자에 변경이 일어나면, 두 번째 인자 (array) 의 작업이 수행된다.
 
 ```javascript
 // `source/javscript`의 밑에 위치한 js 파일이 변경되면, `jshint` 태스크가 수행된다.
 gulp.watch('source/javascript/**/*.js', ['jshint']);
+// API 수행 결과로는 change 이벤트를 발생시키는 EventEmitter 를 반환한다.
 ```
 
 #### watch() API 형식
@@ -163,7 +161,7 @@ gulp.watch(glob, [cb])
 ```
 
   - `glob` : String 또는 Array 로 변화를 감시할 파일들을 지정한다.
-  - `cb(event)` : 지정된 파일의 변화가 있을 때 마다 불려질 콜백 함수. event object 에 콜백이 반환된다.
+  - `cb(event)` : 지정한 파일의 변화가 있을 때 마다 호출될 함수.
 
 ```javascript
 gulp.watch('js/**/*.js', function(event) {
