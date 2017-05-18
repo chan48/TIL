@@ -110,7 +110,7 @@
   - Node js + Lighthouse Module Install & Setup
   - Lighthouse Best Practices
 
-- Gulp
+- Gulp (Done)
   - Intro
   - plugin lists
 
