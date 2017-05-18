@@ -97,6 +97,7 @@
   - V8 Engines (Done)
   - **Compression (Gzip)**
     - Images : Logo & Icon (SVG), common - High compression (JPG)
+  - Caching
   - Samples for tuning including all of the points above.
 
 ## 3rd Week
@@ -109,6 +110,7 @@
 - Lighthouse
   - Node js + Lighthouse Module Install & Setup
   - Lighthouse Best Practices
+  - Lighthouse npm module install and play
 
 - Gulp (Done)
   - Intro

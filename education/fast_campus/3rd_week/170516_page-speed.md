@@ -36,9 +36,10 @@
 4. 불필요한 코드 제거 및 개발자도구를 활용하여 병목이나 메모리 누수 확인
 
 ---
-## PageSpeed 설치 및 실습
-- 플러그인 [다운로드](https://chrome.google.com/webstore/detail/pagespeed-insights-with-p/lanlbpjbalfkflkhegagflkgcfklnbnh)
+## Page Analysis 플러그인 설치 및 실습
+- PageSpeed 크롬 확장 플러그인 [다운로드](https://chrome.google.com/webstore/detail/pagespeed-insights-with-p/lanlbpjbalfkflkhegagflkgcfklnbnh)
 - [Page Insights Site](https://developers.google.com/speed/pagespeed/insights/?hl=ko)
+- [Page Insights API Test with options](https://developers.google.com/speed/docs/insights/v2/reference/pagespeedapi/runpagespeed)
 
 ---
 ## 참고
