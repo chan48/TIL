@@ -95,8 +95,8 @@
 - Performance Tuning Tips
   - JS (Done)
   - V8 Engines (Done)
-  - **Compression (Gzip)**
-    - Images : Logo & Icon (SVG), common - High compression (JPG)
+  - Image Compression (Done)
+  - **Gzip Compression (Gzip)**
   - Caching
   - Samples for tuning including all of the points above.
 
@@ -110,11 +110,11 @@
 - Lighthouse
   - Node js + Lighthouse Module Install & Setup
   - Lighthouse Best Practices
-  - Lighthouse npm module install and play
+  - Lighthouse npm module install
 
 - Gulp (Done)
-  - Intro
-  - plugin lists
+  - Intro + plugin lists
+  - Project 샘플 제작 실습
 
 - Webpack
   - Intro

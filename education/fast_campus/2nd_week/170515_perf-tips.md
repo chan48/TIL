@@ -6,8 +6,10 @@
 ## 목차
 - Javascript Best Practices (Done)
 - V8 Engines Tuning (JS) (Done)
-- Compression Tuning (Gzip)
-  - Images : Logo & Icon (SVG), common - High compression (JPG)
+- Compression Tuning
+  - Image Compression (Done)
+  - Gzip Compression (Gzip)
+  - Caching
 
 ---
 ## Javscript Best Practices
@@ -216,8 +218,47 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 
 ---
 ## Compression Tuning
-#### 이미지 압축
-- ㄴㅇ
+#### Image 압축
+- 불필요한 이미지 리소스 제거
+- 대체 가능한 경우에는 CSS3 사용. ex) 애니메이션 등
+- 이미지 안에 들어가는 텍스트 대신 웹 폰트 사용
+
+> 효율적인 이미지 활용에 대해서 늘 재고하는 자세가 필요
+
+---
+#### Vector vs Laster
+- Vector 이미지 : 선, 점 폴리곤을 이용하여 나타냄
+  - ex) SVG (로고, 텍스트, 아이콘)
+- Laster 이미지 : 픽셀의 값을 인코딩하여 이미지를 나타냄
+  - ex) PNG, JPEG, GIF (쇼핑몰 상품이나 일반 사진)
+
+> SVG 최적화는 [svgo](https://github.com/svg/svgo) 활용
+> WebP 이미지 [참고](https://developers.google.com/speed/webp/docs/compression?hl=ko)
+
+---
+#### Image 활용
+
+![](image-comparison)
+
+- GIF : 애니메이션 활용에 사용
+- JPEG : 압축으로 사이즈를 크게 줄일 수 있음. 품질과 사이지의 균형유지가 필요
+- PNG : 고품질의 사진. 압축 불가능. 상대적으로 큰 사이즈
+
+> 이미지 안에 들어간 텍스트는 변경이 안되므로 주의!
+
+#### Image 크기
+- 이미지 파일의 실제 크기보다 더 작게 웹페이지에 로딩되는 경우 불필요한 오버헤드가 발생
+
+![해상도 차이에 따라 브라우저에 발생하는 불필요한 오버헤드](image-size)
+
+- **따라서, 웹 페이지에서 보여지는 이미지 크기와 실제 이미지 크기가 최대한 같아야 한다.**
+
+---
+#### Image 최적화
+- 확대 / 축소에 강한 SVG 활용
+- 사이트의 특성과 요구사항에 맞게 압축을 활용
+- 실제 이미지 파일 크기와 웹 페이지의 이미지 크기를 동일하게..!
+- Gulp, Grunt 와 같은 자동화 도구를 이용하여 항상 이미지는 압축!
 
 ---
 #### Gzip 압축
@@ -235,3 +276,21 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 - [Google App Engine & Node.js 가이드 참고 후 실습 예제 작성](https://github.com/h5bp/server-configs)
 - [How to optimize your site with Gzip compression](https://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/)
 - [Gzip compression](http://javascript.tutorialhorizon.com/2016/01/12/gzip-compress-cache-api-response-express/)
+
+---
+#### Caching
+- 불필요한 Client - Server 간의 네트워크 왕복 요청을 줄이기 위해 필요한 기법
+- 일반적으로 최신 브라우저에 모두 HTTP 캐싱이 다 구현되어 있음
+- 개발자는 HTTP Header 에 적절한 캐싱 설정값을 세팅해주기만 하면 된다.
+
+![캐쉬](cache)
+
+---
+#### HTTP Header
+
+![Header 의 모양]()
+
+---
+#### E-tag
+- 리소스 유효성 검사 태그로 *해당 리소스 의 갱신 필요여부를 확인*하는 지문 역할
+-

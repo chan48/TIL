@@ -1,8 +1,9 @@
-*.jpg
-*.jpeg
-*.png
-*.PNG
-*.gif
+#
+# *.jpg
+# *.jpeg
+# *.png
+# *.PNG
+# *.gif
 
 backpacker/*
 etc/*
