@@ -272,6 +272,23 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
   - Node v2.x : [gzippo](https://github.com/tomgco/gzippo)
   - Node v3.x : [compression](https://github.com/expressjs/compression)
 
+#### Tomcat 의 Gzip 압축 설정
+
+```xml
+<Connector port="8080" protocol="HTTP/1.1" redirectPort="8443"
+    URIEncoding="UTF-8"
+    connectionTimeout="20000"
+    compression="on"
+    compressionMinSize="1024"
+    noCompressionUserAgents="gozilla, traviata"
+    compressableMimeType="text/html,text/xml,text/plain,text/javascript,text/css,application/javascript"/>
+```
+
+- `compression` : 압축 사용 여부. "off" (default)
+- `compressionMinSize` : 압축하는 최소 파일 크기. "2048" (default)
+- `noCompressionUserAgents` : 압축을 사용하지 않을 브라우저 지정. "" (default)
+- `compressableMimeType` : 압축을 사용 할 파일 타입. "" (default)
+
 #### Gzip 참고
 - [Google App Engine & Node.js 가이드 참고 후 실습 예제 작성](https://github.com/h5bp/server-configs)
 - [How to optimize your site with Gzip compression](https://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/)
@@ -283,14 +300,43 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 - 일반적으로 최신 브라우저에 모두 HTTP 캐싱이 다 구현되어 있음
 - 개발자는 HTTP Header 에 적절한 캐싱 설정값을 세팅해주기만 하면 된다.
 
-![캐쉬](cache)
+![캐쉬](C:\github\TIL\education\fast_campus\2nd_week\cache.png)
 
 ---
 #### HTTP Header
+- 크롬 개발자도구 Network 패널의 파일을 클릭하면 아래와 같이 표시
 
-![Header 의 모양]()
+![Header 의 모양](C:\github\TIL\education\fast_campus\2nd_week\header.png)
 
 ---
 #### E-tag
 - 리소스 유효성 검사 태그로 *해당 리소스 의 갱신 필요여부를 확인*하는 지문 역할
--
+- 웹 페이지의 리소스가 변경되지 않음을 Client - Server 간의 특정 값으로 검사
+- 동작 방식
+  1. Server 에서 해당 파일의 특정 해쉬값 발급
+  2. Client 에서 이 해쉬값을 받아 확인 후 파일이 변하지 않으면 그대로 다시 Server 에 전송
+  3. Server 에서 받은 해쉬값이 변경되지 않으면 `304 Not Modified` 반환
+  4. 해당 파일을 다시 전송해서 받는 과정이 생략되어 시간과 대역폭 절약
+
+![E-tag](C:\github\TIL\education\fast_campus\2nd_week\etag.png)
+
+---
+#### Cache-Control
+- 캐싱에 대한 옵션을 설정하는 속성
+- `no-cache` : 해당 리소스에 대한 확인 요청을 보내고 캐쉬를 강제
+- `no-store` : 해당 리소스는 절대 캐쉬하지 않음
+- `public` : 사이트 로고 와 같은 다수의 인원이 필요한 정보에 대해 캐싱 설정
+- `private` : 로그인 정보와 같이 캐쉬가 필요 없는 개인정보를 다룰 때 설정. 서버와의 통신시 대역폭을 줄이기 위한 전략
+- `max-age` : 서버로부터 받은 데이터의 유효시간 길이 설정 (초 단위)
+
+![Cache Control](C:\github\TIL\education\fast_campus\2nd_week\cache-control.png)
+
+---
+## 참고
+- [Web Fundamentals - Google](https://developers.google.com/web/fundamentals/performance/)
+- [HTML5 Rocks - Google](https://www.html5rocks.com/en/tutorials/speed/v8/)
+- [HTTP Spec - W3C](https://www.w3.org/Protocols/HTTP/Issues/cache-private.html)
+- [Gzip is not enought - Youtube](https://www.youtube.com/watch?v=whGwm0Lky2s&feature=youtu.be&t=14m11s)
+
+---
+# 끝
