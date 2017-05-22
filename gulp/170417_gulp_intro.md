@@ -1,4 +1,4 @@
- Gulp 란?
+## Gulp 란?
 Gulp는 Sass(Css Extension language) 컴파일이나 웹 리소스 최적화 같이 번거로운 작업들을 자동화 하는 Build Automation Tool 이다.
 Stream 기반으로 압축, 병합, 에러 처리 등의 여러 플러그인의 결과를 이어받아 최종 결과물을 출력할 수 있다.
 
