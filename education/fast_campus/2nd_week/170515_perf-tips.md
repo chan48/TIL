@@ -8,8 +8,9 @@
 - V8 Engines Tuning (JS) (Done)
 - Compression Tuning
   - Image Compression (Done)
-  - Gzip Compression (Gzip)
-  - Caching
+  - Gzip Compression (Done)
+  - Deeper in HTTP Header & Request (Done)
+  - Caching (Done)
 
 ---
 ## Javscript Best Practices
@@ -262,16 +263,29 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 
 ---
 #### Gzip 압축
-- ㄴ
+- 일반적인 웹 자원 압축은 빌드 자동화 도구를 활용한 리소스 파일 크기 자체의 압축
+- Gzip 압축은 네트워크 대역폭과 지연시간을 효율적으로 활용하기 위한 측면
+- Client (브라우저) - Server 간 데이터 전송량을 줄일 수 있다.
 
+> 참고 : [브라우저별 지원 여부](http://schroepl.net/projekte/mod_gzip/browser.htm)
+
+---
 #### Gzip 의 동작 원리
-- Gzip 을 지원하는 브라우저에서 자원 요청 -> Gzip 설정이 된 서버에서 응답을 받아 해당 자원 반환 -> 브라우저에서 파일 수신 및 압축 해제 후 사용
+1. Gzip 을 지원하는 *브라우저에서 자원 요청*
+2. Gzip 설정이 된 *서버에서 응답을 받아 해당 자원을 압축 후 반환*
+3. *브라우저에서 파일 수신 및 압축 해제* 후 표시
 
+![gzip 압축한 요청과 응답](gzip-compressed-response.png)
+
+---
 #### Node.js 의 Gzip 압축
 - Node.js 의 설정에 아래의 패키지를 설치하여 추가해준다.
   - Node v2.x : [gzippo](https://github.com/tomgco/gzippo)
   - Node v3.x : [compression](https://github.com/expressjs/compression)
 
+[Gzip 적용 샘플 예제](https://github.com/joshua1988/DevCampWAP-PAO/tree/master/gzip-nodejs/)
+
+---
 #### Tomcat 의 Gzip 압축 설정
 
 ```xml
@@ -289,10 +303,26 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 - `noCompressionUserAgents` : 압축을 사용하지 않을 브라우저 지정. "" (default)
 - `compressableMimeType` : 압축을 사용 할 파일 타입. "" (default)
 
-#### Gzip 참고
-- [Google App Engine & Node.js 가이드 참고 후 실습 예제 작성](https://github.com/h5bp/server-configs)
-- [How to optimize your site with Gzip compression](https://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/)
-- [Gzip compression](http://javascript.tutorialhorizon.com/2016/01/12/gzip-compress-cache-api-response-express/)
+---
+#### Deeper HTTP Request & Header
+  - HTTP Header (What's in it? Encoding-Header and etc.)
+  - How a request occurs to the server from client
+  - [HTTP Status Code](https://www.slideshare.net/woolimryu/ss-51132805) summary
+
+---
+#### HTTP Header Encoding
+- 크롬 개발자도구 Network 패널의 파일을 클릭하면 아래와 같이 표시
+- `Accept-Encoding` : Client 에서 Server 로 보내는 요청. 헤더에 명시된 인코딩 값 (압축) 을 이해하고, 디코딩 (압축 해제) 를 수행할 수 있다는 것을 서버에 알림
+  - ex) `Accept-Encoding : gzip, deflate` : gzip, deflate 압축 방식을 수용할 수 있으므로, Server 에서 압축해서 보낸 파일을 해제하여 브라우저에 표시할 수 있다.
+- `Content-Encoding` : Server 에서 보내는 응답이 어떤 인코딩 방식, 즉 어떤 방식으로 압축되었는지 표시.
+  - ex) `Content-Encoding : gzip` : 해당 응답은 Gzip 으로 압축하였으니, Client (브라우저) 에서 해제해서 표시하길 바람
+
+![Header 의 모양](C:\github\TIL\education\fast_campus\2nd_week\header.png)
+
+---
+#### HTTP Connection
+- 지속 연결 : `Connection : Keep-Alive`, 하나의 TCP 커넥션을 열고 모든 요청을 처리 (HTTP 1.1)
+- 비지속 연결 : `Connection : close`, 매번 자원 요청시 새로운 TCP 커넥션 생성 (HTTP 1.0)
 
 ---
 #### Caching
@@ -303,14 +333,8 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 ![캐쉬](C:\github\TIL\education\fast_campus\2nd_week\cache.png)
 
 ---
-#### HTTP Header
-- 크롬 개발자도구 Network 패널의 파일을 클릭하면 아래와 같이 표시
-
-![Header 의 모양](C:\github\TIL\education\fast_campus\2nd_week\header.png)
-
----
 #### E-tag
-- 리소스 유효성 검사 태그로 *해당 리소스 의 갱신 필요여부를 확인*하는 지문 역할
+- 리소스 유효성 검사 태그로 *해당 리소스 의 갱신 필요여부를 확인*하는 지문 역할 (최신 버전의 자원인가?)
 - 웹 페이지의 리소스가 변경되지 않음을 Client - Server 간의 특정 값으로 검사
 - 동작 방식
   1. Server 에서 해당 파일의 특정 해쉬값 발급
@@ -337,6 +361,9 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 - [HTML5 Rocks - Google](https://www.html5rocks.com/en/tutorials/speed/v8/)
 - [HTTP Spec - W3C](https://www.w3.org/Protocols/HTTP/Issues/cache-private.html)
 - [Gzip is not enought - Youtube](https://www.youtube.com/watch?v=whGwm0Lky2s&feature=youtu.be&t=14m11s)
+- [Gzip compression](http://javascript.tutorialhorizon.com/2016/01/12/gzip-compress-cache-api-response-express/)
+- [How to optimize your site with Gzip compression](https://betterexplained.com/articles/how-to-optimize-your-site-with-gzip-compression/)
+- [Web Perf Engineering - SK Planet](http://readme.skplanet.com/?p=9735)
 
 ---
 # 끝

@@ -69,16 +69,16 @@
   - AirBnb CSS guide
   - CSS Pre-processor (Sass)
 
-- JS
+- JS (Done)
   - JS History
   - AirBnb JS Guide
 
-- Web App Project - Facebook Profile with OPEN API (Done & **Quiz preparation needed** & **js hoisting review**)
+- [Web App Project](https://github.com/joshua1988/DevCampWAP-SWA) - Facebook Profile with OPEN API (Done & **Quiz preparation needed** & **js hoisting review**)
   - (At the very beginning) Javascript Quiz - Making Caculator or Code Wars)
   - (Last Session) Possible Quiz on Javascript with Code Wars
 
-## 2nd Week
-- Chrome Developer Tools (Done)
+## [2nd Week](https://github.com/joshua1988/DevCampWAP-BCO)
+- [Chrome Developer Tools (Done)](https://github.com/joshua1988/DevCampWAP-DevTools)
   - Elements
   - Console
   - Sources
@@ -98,16 +98,21 @@
   - Image Compression (Done)
   - **Gzip Compression (Gzip)**
   - Caching
+  - **Deeper in HTTP Request & Header (new! and need to fill the information in the pt)**
+    - HTTP Header (What's in it? Encoding-Header and etc.)
+    - How a request occurs to the server from client
+    - [HTTP Status Code](https://www.slideshare.net/woolimryu/ss-51132805) summary
+  - [Network Bandwidth](http://readme.skplanet.com/?p=9735)
   - Samples for tuning including all of the points above.
 
-## 3rd Week
+## [3rd Week](https://github.com/joshua1988/DevCampWAP-PAO)
 - Page Insights (Done)
   - PageSpeed Insights?
   - 성능 분석이 필요한 이유와 배경
   - PageSpeed Insights 에서 제시하는 최적화 전략
   - PageSpeed 설치 및 실습
 
-- Lighthouse
+- Lighthouse (Done)
   - Node js + Lighthouse Module Install & Setup
   - Lighthouse Best Practices
   - Lighthouse npm module install
