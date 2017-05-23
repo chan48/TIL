@@ -35,11 +35,12 @@
 
 ---
 ## 1주차 수업 목차
-1. 웹 애플리케이션 개발 기본
-2. HTML 기초 다지기
-3. CSS 기초 다지기
-4. JS 기초 다지기
-5. Facebook Open API 를 활용한 Profile 웹앱 제작
+1. 개발환경 설정
+2. 웹 애플리케이션 개발 기본
+3. HTML 기초 다지기
+4. CSS 기초 다지기
+5. JS 기초 다지기
+6. Facebook Open API 를 활용한 Profile 웹앱 제작
 
 ---
 # 끝
