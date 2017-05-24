@@ -57,18 +57,38 @@ require("!style!css!./style.css"); // ! 로 여러 설정값을 받을 수 있�
 require("./style.css");
 ```
 
-- 간단한 [webpack2 tutorial](github-webpack)
+- 간단한 [webpack2 tutorial](https://github.com/joshua1988/DevCampWAP-PAO/tree/master/webpack/getting-started)
+
+---
+## Webpack Entry
+- webpack 으로 묶은 모든 라이브러리들을 로딩할 시작점 설정
+- a,b,c 라이브러리를 모두 번들링한 bundle.js 를 로딩한다
+- 1개 또는 2개 이상의 복수개 엔트리 포인트를 설정할 수 있다.
 
 ```js
-// ...
 
+var config = {
+  // #1 - 간단한 entry 설정
+  entry: './path/to/my/entry/file.js'
+  // #2 - 앱 로직용, 외부 라이브러리용
+  entry: {
+    app: './src/app.js',
+    vendors: './src/vendors.js'
+  }
+  // #3 - 페이지당 불러오는 js 설정
+  entry: {
+    pageOne: './src/pageOne/index.js',
+    pageTwo: './src/pageTwo/index.js',
+    pageThree: './src/pageThree/index.js'
+  }
+};
 ```
 
 ---
 ## Mutiple Entry points
--
+- 앞에 복수개 엔트리 포인트에 대한 설정 예시
 
-```javascript
+```js
 // webpack.config.js
 module.exports = {
   entry: {
@@ -85,21 +105,56 @@ module.exports = {
 ```
 
 ---
-## [Require.ensure](https://webpack.js.org/guides/code-splitting-require/#require-ensure-)
-- AMD 와 같은 역할, 지정한 라이브러리를 로딩한 후에야 순차적으로 라이브러리 실행 가능
+## [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin/)
+- 여러개의 엔트리 포인트에 주입되는 공통의 모듈을 관리하기 위한 플러그인
+- 모든 엔트리 포인트에 주입되는 라이브러리를 효율적으로 관리하기 위해, Chunk 라는 단위로 미리 분리하여 관리한다.
+- 모든 번들에 로딩될 필요 없이, 초기에 한번만 로딩하는 장점과 캐쉬에 용이하다는 장점이 있다.
 
 ---
-## Resolve
--
+## Webpack Output
+- entry 에서 설정하고 묶은 파일의 결과값을 설정
 
-## Loader?
+```js
+var path = require('path');
+module.exports = {
+  entry: {
+    // ...
+  },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+    // filename: '[name].js'
+  }
+};
+```
+
+---
+## Webpack Loader
 > webpack can only process JavaScript natively, but loaders are used to transform other resources into JavaScript. By doing so, every resource forms a module.
 
 - 웹팩은 자바스크립트 파일만 처리가 가능하도록 되어 있다.
 - 하지만 loader 를 이용하여 다른 형태의 웹 자원들을 (img, css, ...) 자바스크립트 형태로 변환이 가능하여 로딩할 수 있다.
+
+```js
+module.exports = {
+  entry: {
+    // ...
+  },
+  output: {
+    // ...
+  },
+  module: {
+    rules: [
+      { test: /\.css$/, use: ['style-loader', 'css-loader'] }
+    ]
+  }
+};
+```
+
+---
 - loader 에서 모듈 로딩 순서는 배열의 요소 오른쪽에서 왼쪽으로 진행된다.
 
-```javascript
+```js
 {
   test: /backbone/,
   use: [
@@ -118,35 +173,24 @@ var _ = __webpack_require__(0);
 var jquery = __webpack_require__(1);
 ```
 
-- 아래 설명할 3 개 로더들의 로딩 순서
-  - expose!imports!exports, 1) expose 2) imports 3) exports.
+> [Loader 더 많은 설정](https://webpack.js.org/concepts/loaders/)
 
 ---
-#### expose-loader
--
+## Webpack Plugins
+- 플러그인은 파일별 커스텀 기능을 사용하기 위해서 사용한다.
+  - ex) js 최소화, alias (별칭) 설정
 
----
-#### exports-loader
-- df
-
----
-#### imports-loader
-- 특정 전역 변수에 의존하는 모듈을 사용할 수 있다.
-- 로딩시에 아래와 같이 해당 모듈을 특정 변수로 변경하여 받을 수 있다.
-
-```javascript
-{
-  test: /backbone/,
-  use: [
-    'expose-loader?Backbone',
-    'imports-loader?_=underscore,jquery,this=>window' // underscore 라이브러리가 로딩 후 _ 값에 저장
+```js
+module.exports = {
+  entry: {},
+  output: {},
+  module: {},
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin()
+    // ...
   ]
-}
+};
 ```
-
----
-## Alias
-- d
 
 ---
 ## ProvidePlugins
@@ -154,9 +198,17 @@ var jquery = __webpack_require__(1);
 -
 
 ---
+## ExtractTextWebpackPlugin
+-
+
+---
+## CommonsChunkPlugin
+-
+
+---
 ## 개발자 도구 연동
 - 브라우저에서 webpack 으로 컴파일된 파일을 디버깅 하기란 어려움
-- 따라서, 아래와 같이 source-map 설정을 추가하여 원래의 파일구조에서 디버깅이 가능
+- 따라서, 아래와 같이 *source-map* 설정을 추가하여 원래의 파일구조에서 디버깅이 가능
 
 ```js
 module.exports = {
@@ -169,18 +221,11 @@ module.exports = {
 ## Externals
 - sdf
 
-## entry & output
-- dfdf
-
-## require & imports?
-- ss
-
-## Dynamic Requires
--
-
+---
 ## critical-dependencies
 - [critical-dependencies](http://webpack.github.io/docs/context.html#critical-dependencies)
 
+---
 ## Reference
 - [webpack-howto](https://github.com/petehunt/webpack-howto)
 - [webpack-howto2](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e)
@@ -188,5 +233,4 @@ module.exports = {
 - [migration from requirejs to webpack](https://medium.com/@ArtyomTrityak/migration-from-require-js-to-webpack-2-a733a4366ab5)
 - [webpack-shimming](https://webpack.js.org/guides/shimming/)
 - [Gulp Webpack plugin](https://www.npmjs.com/package/gulp-webpack)
-
-http://j-query.blogspot.kr/2015/06/from-requirejs-to-webpack-part-1-reasons.html
+- [from require to webpac](http://j-query.blogspot.kr/2015/06/from-requirejs-to-webpack-part-1-reasons.html)
