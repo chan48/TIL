@@ -4,11 +4,12 @@
 # 오리엔테이션 및 1주차 학습 커리큘럼 소개
 
 ---
+<!-- footer : 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP - 오리엔테이션 -->
 ## 설문 조사 (10 분)
-- [구글 링크]()
+- [구글 링크](https://goo.gl/forms/FztZXMxRn9VN0kfu2)
 
 ---
-## 웹 앱 이해도 테스트 (15 분)
+## 웹 앱 이해도 테스트 (20 분)
 - HTML & CSS & JS 를 이용하여 간단한 계산기 제작
 1. 계산할 숫자는 키보드로 직접 입력하여 연산하도록 설계
 2. 계산 과정과 결과를 화면에 표시
@@ -43,4 +44,17 @@
 6. Facebook Open API 를 활용한 Profile 웹앱 제작
 
 ---
+## 초심자를 위한 학습 플랜
+- [Learn Javascript - Codecademy](https://www.codecademy.com/learn/javascript)
+  - ~ 5/27(토), 1 ~ 3단원
+  - ~ 6/1(목), 4 ~ 7단원
+  - ~ 6/5(일), 8 ~ 9단원
+
+- [Learn HTML & CSS - Codecademy](https://www.codecademy.com/learn/web)
+  - ~ 5/27(토), 1 ~ 2단원
+  - ~ 6/1(목), 3 ~ 6단원
+  - ~ 6/5(일), 7 ~ 8단원
+
+---
+<!-- footer : -->
 # 끝
