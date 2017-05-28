@@ -187,7 +187,7 @@
 > 'deep link' : 설치된 웹 앱의 지정된 scope 안의 url 들을 지칭
 
 ---
-## Web App Manifest Debugging
+## Web App Manifest 디버깅
 - 크롬 개발자 도구의 `Application tab` 을 이용하여 설정 정보 확인가능
 - **앱 아이콘 설치** 등을 테스트 해볼 수 있다.
 
