@@ -187,6 +187,20 @@
 > 'deep link' : 설치된 웹 앱의 지정된 scope 안의 url 들을 지칭
 
 ---
+## Web App Manifest Debugging
+- 크롬 개발자 도구의 `Application tab` 을 이용하여 설정 정보 확인가능
+- **앱 아이콘 설치** 등을 테스트 해볼 수 있다.
+
+![manifest-debugging](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4st_week/images/manifest-debugging.png)
+
+---
+## 지원되는 브라우저 (17년 5월 기준)
+- Chrome 42 이상
+- Firefox
+- Opera
+- Samsung Internet
+
+---
 ## 참고
 - [Web App Manifest Spec, W3C](https://www.w3.org/TR/appmanifest/)
 - [Web App Manifest Spec, html5doctor](http://html5doctor.com/web-manifest-specification/)

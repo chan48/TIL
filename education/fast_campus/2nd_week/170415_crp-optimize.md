@@ -181,6 +181,10 @@ document.querySelector('span').style.color = "blue";
 ---
 - 렌더링을 방해하지 않는 또다른 js 설정 방법은 `async` 속성을 script 에 추가하는 것
 
+![async-vs-defer](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/2nd_week/images/script-async-defer.png)
+
+---
+
 ```html
 <script src="non-parser-blocking.js" async></script>
 ```
