@@ -4,15 +4,26 @@
 
 ---
 <!-- footer : 브라우저 동작과정 최적화 - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
+## 개요
+- 브라우저의 기본적인 동작과정을 이해하고, 빠른 초기 렌더링을 위한 방법들을 학습한다.
+- 화면 렌더링을 방해하는 CSS, HTML 파싱을 방해하는 JS 를 이해한 웹앱 설계 방법을 학습한다.
+- 화면 렌더링 속도를 향상시킬 수 있는 preload scanner, async, media query 에 대해서 학습한다.
+
+---
 ## HTML - DOM 최적화
 - 브라우저에 전송한 HTML 파일이 작으면 작을수록 다운로드 시간이 짧다.
 - HTML 파일에 작성된 주석의 경우, 개발자에게 도움되지만 실제로 브라우저 입장에서는 의미가 없는 데이터
-- 따라서 minification, compression, cache 등을 이용하여 html 파일 최적화를 진행해야 한다.
+- 따라서 [minification](https://www.npmjs.com/package/html-minifier), [compression](https://htmlcompressor.com/compressor/), [cache](https://developer.mozilla.org/ko/docs/Web/HTTP/Caching) 등을 이용하여 html 파일 최적화를 진행해야 한다.
+
+> [Online Minifier](http://www.willpeavy.com/minifier/)
 
 ---
-## Media Query 를 활용한 CSS 최적화
+## 화면 렌더링을 방해하는 CSS 최적화
 - 브라우저가 웹 페이지를 그리기 위해서는 HTML 다운로드 후, CSS 속성을 적용하고 나서 Render Tree 를 생성
-- **따라서 CSS 는 브라우저 렌더링을 방해하는 요소로 분류 - Render Blocking**
+- **따라서 CSS 는 브라우저의 화면 렌더링을 방해하는 요소로 분류 - Render Blocking**
+
+---
+#### Media Query 를 활용한 CSS 최적화
 - CSS 를 로딩할 때 한번에 모두 로딩해야 할 때가 있지만 반대로 print 와 같이 특정 환경일 경우 선택적으로 로딩하는 것이 좋다.
 - media query 값으로 초기 렌더링에 필요한 부분과 점진적으로 로딩할 부분을 구분
 
@@ -44,7 +55,7 @@ body {
 }
 ```
 
-> 초기 렌더링에 관여하는 css 만 로딩하는 것을 원칙으로
+> **초기 렌더링에 관여하는 css 만 로딩하는 것을 원칙으로 스타일시트 작성**
 
 ---
 #### Media Query 란?
@@ -65,9 +76,11 @@ body {
 @media print {}
 ```
 
+[미디어 쿼리 적용된 사이트 분석](https://responsivedesign.is/examples/)
+
 ---
 ## 파싱을 방해하는 JS 최적화
-- 자바스크립트는 아래와 같이 DOM 과 css 를 모두 조작할 수 있다.
+자바스크립트는 아래와 같이 DOM 과 css 를 모두 조작할 수 있다.
 
 ```javascript
 var span = document.getElementsByTagName('span')[0];
@@ -76,7 +89,7 @@ span.style.display = "inline";
 ```
 
 ---
-- 아래와 같은 이유로 자바스크립트는 DOM 파싱을 방해한다 - **Parser Blocking**
+아래와 같은 이유로 자바스크립트는 HTML -> DOM 파싱을 방해한다. **Parser Blocking**
 
 ```html
 <p>
@@ -140,11 +153,11 @@ document.querySelector('span').style.color = "blue";
 
 ![css-stylesheet-js-exec](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/2nd_week/images/css-stylesheet-n-js-exec.png)
 
-- 이처럼 **css 는 렌더링과 js 실행을 모두 방해**하기 때문에 css 를 최적화 하는 것이 중요하다.
+이처럼 **css 는 렌더링과 js 실행을 모두 방해**하기 때문에 css 를 최적화 하는 것이 중요하다.
 
 ---
 ## 실습 퀴즈 #1
-- 아래 [소스](https://github.com/joshua1988/DevCampWAP-BCO/blob/master/optmize/quiz1/quiz1.html)를 최적화 해봅니다. 
+- 아래 [소스](https://github.com/joshua1988/DevCampWAP-BCO/blob/master/optimize/quiz1/index.html)를 최적화 해봅니다.
 
 ```html
 <html>
@@ -171,7 +184,7 @@ document.querySelector('span').style.color = "blue";
 - 위 스타일 시트를 외부 파일로 로딩하지 않고, `style` 태그를 이용해 인라인으로 만들면 http 요청을 줄일 수가 있다.
 - getCurrentDate() 는 함수 명에서도 볼 수 있듯이, 페이지 렌더링과 관계된 js 가 아니므로 렌더링을 방해하지 않는다.
 
-> 결론 : 인라인 css 를 이용하여 렌더링 속도를 향상
+**결론 : 인라인 css 를 이용하여 렌더링 속도를 향상**
 
 ---
 ## Async 와 onload event 활용
@@ -188,12 +201,8 @@ document.querySelector('span').style.color = "blue";
 </script>
 
 <body>
-  <p>
-    ...
-  </p>
-  <div>
-    ...
-  </div>
+  <p>...</p>
+  <div>...</div>
 </body>
 ```
 
@@ -238,6 +247,10 @@ document.querySelector('span').style.color = "blue";
 
 ![basic-crp](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/2nd_week/images/crp-measure.png)
 
+- 렌더링을 위해 필요한 자원의 수 (Critical Resources) : 2
+- 렌더링을 위해 필요한 파일 크기 (Critical KB) : 9KB
+- 렌더링을 위해 거쳐야 할 단계의 수 (CRP Length) : 2 (왕복)
+
 ---
 ## Preload Scanner
 - Preload Scanner 를 이해하기 위해 브라우저에서 웹 페이지가 동작하는 방식을 보면
@@ -247,9 +260,8 @@ document.querySelector('span').style.color = "blue";
   4. 외부 css 파일과 마찬가지로 **외부 js 파일을 다운 받기 위한 네트워크 요청을 발생**
   5. 다운로드 하고 나서 **실행할 때 까지 DOM 생성을 멈춘다.**
 
-
 - (Q) 위와 같은 동작방식에서 예상되는 문제점은 무엇입니까?
-- (A) 외부 js 파일이 많을수록 네트워크 왕복 요청에 허비되는 시간이 많아짐
+- (A) 외부 파일이 많을수록 네트워크 왕복 요청에 허비되는 시간이 많아짐
 
 ---
 - **Preload Scanner 는 이를 해결하기 위해 메인 파서 이외에 보조 light weight 파서를 이용해서 js, css, img 등을 미리 다운로드**
@@ -272,11 +284,21 @@ Preload Scanner 적용 방법은
 
 ---
 ## Quiz #3
-[간단한 웹 페이지](https://github.com/joshua1988/DevCampWAP-BCO/blob/master/optmize/quiz3/quiz3.html)
+[간단한 웹 페이지](https://github.com/joshua1988/DevCampWAP-BCO/blob/master/optimize/quiz3/index.html)
 
 - 위 코드의 동작과정을 분석하고, 다이어그램을 그려보자.
 - 렌더링을 하기 위한 단계들을 파악하고, 최적화 할 부분들을 찾아본다.
-- 마지막으로 크롬 개발자 도구의 Network 패널을 이용하여 최적화 전 / 후 타임라인을 비교해본다.
+- 마지막으로 크롬 개발자 도구의 Network 패널을 이용하여 최적화 전 / 후 타임라인을 스크린샷 후 이미지 명명 'final'
+
+[위 페이지 결과](https://joshua1988.github.io/DevCampWAP-BCO/optmize/quiz3/index.html)
+
+---
+제출 방법
+1. https://github.com/joshua1988/DevCampWAP-BCO 접속 후 fork
+2. fork 한 repository 다운로드
+3. `optimize/quiz3/index.html` 파일 최적화 전 / 후 성능 스샷
+4. 스샷한 최적화 파일 이미지 이름은 `final` 로 저장
+5. pull request 제목은 `이름 - 렌더링 최적화` 으로 하여 전송
 
 ---
 ## 과제 - 최종 프로젝트
@@ -292,7 +314,6 @@ Preload Scanner 적용 방법은
 - [Performance - Web Fundamentals](https://developers.google.com/web/fundamentals/performance/?hl=ko)
 - [Preload Scanner, Ilya](https://docs.google.com/presentation/d/18zlAdKAxnc51y_kj-6sWLmnjl6TLnaru_WH0LJTjP-o/present?slide=id.g33211238_0_2)
 - [High Performance Networkin, Ilya](https://www.igvita.com/posa/high-performance-networking-in-google-chrome/)
-
 
 ---
 <!-- footer : -->
