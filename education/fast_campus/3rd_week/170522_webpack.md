@@ -129,6 +129,18 @@ module.exports = {
 ```
 
 ---
+#### path vs public Path
+- 추후에 webpack dev server 의 auto page reloading 을 이용하려면
+  output 의 path 와 public path 의 속성의 차이점을 이해해야 한다.
+- path :
+
+```
+Project is running at http://localhost:9000/
+webpack output is served from /dist/
+```
+
+
+---
 ## Webpack Loader
 > webpack can only process JavaScript natively, but loaders are used to transform other resources into JavaScript. By doing so, every resource forms a module.
 
@@ -217,6 +229,87 @@ module.exports = {
 }
 ```
 
+[devtool official doc](https://webpack.js.org/configuration/devtool/)
+
+---
+#### wepback 빌드를 위한 개발 서버 구성
+- `webpack-dev-server` : webpack 자체에서 제공하는 개발 서버이고 빠른 리로딩 기능 제공
+- `webpack-dev-middleware` : 서버가 이미 구성된 경우에는 webpack 을 미들웨어로 구성하여 서버와 연결
+
+실제 프로덕션에 적용하는 경우가 아니면, 개인 프로젝트에는 시작하기 쉬운 **webpack-dev-server** 를 활용!
+
+---
+#### wepback-dev-server 설치
+
+```
+npm install --save-dev webpack-dev-server
+```
+
+설치 후 아래 명령어로 서버 실행
+
+```
+webpack-dev-server --open
+```
+
+또는 package.json 에 아래와 같이 명령어를 등록하여 간편하게 실행가능
+
+```js
+"scripts": { "start": "webpack-dev-server" }
+```
+
+추가 옵션 설정은 여기를 [참고](https://webpack.js.org/configuration/dev-server/)
+---
+#### webpack-dev-middleware
+
+```
+npm install --save-dev express webpack-dev-middleware
+```
+
+설치후 아래 코드 작성
+
+```js
+var express = require("express");
+var webpackDevMiddleware = require("webpack-dev-middleware");
+var webpack = require("webpack");
+var webpackConfig = require("./webpack.config");
+
+var app = express();
+var compiler = webpack(webpackConfig);
+
+app.use(webpackDevMiddleware(compiler, {
+  publicPath: "/" // 일반적으로 output 에 설정한 publicPath 와 동일한 값으로 설정
+  // lazy: true, // entry point 에 네트워크 요청이 있을 때만 컴파일을 다시한다.
+}));
+
+app.listen(3000, function () {
+  console.log("Listening on port 3000!");
+});
+```
+
+---
+
+
+---
+#### webpack watch 옵션
+webpack 설정에 해당되는 파일의 변경이 일어나면 자동으로 번들링을 다시 진행
+
+```
+webpack --progress --watch
+```
+
+> 참고 : 또는 `npm install --save-dev serve` 설치 후 아래와 같이 `package.json` 에 명령어 설정 가능
+
+```
+"scripts": {
+  "start": "serve"
+}
+```
+
+---
+## Hot Module Replacement
+- 웹 앱에서 사용하는 JS 모듈들을 화면을 갱신하지 않고 뒷 단에서 변경 및 삭제 기능을 지원
+- 공식 가이드에는 React 를 기준으로 사용법이 작성되어 있으므로 [참고](https://webpack.js.org/guides/hmr-react/)
+
 ---
 ## Externals
 - sdf
@@ -234,3 +327,4 @@ module.exports = {
 - [webpack-shimming](https://webpack.js.org/guides/shimming/)
 - [Gulp Webpack plugin](https://www.npmjs.com/package/gulp-webpack)
 - [from require to webpac](http://j-query.blogspot.kr/2015/06/from-requirejs-to-webpack-part-1-reasons.html)
+- [Webpack Dev Server StackOverFlow](https://stackoverflow.com/questions/42712054/content-not-from-webpack-is-served-from-foo)
