@@ -153,16 +153,17 @@ calculator.prototype = {
 
 ---
 ## 실습 - JS Best Practices
-위에서 배운 삼항연산자, 논리연산자, 반복문 을 아래 코드에 직접 적용합니다.
+위에서 배운 삼항연산자, 논리연산자, 반복문, 프로토타입 을 아래 코드에 직접 적용합니다.
 
 #### 실습 절차
 1. [js-best-practices](https://github.com/joshua1988/DevCampWAP-PAO/blob/master/perf-tips/js-best-practices/practice.js) Github Repository **Fork**
-2. fork 한 repository clone 하여 로컬에 저장
-3. branch 생성 후 js-best-practices 아래에 폴더 생성
+2. **Fork** 한 repository **Clone** 하여 로컬에 저장
+3. **branch 생성** 후 js-best-practices 아래에 폴더 생성
 4. 폴더 이름을 본인의 영문으로 명명. ex) `jangkeehyo`
 5. 답안 작성 후 Pull Request 요청
-  - pracitce.js
-  - prototype.js
+
+	- pracitce.js
+	- prototype.js
 
 ---
 ## Chrome V8 Engines 관점의 JS 코딩 기법
@@ -268,7 +269,7 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 ![image-comparison](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/2nd_week/images/image-comparison.png)
 
 - GIF : 애니메이션 활용에 사용
-- JPEG : 압축으로 사이즈를 크게 줄일 수 있음. 품질과 사이지의 균형유지가 필요
+- JPEG : 압축으로 사이즈를 크게 줄일 수 있음. 품질과 사이의 균형유지가 필요
 - PNG : 고품질의 사진. 압축 불가능. 상대적으로 큰 사이즈
 
 > 이미지 안에 들어간 텍스트는 변경이 안되므로 주의!
@@ -350,6 +351,28 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 - `compressableMimeType` : 압축을 사용 할 파일 타입. "" (default)
 
 ---
+#### HTTP Request & Response Header
+- HTTP Header 속성 (Encoding-Header, Cache, Etag, Connection, ... )
+- [HTTP 상태 코드](https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C) summary
+
+	![Header 구조](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/2nd_week/images/header.png)
+
+---
+#### HTTP Header Encoding
+크롬 개발자도구 **Network 패널**의 파일을 클릭하면 아래와 같이 표시
+
+**Accept-Encoding** : Client 에서 Server 로 보내는 요청. 헤더에 명시된 인코딩 값 (압축) 을 이해하고, 디코딩 (압축 해제) 를 수행할 수 있다는 것을 서버에 알림
+- ex) **gzip, deflate** : gzip, deflate 압축 방식을 수용할 수 있으므로, Server 에서 압축해서 보낸 파일을 해제하여 브라우저에 표시할 수 있다.
+
+**Content-Encoding** : Server 에서 보내는 응답이 어떤 인코딩 방식, 즉 어떤 방식으로 압축되었는지 표시.
+- ex) **gzip** : 해당 응답은 Gzip 으로 압축하였으니, Client (브라우저) 에서 해제해서 표시하길 바람
+
+---
+#### HTTP Connection
+- 지속 연결 : `Connection : Keep-Alive`, 하나의 TCP 커넥션을 열고 모든 요청을 처리 (HTTP 1.1)
+- 비지속 연결 : `Connection : close`, 매번 자원 요청시 새로운 TCP 커넥션 생성 (HTTP 1.0)
+
+---
 ## Caching
 - 불필요한 Client - Server 간의 네트워크 왕복 요청을 줄이기 위해 필요한 기법
 - 일반적으로 최신 브라우저에 모두 HTTP 캐싱이 다 구현되어 있음
@@ -379,28 +402,6 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 - `max-age` : 서버로부터 받은 데이터의 유효시간 길이 설정 (초 단위)
 
 	![Cache Control](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/2nd_week/images/cache-control.png)
-
----
-#### Deeper HTTP Request & Header
-  - HTTP Header (What's in it? Encoding-Header and etc.)
-  - How a request occurs to the server from client
-  - [HTTP Status Code](https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C) summary
-
----
-#### HTTP Header Encoding
-- 크롬 개발자도구 Network 패널의 파일을 클릭하면 아래와 같이 표시
-**Accept-Encoding** : Client 에서 Server 로 보내는 요청. 헤더에 명시된 인코딩 값 (압축) 을 이해하고, 디코딩 (압축 해제) 를 수행할 수 있다는 것을 서버에 알림
-- ex) *Accept-Encoding : gzip, deflate* : gzip, deflate 압축 방식을 수용할 수 있으므로, Server 에서 압축해서 보낸 파일을 해제하여 브라우저에 표시할 수 있다.
-
-**Content-Encoding** : Server 에서 보내는 응답이 어떤 인코딩 방식, 즉 어떤 방식으로 압축되었는지 표시.
-- ex) *Content-Encoding : gzip* : 해당 응답은 Gzip 으로 압축하였으니, Client (브라우저) 에서 해제해서 표시하길 바람
-
-![Header 구조 center](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/2nd_week/images/header.png)
-
----
-#### HTTP Connection
-- 지속 연결 : `Connection : Keep-Alive`, 하나의 TCP 커넥션을 열고 모든 요청을 처리 (HTTP 1.1)
-- 비지속 연결 : `Connection : close`, 매번 자원 요청시 새로운 TCP 커넥션 생성 (HTTP 1.0)
 
 ---
 ## 참고

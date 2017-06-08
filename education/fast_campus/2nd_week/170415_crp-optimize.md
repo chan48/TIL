@@ -6,7 +6,7 @@
 <!-- footer : 브라우저 동작과정 최적화 - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
 ## 개요
 - 브라우저의 기본적인 동작과정을 이해하고, 페이지 첫 렌더링을 빠르게 하기 위한 방법들을 학습한다.
-- 화면 렌더링을 방해하는 CSS / HTML 파싱을 방해하는 JS / 를 이해한 웹앱 설계 방법을 학습한다.
+- 화면 렌더링을 방해하는 CSS 와 DOM 생성을 방해하는 JS 를 이해한 웹앱 설계 방법을 학습한다.
 - 화면 렌더링 속도를 향상시킬 수 있는 preload scanner, async, media query 에 대해서 학습한다.
 
 ---
@@ -15,7 +15,7 @@
 - HTML 파일에 작성된 주석의 경우, 개발자에게 도움되지만 실제로 브라우저 입장에서는 의미가 없는 데이터
 - 따라서 [minification](https://www.npmjs.com/package/html-minifier), [compression](https://htmlcompressor.com/compressor/), [cache](https://developer.mozilla.org/ko/docs/Web/HTTP/Caching) 등을 이용하여 html 파일 최적화를 진행해야 한다.
 
-> [Online Minifier](http://www.willpeavy.com/minifier/)
+[Online Minifier](http://www.willpeavy.com/minifier/)
 
 ---
 ## 화면 렌더링을 방해하는 CSS 최적화
