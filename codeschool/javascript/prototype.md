@@ -4,6 +4,7 @@
 - A Prototype is like a blueprint Object for the Object we are trying to create.
 - Inheritance helps avoid over-coding multiple properties and methods into similar objects.
 - Constructor using Prototype
+
 ```javascript
 function Shoe(shoeSize, shoeColor, forGender, constructorStyle) {
     this.size = shoeSize;
@@ -16,18 +17,20 @@ function Shoe(shoeSize, shoeColor, forGender, constructorStyle) {
 var beachShoe = new Shoe(10, "blue", "women", "flipflop");
 ```
 
-**위처럼 만약 모든 객체들이 공통으로 사용할 것 같은 메서드가 있다면,
+위처럼 만약 모든 객체들이 공통으로 사용할 것 같은 메서드가 있다면,
+
 ```javascript
 Shoe.prototype = {
     putOn : function(){alert("Your"+this.construction+"'s" +"on!");},
     takeOff : function(){this.size}
 };
 ```
+
 이런 식으로 공통 메서드만 따로 빼줄 수 있다.
 
 ## Overriding Prototypal Methods
 - 연산자 == 와 ===의 차이점은 type 비교를 하느냐 안하느냐이다.
--
+
 ```javascript
 var Tornado = function (category, affectedAreas, windGust) {
     this.category = category;
@@ -62,4 +65,4 @@ Object.prototype.findOwnerOfProperty = function(propName){
 };
 
 twister.findOwnerOfProperty("valueOf"); // Object {valueOf: function, toString: function}
-``` 
+```

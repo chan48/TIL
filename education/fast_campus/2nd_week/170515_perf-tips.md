@@ -13,13 +13,13 @@
 ---
 ## 목차
 - Javascript Best Practices
-  - 실습 
+  - 실습
 - Chrome Engines JS Tuning
 - Web Resources Compression
 
   - HTML & JS Compression
   - Image Compression
-  - Gzip Compression
+  - Gzip Compression (실습)
 - Caching
   - Deeper in HTTP Header & Request
 
@@ -149,17 +149,20 @@ calculator.prototype = {
 }
 ```
 
+[Prototype 확인 코드](https://github.com/joshua1988/DevCampWAP-PAO/blob/master/perf-tips/js-best-practices/prototype-sample.js)
+
 ---
 ## 실습 - JS Best Practices
 위에서 배운 삼항연산자, 논리연산자, 반복문 을 아래 코드에 직접 적용합니다.
 
 #### 실습 절차
-  1. [js-best-practices](https://github.com/joshua1988/DevCampWAP-PAO/blob/master/perf-tips/js-best-practices/practice.js)
-     repository fork
-  2. fork 한 repository clone 하여 로컬에 저장
-  3. branch 생성 후 js-best-practices 아래에 폴더 생성
-  4. 폴더 이름을 본인의 영문으로 명명. ex) `jangkeehyo`
-  5. 답안 작성 후 Pull Request 요청
+1. [js-best-practices](https://github.com/joshua1988/DevCampWAP-PAO/blob/master/perf-tips/js-best-practices/practice.js) Github Repository **Fork**
+2. fork 한 repository clone 하여 로컬에 저장
+3. branch 생성 후 js-best-practices 아래에 폴더 생성
+4. 폴더 이름을 본인의 영문으로 명명. ex) `jangkeehyo`
+5. 답안 작성 후 Pull Request 요청
+  - pracitce.js
+  - prototype.js
 
 ---
 ## Chrome V8 Engines 관점의 JS 코딩 기법
@@ -218,7 +221,7 @@ var arr = [0, 1.1, 2];
 
 ---
 #### V8 엔진의 컴파일러
-**- 초기 자바스크립트 언어는 인터프리터 형태, 최근에는 JS 런타임 엔진이 컴파일러를 사용** (인터프리터가 뭔가? 런타임 엔진은?)
+**- 초기 자바스크립트 언어는 인터프리터 형태, 최근에는 JS 런타임 엔진이 컴파일 방식을 사용**
 
 - 자바스크립트 JIT 컴파일러의 2 가지 종류
   - *Full Compiler* : 일반적인 자바스크립트 코드로 변환
@@ -286,7 +289,7 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 - Gulp, Grunt 와 같은 자동화 도구를 이용하여 항상 이미지는 압축!
 
 ---
-#### HTML & JS Compression
+## HTML & JS Compression
 - CRP : 빠른 웹 페이지 로딩을 위해서는 CRP Length & Critical Byte 를 최소화
 - 서버에 요청하는 **HTTP Request 수** 와 서버로부터 **다운 받을 데이터의 크기가 작을수록** 로딩속도는 빨라진다.
 
@@ -300,7 +303,7 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 ---
 #### Gzip 압축
 - 일반적인 웹 자원 압축은 빌드 자동화 도구를 활용한 리소스 파일 크기 자체의 압축
-- Gzip 압축은 네트워크 대역폭과 지연시간을 효율적으로 활용하기 위한 측면
+- Gzip 압축은 한정된 네트워크 대역폭과 지연시간을 효율적으로 활용하기 위한 측면
 - Client (브라우저) - Server 간 데이터 전송량을 줄일 수 있다.
 
 > 참고 : [브라우저별 지원 여부](http://schroepl.net/projekte/mod_gzip/browser.htm)
@@ -381,15 +384,16 @@ add("a", "b");  // 숫자로 지정된 위 함수를 사용하지 않음
 #### Deeper HTTP Request & Header
   - HTTP Header (What's in it? Encoding-Header and etc.)
   - How a request occurs to the server from client
-  - [HTTP Status Code](https://www.slideshare.net/woolimryu/ss-51132805) summary
+  - [HTTP Status Code](https://ko.wikipedia.org/wiki/HTTP_%EC%83%81%ED%83%9C_%EC%BD%94%EB%93%9C) summary
 
 ---
 #### HTTP Header Encoding
 - 크롬 개발자도구 Network 패널의 파일을 클릭하면 아래와 같이 표시
-- `Accept-Encoding` : Client 에서 Server 로 보내는 요청. 헤더에 명시된 인코딩 값 (압축) 을 이해하고, 디코딩 (압축 해제) 를 수행할 수 있다는 것을 서버에 알림
-  - ex) `Accept-Encoding : gzip, deflate` : gzip, deflate 압축 방식을 수용할 수 있으므로, Server 에서 압축해서 보낸 파일을 해제하여 브라우저에 표시할 수 있다.
-- `Content-Encoding` : Server 에서 보내는 응답이 어떤 인코딩 방식, 즉 어떤 방식으로 압축되었는지 표시.
-  - ex) `Content-Encoding : gzip` : 해당 응답은 Gzip 으로 압축하였으니, Client (브라우저) 에서 해제해서 표시하길 바람
+**Accept-Encoding** : Client 에서 Server 로 보내는 요청. 헤더에 명시된 인코딩 값 (압축) 을 이해하고, 디코딩 (압축 해제) 를 수행할 수 있다는 것을 서버에 알림
+- ex) *Accept-Encoding : gzip, deflate* : gzip, deflate 압축 방식을 수용할 수 있으므로, Server 에서 압축해서 보낸 파일을 해제하여 브라우저에 표시할 수 있다.
+
+**Content-Encoding** : Server 에서 보내는 응답이 어떤 인코딩 방식, 즉 어떤 방식으로 압축되었는지 표시.
+- ex) *Content-Encoding : gzip* : 해당 응답은 Gzip 으로 압축하였으니, Client (브라우저) 에서 해제해서 표시하길 바람
 
 ![Header 구조 center](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/2nd_week/images/header.png)
 
