@@ -3,6 +3,7 @@
 # PageSpeed Insights - Perf Analysis
 
 ---
+<!-- footer : PageSpeed Insights - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
 ## PageSpeed Insights?
 - 구글에서 제안하는 튜닝 가이드를 포함한 크롬 플러그인.
 - 성능 분석 도구로 웹 사이트의 개선점을 구체적으로 제시하고 점수로 환산
@@ -19,9 +20,8 @@
   - 4G 네트워크 :  50 ~ 100ms 의 왕복시간
 
 ---
-아래 표를 보자.
 
-![Timeline](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/pagespeed-timeline.png)
+![Timeline](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/pagespeed-timeline.png)
 
 여기서 주목할 부분은 *네트워크 오버헤드* 에 600ms 가 사용된다는 점
 1. hostname 을 IP 주소로 매칭하는 DNS 작업
@@ -40,10 +40,13 @@
 - PageSpeed 크롬 확장 플러그인 [다운로드](https://chrome.google.com/webstore/detail/pagespeed-insights-with-p/lanlbpjbalfkflkhegagflkgcfklnbnh)
 - [Page Insights Site](https://developers.google.com/speed/pagespeed/insights/?hl=ko)
 - [Page Insights API Test with options](https://developers.google.com/speed/docs/insights/v2/reference/pagespeedapi/runpagespeed)
+- [Page Insights Tester Page with API](https://github.com/joshua1988/DevCampWAP-PAO/blob/master/page-insights/index.html)
+
 
 ---
 ## 참고
 - [Google Page Insights](https://developers.google.com/speed/docs/insights/about)
 
 ---
+<!-- footer : -->
 # 끝
