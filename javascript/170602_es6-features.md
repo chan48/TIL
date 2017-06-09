@@ -100,9 +100,6 @@ var myObj = {
 console.log(myObj.c()); // NaN
 ```
 
-## 
-
 ## 참고
 - [ES6 Features, Babel](https://babeljs.io/learn-es2015/#ecmascript-2015-features-symbols)
 - [var, let, const](http://blog.nekoromancer.kr/2016/01/26/es6-var-let-%EA%B7%B8%EB%A6%AC%EA%B3%A0-const/)
--
