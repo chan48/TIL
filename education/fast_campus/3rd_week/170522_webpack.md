@@ -3,6 +3,22 @@
 # Webpack - Module Bundler
 
 ---
+## 개요
+
+---
+## 목차
+- Webpack 소개 및 배경
+- Webpack 사용에 필요한 cli 와 npm 명령어
+- Webpack getting started (실습)
+- Webpack Entry
+- Webpack Output
+- Webpack Loader
+- Webpack code splitting (실습)
+- Webpack Plugins
+- Webpack Resolve
+- Webpack Dev 환경 설정
+
+---
 ## Webpack 은 무엇인가?
 - 서로 연관 관계가 있는 웹 자원들을 js, css, img 와 같은 스태틱한 자원으로 변환 해주는 모듈 번들러
 - 아래 사진은 직관적으로 webpack 의 역할을 설명
@@ -34,7 +50,7 @@
 ---
 ## Webpack 에 필요한 NPM 명령어
 - `npm init` 웹팩 초기 설정에 필요한 명령어로 package.json 파일을 생성
-- `npm install` (i) 라이브러리 명 (여러개 한번에 가능)
+- `npm install (i)` 라이브러리 명 (여러개 한번에 가능)
 
 ```text
 npm i jquery jquery-mobile backbone underscore --save
@@ -49,15 +65,16 @@ npm i jquery jquery-mobile backbone underscore --save
 - `webpack --display-error-details` to display the error details for debugging
 
 ---
-## Webpack 가볍게 시작하기
-- webpack 설정 값 여러개 받기
+## Webpack Getting Started
+간단하게 webpack 을 [실습](https://github.com/joshua1988/DevCampWAP/tree/master/%233-performance-analysis-and-optmization-tools#webpack)
 
-```js
-require("!style!css!./style.css"); // ! 로 여러 설정값을 받을 수 있다.
-require("./style.css");
-```
-
-- 간단한 [webpack2 tutorial](https://github.com/joshua1988/DevCampWAP-PAO/tree/master/webpack/getting-started)
+#### 실습절차
+1. webpack 전역 설치
+2. `npm init` 으로 package.json 생성
+3. app/index.js 와 index.html 생성
+4. js 와 html 에 코드 추가
+5. `webpack app/index.js dist/bundle.js` 명령어 실행 후 index.html 로딩
+6. webpack.config.js 파일 추가 후 webpack
 
 ---
 ## Webpack Entry
@@ -205,46 +222,24 @@ var jquery = __webpack_require__(1);
 > [Loader 더 많은 설정](https://webpack.js.org/concepts/loaders/)
 
 ---
-## Webpack [Plugins](https://webpack.js.org/plugins/)
-- 플러그인은 파일별 커스텀 기능을 사용하기 위해서 사용한다.
-  - ex) js 최소화, alias (별칭) 설정
+## 짚고 넘어가기 - Webpack 설정
+- webpack 설정 값 여러개 받기
 
 ```js
-module.exports = {
-  entry: {},
-  output: {},
-  module: {},
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin()
-    // ...
-  ]
-};
+require("!style!css!./style.css"); // ! 로 여러 설정값을 받을 수 있다.
+require("./style.css");
 ```
 
 ---
-#### [ProvidePlugins](http://webpack.github.io/docs/list-of-plugins.html#provideplugin)
-- 모든 모듈에서 사용할 수 있도록 해당 모듈을 변수로 변환한다.
+## 실습 - Example 1
+[Code Splitting 실습](https://github.com/joshua1988/DevCampWAP/tree/master/%233-performance-analysis-and-optmization-tools#example-1---css-code-splitting)
 
-```js
-new webpack.ProvidePlugin({
-    $: "jquery"
-})
-```
-
----
-#### [Define Plugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin)
-- Webpack 번들링을 시작하는 시점에 사용 가능한 상수들을 정의한다.
-- 일반적으로 개발계 & 테스트계에 따라 다른 설정을 적용할 때 유용하다
-
-```js
-new webpack.DefinePlugin({
-    PRODUCTION: JSON.stringify(true),
-    VERSION: JSON.stringify("5fa3b9"),
-    BROWSER_SUPPORTS_HTML5: true,
-    TWO: "1+1",
-    "typeof window": JSON.stringify("object")
-})
-```
+#### 실습 절차
+1. `npm init -y` 으로 package.json 생성
+2. npm 명령어로 loader & plugin 설치
+3. `index.html`, `app/index.js`, `base.css` 생성
+4. `webpack.config.js` 생성
+5. `webpack` 실행
 
 ---
 #### [ExtractTextWebpackPlugin](https://webpack.js.org/plugins/extract-text-webpack-plugin/)
@@ -270,6 +265,107 @@ module.exports = {
   ]
 }
 ```
+
+---
+## Webpack [Plugins](https://webpack.js.org/plugins/)
+- 플러그인은 파일별 커스텀 기능을 사용하기 위해서 사용한다.
+  - ex) js 최소화, file 추출, alias (별칭) 설정
+
+```js
+module.exports = {
+  entry: {},
+  output: {},
+  module: {},
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin()
+    // ...
+  ]
+};
+```
+
+---
+#### [ProvidePlugins](http://webpack.github.io/docs/list-of-plugins.html#provideplugin)
+- 모든 모듈에서 사용할 수 있도록 해당 모듈을 변수로 변환한다.
+
+```js
+new webpack.ProvidePlugin({
+    $: "jquery"
+})
+```
+
+---
+#### [DefinePlugin](http://webpack.github.io/docs/list-of-plugins.html#defineplugin)
+- Webpack 번들링을 시작하는 시점에 사용 가능한 상수들을 정의한다.
+- 일반적으로 개발계 & 테스트계에 따라 다른 설정을 적용할 때 유용하다
+
+```js
+new webpack.DefinePlugin({
+    PRODUCTION: JSON.stringify(true),
+    VERSION: JSON.stringify("5fa3b9"),
+    BROWSER_SUPPORTS_HTML5: true,
+    TWO: "1+1",
+    "typeof window": JSON.stringify("object")
+})
+```
+
+---
+#### [ManifestPlugin](https://github.com/danethurber/webpack-manifest-plugin)
+- 번들링시 생성되는 코드 (라이브러리) 에 대한 정보를 json 파일로 저장하여 관리
+
+```js
+new ManifestPlugin({
+  fileName: 'manifest.json',
+  basePath: './dist/'
+})
+```
+
+---
+## 실습 - Example 2
+[Libraries Code Splitting](https://github.com/joshua1988/DevCampWAP/tree/master/%233-performance-analysis-and-optmization-tools#example-2---libraries-code-splitting)
+
+#### 실습절차
+1. `npm init -y` 으로 package.json 생성
+2. npm 명령어로 loader & plugin 설치
+3. `index.html`, `app/index.js` 생성
+4. `webpack.config.js` 생성
+  1. main & vendor 분할에 따른 filename 지정
+
+  ```js
+  module.exports = {
+    entry: {
+      main: './app/index.js',
+      vendor: [
+        'moment',
+        'lodash'
+      ]
+    },
+    output: {
+      filename: '[name].js',
+      path: path.resolve(__dirname, 'dist')
+    },
+  }
+  ```
+
+  2. CommonsChunkPlugin 을 사용한 vendor 라이브러리 추출
+
+  ```js
+  plugins: [
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor' // Specify the common bundle's name.
+    }),
+  ]
+  ```
+
+  3. ManifestPlugin 으로 vendor 라이브러리와 실제 앱 로직 js 분리. json 파일로 번들링 파일 관리
+
+  ```js
+  new ManifestPlugin({
+    fileName: 'manifest.json',
+    basePath: './dist/'
+  })
+  ```
+
+5. `webpack` 실행
 
 ---
 ## 개발자 도구 연동
@@ -340,6 +436,19 @@ webpack-dev-server --open
   ```js
   compress: true
   ```
+
+---
+## 실습 - Example 3
+[Webpack Dev Server](https://github.com/joshua1988/DevCampWAP/tree/master/%233-performance-analysis-and-optmization-tools#example-3---webpack-dev-server-setting)
+
+#### 실습절차
+1. `npm init -y` 으로 package.json 생성
+2. `scripts` 에 `start` 명령어 추가
+3. npm 명령어로 loader & plugin 설치
+4. `index.html`, `app/index.js` 생성
+5. `webpack.config.js` 생성
+
+
 
 ---
 #### Webpack Dev Middleware
@@ -435,6 +544,7 @@ require('path/to/module');
 ```
 
 그렇다면 여기서 우리가 주목해야 할 부분은 바로 **"모듈을 어떻게 로딩해오느냐?"** 라는 점이다.
+
 ---
 #### 절대경로를 이용한 파일 로딩
 파일의 경로를 모두 입력해준다.
