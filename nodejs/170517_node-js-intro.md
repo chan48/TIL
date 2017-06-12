@@ -49,7 +49,7 @@ app.post(function () {
 - front-end web apps, mobile apps, robots, routers 라이브러리들이 존재
 - Gulp, Webpack 모두 node 기반, NPM 을 사용하여 필요 라이브러리들을 로딩
 
-![npm](npm.png)
+![npm](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/npm.png)
 
 ## NPM 명령어 모음
 - 프로젝트의 node module 들 관리를 위한 package.json 설정
@@ -117,7 +117,12 @@ app.post('/', function (req, res) {
 - Request Body 에 대한 요청을 파싱하여 `req.body` 에 자동으로 담아주는 Node.js 파싱 미들웨어
 
 #### [EJS](http://ejs.co/) (Embedded JavaScript templates)
-- ㄴ
+- HTML 에서 JS 를 인식할 수 있도록 지원하는 템플릿 언어
+- 정적인 HTML 에 뒷단의 데이터를 추가하여 동적으로 표현하기 위함
+
+![template-engines](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/template-engines.png)
+
+![ejs](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/ejs.png)
 
 ## 참고
 - [Node.js Gzip 압축 적용](http://inspiredjw.com/entry/Expressjs%EC%97%90-Gzip-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0)
