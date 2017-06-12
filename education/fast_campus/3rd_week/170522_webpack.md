@@ -448,8 +448,6 @@ webpack-dev-server --open
 4. `index.html`, `app/index.js` 생성
 5. `webpack.config.js` 생성
 
-
-
 ---
 #### Webpack Dev Middleware
 - 기존에 구성한 서버에 webpack 에서 컴파일한 파일을 전달하는 middleware wrapper
@@ -514,6 +512,17 @@ export default {
   ]
 };
 ```
+
+---
+## 실습 - Example 4
+[Webpack Dev Middleware](https://github.com/joshua1988/DevCampWAP/tree/master/%233-performance-analysis-and-optmization-tools#example-4---webpack-dev-middleware)
+
+#### 실습절차
+<!-- 1. `npm init -y` 으로 package.json 생성
+2. `scripts` 에 `start` 명령어 추가
+3. npm 명령어로 loader & plugin 설치
+4. `index.html`, `app/index.js` 생성
+5. `webpack.config.js` 생성 -->
 
 ---
 ## Webpack watch 옵션
