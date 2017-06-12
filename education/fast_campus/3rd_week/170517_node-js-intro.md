@@ -7,7 +7,7 @@
 ## 개요
 - Server Side Javascript 인 Node.js 에 대해서 알아본다.
 - Gulp, Webpack 의 사용에 있어서 필수적인 NPM 에 대해서 학습한다.
-- Node 웹 프레임워크인 Express 에 대해 이해하고 간단한 예제를 구축해본다.
+- Node js 웹 프레임워크인 Express 에 대해 이해하고 간단한 예제를 구축해본다.
 
 ---
 ## Node.js 란?
@@ -224,6 +224,7 @@ http.createServer(function (req, res) {
 }).listen(8080); //the server object listens on port 8080
 ```
 
+---
 3. npm 을 이용한 express 설치 및 간단한 서버 구성
 
 ```text
@@ -252,3 +253,7 @@ app.listen(3000, function () {
 - [locally-vs-globally-install](https://docs.npmjs.com/files/folders)
 - [Node.js Gzip 압축 적용](http://inspiredjw.com/entry/Expressjs%EC%97%90-Gzip-%EC%A0%81%EC%9A%A9%ED%95%98%EA%B8%B0)
 - [node-http-server](https://mylko72.gitbooks.io/node-js/content/index.html)
+
+---
+<!-- footer: -->
+# 끝
