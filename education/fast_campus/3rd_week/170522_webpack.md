@@ -447,6 +447,7 @@ webpack-dev-server --open
 3. npm 명령어로 loader & plugin 설치
 4. `index.html`, `app/index.js` 생성
 5. `webpack.config.js` 생성
+6. `npm start` 실행
 
 ---
 #### Webpack Dev Middleware
@@ -518,11 +519,12 @@ export default {
 [Webpack Dev Middleware](https://github.com/joshua1988/DevCampWAP/tree/master/%233-performance-analysis-and-optmization-tools#example-4---webpack-dev-middleware)
 
 #### 실습절차
-<!-- 1. `npm init -y` 으로 package.json 생성
-2. `scripts` 에 `start` 명령어 추가
-3. npm 명령어로 loader & plugin 설치
+1. `npm init -y` 으로 package.json 생성
+2. npm 명령어로 plugin 설치
+3. `server.js` 생성 및 express & ejs 추가
 4. `index.html`, `app/index.js` 생성
-5. `webpack.config.js` 생성 -->
+5. `webpack.config.js` 생성
+6. `server.js` 실행
 
 ---
 ## Webpack watch 옵션
@@ -596,6 +598,18 @@ import Utility from 'Utilities/utility';
 modules: ["node_modules"] // defaults
 modules: [path.resolve(__dirname, "src"), "node_modules"] // src/node_modules 위치 검색
 ```
+
+---
+## 실습 - Example 5
+[Webpack Plugins & Resolve](https://github.com/joshua1988/DevCampWAP/tree/master/%233-performance-analysis-and-optmization-tools#example-4---webpack-dev-middleware)
+
+#### 실습절차
+1. `npm init -y` 으로 package.json 생성
+2. npm 명령어로 plugin 설치
+3. `index.html`, `app/index.js` 생성
+4. `webpack.config.js` 생성
+5. `webpack` 실행
+6. `app/index.js`, `webpack.config.js` 변경하여 alias & Provide 동작 확인
 
 ---
 ## Hot Module Replacement
