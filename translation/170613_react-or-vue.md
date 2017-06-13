@@ -113,3 +113,14 @@ React 는 현재와 이전 상태를 비교하여 언제, 어떻게 다시 DOM �
 // 아래의 message 속성은 Vue 인스턴스에서 접근 할 수 있습니다.
 this.message = this.message.split('').reverse().join('');
 ```
+
+Vue 의 렌더링 체계가 React 보다 효율성이 떨어진다고 결론짓기 전에, Vue 가 실제로 어떻게 렌더링을 하는지 더 자세히 살펴보면: state 에 새로운 객체를 추가했을 때, Vue 가 해당 객체의 모든 속성을 확인하고 난뒤 getter 와 setter 로 변환합니다. Vue 의 reactivity system 이 모든 state 를 모니터링하여 변경이 일어날 때마다 자동으로 DOM 을 다시 렌더링 합니다.
+
+더 인상적인 부분은, Vue 에서 state 를 간단하게 변경할 수 있을 뿐만 아니라, Vue 의 렌더링 체계가 React 보다 빠르고 더 효율적이라는 것이죠.
+
+Vue 의 reactivity system 에도 몇가지 주의할 점이 있습니다. 예를 들어, *속성 추가 및 삭제* 그리고 *특정 배열에 대한 변경*을 감지하지 못합니다. 물론 이러한 부분들을 React 와 같이 Vue set() API 로 해결할 수 있습니다.
+
+## 빠르고 경량의 앱을 제작하고 싶다면 Vue
+React 와 Vue 모두 Virtual DOM 을 만들어 앱의 state 가 변할 때 실제 DOM 과 일치시킵니다. 두 라이브러리 모두 이 과정을 제 나름대로 최적화 합니다.
+
+Vue 의 핵심 엔지니어들이 진행한 테스트에서 Vue 의 렌더링
