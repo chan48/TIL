@@ -3,13 +3,11 @@
 # Webpack - Module Bundler
 
 ---
+<!-- footer : Webpack - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
 ## 개요
-- React, Angular, Vue, PWA 에서 설정을 권고하는 Webpack 에 대해 학습
+- React, Angular, Vue 에서 권고하는 Webpack 설정에 대해 학습 및 이해
 - Webpack 의 주요 설정 Entry, Output, Loader, Plugins, Resolve 학습 및 실습
 - 실제 개발환경에서 사용할 수 있는 Webpack 개발환경 설정방법 학습 및 실습
-
-전체적인 내용은 실제 개발하면서 필요한 기능들 위주로 간단히 설명후
-수업 이후에도 충분히 혼자 학습 가능한 자신감과 진입점을 제공해주는데 목적
 
 ---
 ## 목차
@@ -26,41 +24,42 @@
 
 ---
 ## Webpack 은 무엇인가?
-- 서로 연관 관계가 있는 웹 자원들을 js, css, img 와 같은 스태틱한 자원으로 변환 해주는 모듈 번들러
+- 서로 연관 관계가 있는 웹 자원들을 js, css, img 와 같은 스태틱한 자원으로 변환해주는 모듈 번들러
 - 아래 사진은 직관적으로 webpack 의 역할을 설명
 
-![what is webpack](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/what-is-webpack.png)
+![what is webpack 35%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/what-is-webpack.png)
 
 ---
 ## Webpack 을 사용하는 이유 & 배경?
-1. 새로운 형태의 Web Task Manager
-  - 기존 Web Task Manager (Gulp, Grunt) 의 기능 + 모듈 의존성 관리
-  - 예) minification 을 webpack default cli 로 실행 가능
+1.새로운 형태의 Web Task Manager
+- 기존 Web Task Manager (Gulp, Grunt) 의 기능 + 모듈 의존성 관리
+- 예) minification 을 webpack default cli 로 실행 가능
 
 ```
 webpack -p
 ```
 
 ---
-2. 자바스크립트 Code based Modules 관리
-  - 기존 모듈 로더들과의 차이점 : 모듈 간의 관계를 청크 (chunk) 단위로 나눠 필요할 때 로딩
-  - 현대의 웹 애플리케이션은 자바스크립트 역할이 커짐에 따라, Client Side 에 들어가는 코드량이 많아지고 복잡해짐
-  - 복잡한 웹 앱을 구조적으로 관리하기 위해 모듈 단위로 관리할 필요성이 대두. Common JS, AMD, ES6 Modules 등이 등장
-  - 여기서 모듈 관리에 대해 `script` 태그로 자바스크립트를 모듈화 하는 것을 간단히 예를 들어보자면 아래와 같다,
+2.자바스크립트 Code based Modules 관리
+- 기존 모듈 로더들과의 차이점 : 모듈 간의 관계를 청크 (chunk) 단위로 나눠 필요할 때 로딩
+- 현대의 웹에서 JS 역할이 커짐에 따라, Client Side 에 들어가는 코드량이 많아지고 복잡해짐
+- 복잡한 웹 앱을 관리하기 위해 모듈 단위로 관리하는 Common JS, AMD, ES6 Modules 등이 등장
+- 모듈 관리에 대해 `script` 태그로 JS 를 모듈화 하는 간단한 예제
 
-  ```html
-  <script src="module1.js"></script>
-  <script src="module2.js"></script>
-  <script src="library1.js"></script>
-  <script src="module3.js"></script>
-  ```
+```html
+<script src="module1.js"></script>
+<script src="module2.js"></script>
+<script src="library1.js"></script>
+<script src="module3.js"></script>
+```
 
-  - 상기 모듈 로딩 방식의 문제점 : *전역변수 충돌, 스크립트 로딩 순서, 복잡도가 커졌을 때 발생하는 관리상의 문제*
-  - 이를 해결하기 위해 AMD 및 기타 모듈 로더들이 등장. 가독성이나 다수 모듈 미병행 처리등의 약점을 보완하기 위해 Webpack 이 등장
+- 상기 모듈 로딩 방식의 문제점 : **전역변수 충돌, 스크립트 로딩 순서, 복잡도에 따른 관리상의 문제**
+- 이를 해결하기 위해 AMD 및 기타 모듈 로더들이 등장. 
+- 가독성이나 다수 모듈 미병행 처리등의 약점을 보완하기 위해 Webpack 이 등장
 
 ---
 ## Webpack 의 철학
-1. **Everything is Module**
+#### 1. **Everything is Module**
 모든 웹 자원 (js, css, html) 이 모듈 형태로 로딩 가능
 
 ```js
@@ -68,7 +67,7 @@ require('base.css');
 require('main.js');
 ```
 
-2. **Load only “what” you need and “when” you need**
+#### 2. **Load only “what” you need and “when” you need**
 초기에 불필요한 것들을 모두 로딩하지 않고, 필요할 때 필요한 것만 로딩하여 사용
 
 ---
@@ -95,7 +94,7 @@ webpack --optimize-minimize --define process.env.NODE_ENV="'production'"
 
 ---
 ## Webpack Getting Started
-간단하게 webpack 을 [실습](https://github.com/joshua1988/DevCampWAP/tree/master/%233-performance-analysis-and-optmization-tools#webpack)
+간단한 webpack [기본 실습](https://github.com/joshua1988/DevCampWAP/tree/master/%233-performance-analysis-and-optmization-tools#webpack)
 
 #### 실습절차
 1. webpack 전역 설치
@@ -175,9 +174,9 @@ module.exports = {
 ```
 
 ---
-#### path vs public Path
-추후에 webpack dev server 의 auto page reloading 의 path, publicPath 를 구분하려면
-output 의 **path** 와 **public path** 의 속성의 차이점을 이해해야 한다.
+## path vs public Path
+- webpack dev server 의 path, publicPath 를 구분하기 위해 파악
+- output 의 **path** 와 **public path** 속성의 차이점 이해 필요
 
 ```
 # Webpack 컴파일 시에 뜨는 로그
@@ -297,8 +296,8 @@ module.exports = {
 
 ---
 ## Webpack [Plugins](https://webpack.js.org/plugins/)
-- 플러그인은 파일별 커스텀 기능을 사용하기 위해서 사용한다.
-  - ex) js 최소화, file 추출, alias (별칭) 설정
+플러그인은 파일별 커스텀 기능을 사용하기 위해서 사용한다.
+- ex) JS minification, file extraction, alias (별칭)
 
 ```js
 module.exports = {
@@ -356,8 +355,10 @@ new ManifestPlugin({
 1. `npm init -y` 으로 package.json 생성
 2. npm 명령어로 loader & plugin 설치
 3. `index.html`, `app/index.js` 생성
+
+---
 4. `webpack.config.js` 생성
-  1. main & vendor 분할에 따른 filename 지정
+- main & vendor 분할에 따른 filename 지정
 
   ```js
   module.exports = {
@@ -375,7 +376,8 @@ new ManifestPlugin({
   }
   ```
 
-  2. CommonsChunkPlugin 을 사용한 vendor 라이브러리 추출
+---
+- CommonsChunkPlugin 을 사용한 vendor 라이브러리 추출
 
   ```js
   plugins: [
@@ -385,7 +387,7 @@ new ManifestPlugin({
   ]
   ```
 
-  3. ManifestPlugin 으로 vendor 라이브러리와 실제 앱 로직 js 분리. json 파일로 번들링 파일 관리
+- ManifestPlugin 으로 vendor 라이브러리와 실제 앱 로직 js 분리. json 파일로 번들링 파일 관리
 
   ```js
   new ManifestPlugin({
@@ -415,7 +417,7 @@ module.exports = {
 - `webpack-dev-server` : webpack 자체에서 제공하는 개발 서버이고 빠른 리로딩 기능 제공
 - `webpack-dev-middleware` : 서버가 이미 구성된 경우에는 webpack 을 미들웨어로 구성하여 서버와 연결
 
-실제 프로덕션에 적용하는 경우가 아니면, 개인 프로젝트에는 시작하기 쉬운 **webpack-dev-server** 를 활용!
+> 개인 프로젝트에는 시작하기 쉬운 **webpack-dev-server** 를 활용!
 
 ---
 ## Webpack Dev Server
@@ -441,6 +443,7 @@ webpack-dev-server --open
 ```
 
 추가 옵션 설정은 여기를 [참고](https://webpack.js.org/configuration/dev-server/)
+
 ---
 #### Options
 - `publicPath` : Webpack 으로 번들한 파일들이 위치하는 곳. default 값은 `/`
@@ -450,8 +453,7 @@ webpack-dev-server --open
   publicPath: "/assets/"
   ```
 
----
-- `contentBase` : 서버가 어떤 파일을 가지고 로딩할지 static 파일 경로를 지정. default 값은 working directory
+- `contentBase` : 서버가 로딩할 static 파일 경로를 지정. default 값은 `working directory`
 
   ```js
   // 절대 경로를 사용할 것
@@ -484,6 +486,7 @@ webpack-dev-server --open
 - webpack 에 설정한 파일을 변경시, 파일에 직접 변경 내역을 저장하지 않고 메모리 공간을 활용한다.
 - 따라서, 변경된 파일 내역을 파일 디렉토리 구조안에서는 확인이 불가능하다.
 
+---
 #### 설치
 - 아래 명령어로 설치
 
@@ -520,8 +523,8 @@ app.listen(3000, function () {
 
 ---
 #### Public Path 짚고 넘어가기
-- 여태까지 [Public Path](https://webpack.js.org/guides/public-path/) 는 모두 로컬의 정적인 파일이나, 로컬 서버의 환경에서 접근하였다.
-- 실제 앱을 배포하여 CDN 으로 접근할 때는 어떻게 설정해야 할지 아래 코드로 알아본다.
+- 여태까지 [Public Path](https://webpack.js.org/guides/public-path/) 는 모두 로컬의 정적인 파일이나, 로컬 서버의 환경에서 접근한 사례
+- 아래는 실제 앱을 배포하여 CDN 으로 접근할 때의 설정
 
 ```js
 import webpack from 'webpack';
@@ -563,7 +566,7 @@ webpack 설정에 해당되는 파일의 변경이 일어나면 자동으로 번
 webpack --progress --watch
 ```
 
-> 참고 : 또는 `npm install --save-dev serve` 설치 후 아래와 같이 `package.json` 에 명령어 설정 가능
+참고 : `npm install --save-dev serve` 한 후 아래처럼 `package.json` 에 명령어 설정 가능
 
 ```
 "scripts": {
@@ -573,8 +576,8 @@ webpack --progress --watch
 
 ---
 ## Webpack [Resolve](https://webpack.js.org/concepts/module-resolution/)
-- Webpack 에서 추구하는 `모듈 번들링` 관점에서 봤을 때, 모듈 간의 의존성을 고려하여 모듈을 로딩해야 한다.
-- 따라서, 모듈을 어떤 위치에서 어떻게 로딩할지에 관해 정의를 하는 것이 바로 [Module Resolution] 이다.
+- Webpack 의 **모듈 번들링** 관점에서 봤을 때, 모듈 간의 의존성을 고려하여 모듈을 로딩해야 한다.
+- 따라서, 모듈을 어떤 위치에서 어떻게 로딩할지에 관해 정의를 하는 것이 바로 **Module Resolution**
 
 ```js
 // 일반적인 모듈 로딩 방식
@@ -583,50 +586,50 @@ import foo from 'path/to/module'
 require('path/to/module');
 ```
 
-그렇다면 여기서 우리가 주목해야 할 부분은 바로 **"모듈을 어떻게 로딩해오느냐?"** 라는 점이다.
+그렇다면 여기서 우리가 주목해야 할 부분은 바로 **"모듈을 어떻게 로딩해오느냐?"** 라는 점
 
 ---
-#### 절대경로를 이용한 파일 로딩
-파일의 경로를 모두 입력해준다.
+#### 1. 절대경로를 이용한 파일 로딩
+- 파일의 경로를 모두 입력해준다.
 
-```js
-import "/home/me/file";
-import "C:\\Users\\me\\file";
-```
+  ```js
+  import "/home/me/file";
+  import "C:\\Users\\me\\file";
+  ```
 
-#### 상대경로를 이용한 파일 로딩
-해당 모듈이 로딩되는 시점의 위치에 기반하여, 상대 경로를 절대 경로로 인식하여 로딩한다.
+#### 2. 상대경로를 이용한 파일 로딩
+- 해당 모듈이 로딩되는 시점의 위치에 기반하여, 상대 경로를 절대 경로로 인식하여 로딩한다.
 
-```js
-import "../src/file1";
-import "./file2";
-```
+  ```js
+  import "../src/file1";
+  import "./file2";
+  ```
 
 ---
-#### Resolve Option
-- config 파일에 `resolve` 를 추가하여 모듈 로딩에 관련된 옵션 사용
+## Resolve Option
+config 파일에 `resolve` 를 추가하여 모듈 로딩에 관련된 옵션 사용
 
-1. alias
-특정 모듈을 로딩할 때 `alias` 옵션을 이용하면 별칭으로 더 쉽게 로딩이 가능하다.
+#### alias
+- 특정 모듈을 로딩할 때 `alias` 옵션을 이용하면 별칭으로 더 쉽게 로딩이 가능하다.
 
-```js
-alias: {
-  Utilities: path.resolve(__dirname, 'src/path/utilities/')
-}
+  ```js
+  alias: {
+    Utilities: path.resolve(__dirname, 'src/path/utilities/')
+  }
 
-// 일반 모듈 로딩
-import Utility from '../../src/path/utilities/utility';
-// alias 사용시 '/src/path/utilities/' 대신 'Utilities' 활용
-import Utility from 'Utilities/utility';
-```
+  // 일반 모듈 로딩
+  import Utility from '../../src/path/utilities/utility';
+  // alias 사용시 '/src/path/utilities/' 대신 'Utilities' 활용
+  import Utility from 'Utilities/utility';
+  ```
 
-2. modules
-`require()` `import ''` 등의 모듈 로딩시에 어느 폴더를 기준할 것인지 정하는 옵션
+#### modules
+- `require()` `import ''` 등의 모듈 로딩시에 어느 폴더를 기준할 것인지 정하는 옵션
 
-```js
-modules: ["node_modules"] // defaults
-modules: [path.resolve(__dirname, "src"), "node_modules"] // src/node_modules 위치 검색
-```
+  ```js
+  modules: ["node_modules"] // defaults
+  modules: [path.resolve(__dirname, "src"), "node_modules"] // src/node_modules 위치 검색
+  ```
 
 ---
 ## 실습 - Example 5
@@ -641,9 +644,23 @@ modules: [path.resolve(__dirname, "src"), "node_modules"] // src/node_modules �
 6. `app/index.js`, `webpack.config.js` 변경하여 alias & Provide 동작 확인
 
 ---
-## Gulp 연동
--
+## Gulp [연동](https://webpack.github.io/docs/usage-with-gulp.html)
+- Gulp 와 Webpack 모두 Node.js 기반이기 때문에 통합해서 사용하기 쉽다.
 
+```js
+var gulp = require('gulp');
+var webpack = require('webpack-stream');
+var webpackConfig = require('./webpack.config.js');
+
+gulp.task('default', function() {
+  return gulp.src('src/entry.js')
+    .pipe(webpack(webpackConfig))
+    .pipe(gulp.dest('dist/'));
+});
+
+```
+
+---
 ## Hot Module Replacement
 - 웹 앱에서 사용하는 JS 모듈들을 갱신할 때, 화면의 새로고침 없이 뒷 단에서 변경 및 삭제 기능을 지원
 - 공식 가이드에는 React 를 기준으로 사용법이 작성되어 있으므로 [참고](https://webpack.js.org/guides/hmr-react/)
@@ -689,3 +706,7 @@ path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
 - [from require to webpac](http://j-query.blogspot.kr/2015/06/from-requirejs-to-webpack-part-1-reasons.html)
 - [Webpack Dev Server StackOverFlow](https://stackoverflow.com/questions/42712054/content-not-from-webpack-is-served-from-foo)
 - [Webpack Dev Middleware in Express](http://madole.github.io/blog/2015/08/26/setting-up-webpack-dev-middleware-in-your-express-application/)
+
+---
+<!-- footer : -->
+# 끝
