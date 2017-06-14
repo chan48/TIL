@@ -4,48 +4,72 @@
 
 ---
 ## 개요
+- React, Angular, Vue, PWA 에서 설정을 권고하는 Webpack 에 대해 학습
+- Webpack 의 주요 설정 Entry, Output, Loader, Plugins, Resolve 학습 및 실습
+- 실제 개발환경에서 사용할 수 있는 Webpack 개발환경 설정방법 학습 및 실습
+
+전체적인 내용은 실제 개발하면서 필요한 기능들 위주로 간단히 설명후
+수업 이후에도 충분히 혼자 학습 가능한 자신감과 진입점을 제공해주는데 목적
 
 ---
 ## 목차
 - Webpack 소개 및 배경
 - Webpack 사용에 필요한 cli 와 npm 명령어
-- Webpack getting started (실습)
+- Webpack Getting started (실습)
 - Webpack Entry
 - Webpack Output
-- Webpack Loader
-- Webpack code splitting (실습)
-- Webpack Plugins
-- Webpack Resolve
-- Webpack Dev 환경 설정
+- Webpack Loader (실습)
+- Webpack Plugins (실습)
+- Webpack 개발환경 세팅 (실습)
+- Webpack Resolve (실습)
+- 기타
 
 ---
 ## Webpack 은 무엇인가?
 - 서로 연관 관계가 있는 웹 자원들을 js, css, img 와 같은 스태틱한 자원으로 변환 해주는 모듈 번들러
 - 아래 사진은 직관적으로 webpack 의 역할을 설명
 
-![what is webpack](C:\github\TIL\javascript\what-is-webpack.png)
+![what is webpack](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/what-is-webpack.png)
 
 ---
 ## Webpack 을 사용하는 이유 & 배경?
 1. 새로운 형태의 Web Task Manager
-  - 기존 웹 개발에서 사용하던 Web Task Manager (Gulp, Grunt) 에서 지원하는 기능들과 함께 추가로 모듈 의존성까지 관리해주기 때문에 사용성이 뛰어나다.
-  - 예를 들어, 웹 성능 최적화를 위해 필수로 진행하는 minification 기능을 별도의 플러그인이나 코딩 없이, `webpack -p` 와 같은 webpack 고유의 커맨드로 실행이 가능하다는 점들은 다른 web task manager 들과의 차별점을 제공한다.
+  - 기존 Web Task Manager (Gulp, Grunt) 의 기능 + 모듈 의존성 관리
+  - 예) minification 을 webpack default cli 로 실행 가능
 
-2. 자바스크립트 Code based Modules 관리
-  - 기존의 모듈 로더들과의 가장 큰 차이점은 모듈 간의 관계를 청크 (chunk) 단위로 나눠 필요할 때 로딩하는 점이다.
-  - 현대의 웹 애플리케이션은 자바스크립트 역할이 커짐에 따라, Client Side 에 들어가는 코드량이 많아지고 복잡해졌다.
-  - 이렇게 복잡한 웹 애플리케이션을 구조적으로 관리하기 위해 모듈 단위로 관리할 필요성이 대두 되었고 Common JS, AMD, ES6 Modules 등이 등장했다.
-  - 여기서 모듈 관리에 대해 `script` 태그로 자바스크립트를 모듈화 하는 것을 간단히 예를 들어보자면 아래와 같다,
-
-```html
-<script src="module1.js"></script>
-<script src="module2.js"></script>
-<script src="library1.js"></script>
-<script src="module3.js"></script>
+```
+webpack -p
 ```
 
-  - 상기 모듈 로딩 방식에는 다음과 같은 문제점이 있다. *전역변수 충돌, 스크립트 로딩 순서, 복잡도가 커졌을 때 발생하는 관리상의 문제* 등
-  - 이러한 부분들을 해결하기 위해 AMD 를 비롯한 기타 모듈 로더들이 등장하였지만, 가독성이나 다수 모듈 미병행 처리등의 약점을 보완하기 위해 Webpack 이 등장하였다.
+---
+2. 자바스크립트 Code based Modules 관리
+  - 기존 모듈 로더들과의 차이점 : 모듈 간의 관계를 청크 (chunk) 단위로 나눠 필요할 때 로딩
+  - 현대의 웹 애플리케이션은 자바스크립트 역할이 커짐에 따라, Client Side 에 들어가는 코드량이 많아지고 복잡해짐
+  - 복잡한 웹 앱을 구조적으로 관리하기 위해 모듈 단위로 관리할 필요성이 대두. Common JS, AMD, ES6 Modules 등이 등장
+  - 여기서 모듈 관리에 대해 `script` 태그로 자바스크립트를 모듈화 하는 것을 간단히 예를 들어보자면 아래와 같다,
+
+  ```html
+  <script src="module1.js"></script>
+  <script src="module2.js"></script>
+  <script src="library1.js"></script>
+  <script src="module3.js"></script>
+  ```
+
+  - 상기 모듈 로딩 방식의 문제점 : *전역변수 충돌, 스크립트 로딩 순서, 복잡도가 커졌을 때 발생하는 관리상의 문제*
+  - 이를 해결하기 위해 AMD 및 기타 모듈 로더들이 등장. 가독성이나 다수 모듈 미병행 처리등의 약점을 보완하기 위해 Webpack 이 등장
+
+---
+## Webpack 의 철학
+1. **Everything is Module**
+모든 웹 자원 (js, css, html) 이 모듈 형태로 로딩 가능
+
+```js
+require('base.css');
+require('main.js');
+```
+
+2. **Load only “what” you need and “when” you need**
+초기에 불필요한 것들을 모두 로딩하지 않고, 필요할 때 필요한 것만 로딩하여 사용
 
 ---
 ## Webpack 에 필요한 NPM 명령어
@@ -53,16 +77,21 @@
 - `npm install (i)` 라이브러리 명 (여러개 한번에 가능)
 
 ```text
-npm i jquery jquery-mobile backbone underscore --save
+npm i jquery angular lodash --save
 ```
 
 ---
 ## Webpack 명령어
-- `webpack` for building once for development
-- `webpack -p` for building once for production (minification) : `webpack --optimize-minimize --define process.env.NODE_ENV="'production'"`
-- `webpack --watch(-w)` for continuous incremental build in development (fast!)
-- `webpack -d` to include source maps
-- `webpack --display-error-details` to display the error details for debugging
+- `webpack` : 웹팩 빌드 기본 명령어 (주로 개발용)
+- `webpack -p` : minification 기능이 들어간 빌드 (주로 배포용)
+
+```js
+webpack --optimize-minimize --define process.env.NODE_ENV="'production'"
+```
+
+- `webpack --watch(-w)` : 개발에서 빌드할 파일의 변화를 감지
+- `webpack -d` : sourcemap 포함하여 빌드
+- `webpack --display-error-details` : error 발생시 디버깅 정보를 상세히 출력
 
 ---
 ## Webpack Getting Started
@@ -147,8 +176,8 @@ module.exports = {
 
 ---
 #### path vs public Path
-- 추후에 webpack dev server 의 auto page reloading 의 path, publicPath 를 구분하려면
-  output 의 path 와 public path 의 속성의 차이점을 이해해야 한다.
+추후에 webpack dev server 의 auto page reloading 의 path, publicPath 를 구분하려면
+output 의 **path** 와 **public path** 의 속성의 차이점을 이해해야 한다.
 
 ```
 # Webpack 컴파일 시에 뜨는 로그
@@ -179,7 +208,7 @@ output: {
 > webpack can only process JavaScript natively, but loaders are used to transform other resources into JavaScript. By doing so, every resource forms a module.
 
 - 웹팩은 자바스크립트 파일만 처리가 가능하도록 되어 있다.
-- 하지만 loader 를 이용하여 다른 형태의 웹 자원들을 (img, css, ...) 자바스크립트 형태로 변환이 가능하여 로딩할 수 있다.
+- loader 를 이용하여 다른 형태의 웹 자원들을 (img, css, ...) js 로 변환하여 로딩
 
 ```js
 module.exports = {
@@ -243,7 +272,7 @@ require("./style.css");
 
 ---
 #### [ExtractTextWebpackPlugin](https://webpack.js.org/plugins/extract-text-webpack-plugin/)
-- CSS 를 bundle.js 파일 안에 번들링 하지 않고, 빌드시에 별도의 .css 파일로 분리해준다.
+- CSS 를 bundle.js 파일 안에 번들링 하지 않고, 빌드시에 별도의 `.css` 파일로 분리해준다.
 
 ```js
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
@@ -612,6 +641,9 @@ modules: [path.resolve(__dirname, "src"), "node_modules"] // src/node_modules �
 6. `app/index.js`, `webpack.config.js` 변경하여 alias & Provide 동작 확인
 
 ---
+## Gulp 연동
+-
+
 ## Hot Module Replacement
 - 웹 앱에서 사용하는 JS 모듈들을 갱신할 때, 화면의 새로고침 없이 뒷 단에서 변경 및 삭제 기능을 지원
 - 공식 가이드에는 React 를 기준으로 사용법이 작성되어 있으므로 [참고](https://webpack.js.org/guides/hmr-react/)
