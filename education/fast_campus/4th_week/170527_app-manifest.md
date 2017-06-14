@@ -173,6 +173,34 @@
 ![orientation-option s](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-orientation-options.png)
 
 ---
+## Web App Install Banner
+App Manifest 파일을 설정 후 아래 조건 만족시 동일 웹사이트에 대해 [설치 배너 표시](https://www.youtube.com/watch?v=PaIh3ty5gT0)
+- 최소 2 번 접속 (5 분 간격)
+- `start_url`, `short_name`, `name` 설정
+- 앱 아이콘 144 x 144 px 이미지 (PNG)
+- Service Worker 등록
+- HTTPS
+
+![wp-install-banner](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/install-banner.png)
+
+---
+`beforeinstallprompt` 로 설치 배너의 표시 시기를 **지연하거나 disable 가능**
+
+```js
+window.addEventListener('beforeinstallprompt', function(e) {
+  console.log('beforeinstallprompt Event fired');
+  e.preventDefault();
+
+  //
+});
+```
+
+---
+## Install Banner 디버깅
+- URL 에 `chrome://flags` 입력 후
+- 사용자 참여 검사 우회 체크하여 조건 충족
+
+---
 ## Web App Manifest Navigation Scope
 - "같은 도메인 아래의 웹 페이지들을 같은 scope 에 있다" 한다.
   - scope : 일반적인 네이티브 앱의 context 와 동일
