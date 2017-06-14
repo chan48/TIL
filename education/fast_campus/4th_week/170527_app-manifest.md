@@ -51,7 +51,7 @@
 #### 1) App Icon
 - 해당 웹 사이트가 모바일 화면에서 표시될 아이콘 이미지 지정
 
-![솔루션 포탈 아이콘 스샷]()
+![app-icon](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/app-icon.png)
 
 ---
 
@@ -93,7 +93,7 @@
 - **모바일 앱의 시작과 동일한 느낌을 가져감**
 - 화면의 조합 : 아이콘 + 배경색 + 아이콘 이름
 
-![vue-with-pwa](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4st_week/images/splash-screen.png)
+![vue-with-pwa](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/splash-screen.png)
 
 ---
 - 배경색 설정은 `background_color` 속성 이용
@@ -129,7 +129,7 @@
 - 웹앱 화면의 전체적인 모양을 정할 수 있다.
 - **웹앱이 모바일 앱의 느낌을 가져갈 수 있도록 결정짓는 속성**
 
-![구글 display 이미지](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4st_week/images/manifest-display-options.png)
+![구글 display 이미지](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-display-options.png)
 
 ---
 
@@ -143,15 +143,14 @@
   - `fullscreen` : 크롬이 아닌 기타 브라우저에서 네이티브 앱 느낌 제공 **(확인 필요)**
   - `minimul-ui` : fullscreen 과 비슷하나 네비게이션 관련 최소 UI 를 제공
 
-![각 display 속성별 이미지 스샷 및 첨부 !!!]()
-
 ---
 주의 사항 : iOS 에서 standalone 사용시
   - <a> 를 이용한 네비게이션 이동 시 새 브라우저 열기로 인해 context 을 잃게 됨.
   - 따라서, location.href 또는 SPA 를 이용한 네비게이팅으로 전체 UX 를 가져갈 필요가 있음
-  - 참고 : create a SPA experience or use location.href instead of <a> links for internal navigation
-          `<meta name=”apple-mobile-web-app-capable” content=”yes”>`
-    [Medium 글](create a SPA experience or use location.href instead of <a> links for internal navigation)
+
+> 참고 : create a SPA experience or use location.href instead of <a> links for internal navigation `<meta name=”apple-mobile-web-app-capable” content=”yes”>`
+
+[Medium 글](create a SPA experience or use location.href instead of <a> links for internal navigation)
 
 ---
 - `theme-color` 를 이용하여 앱 테마 색상을 정의할 수 있다.
@@ -170,6 +169,8 @@
 ```json
 "orientation": "landscape"
 ```
+
+![orientation-option s](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-orientation-options.png)
 
 ---
 ## Web App Manifest Navigation Scope
@@ -191,7 +192,7 @@
 - 크롬 개발자 도구의 `Application tab` 을 이용하여 설정 정보 확인가능
 - **앱 아이콘 설치** 등을 테스트 해볼 수 있다.
 
-![manifest-debugging](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4st_week/images/manifest-debugging.png)
+![manifest-debugging](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-debugging.png)
 
 ---
 ## 지원되는 브라우저 (17년 5월 기준)
