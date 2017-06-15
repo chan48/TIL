@@ -8,6 +8,7 @@
 - Server Side Javascript 인 Node.js 에 대해서 알아본다.
 - Gulp, Webpack 의 사용에 있어서 필수적인 NPM 에 대해서 학습한다.
 - Node js 웹 프레임워크인 Express 에 대해 이해하고 간단한 예제를 구축해본다.
+- 프론트엔드 개발자에게 필수지식이자 실습에서도 많이 활용될 NPM CLI 를 학습.
 
 ---
 ## Node.js 란?
@@ -184,9 +185,10 @@ app.post('/', function (req, res) {
 - Request Body 에 대한 요청을 파싱하여 `req.body` 에 자동으로 담아주는 Node.js 파싱 미들웨어
 
 ```js
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 // create application/json parser
-var jsonParser = bodyParser.json()
+var jsonParser = bodyParser.json();
+
 // POST /api/users gets JSON bodies
 app.post('/api/users', jsonParser, function (req, res) {
   if (!req.body) return res.sendStatus(400)
