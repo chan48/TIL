@@ -54,7 +54,7 @@ webpack -p
 ```
 
 - 상기 모듈 로딩 방식의 문제점 : **전역변수 충돌, 스크립트 로딩 순서, 복잡도에 따른 관리상의 문제**
-- 이를 해결하기 위해 AMD 및 기타 모듈 로더들이 등장. 
+- 이를 해결하기 위해 AMD 및 기타 모듈 로더들이 등장.
 - 가독성이나 다수 모듈 미병행 처리등의 약점을 보완하기 위해 Webpack 이 등장
 
 ---
@@ -110,8 +110,12 @@ webpack --optimize-minimize --define process.env.NODE_ENV="'production'"
 - a,b,c 라이브러리를 모두 번들링한 bundle.js 를 로딩한다
 - 1개 또는 2개 이상의 복수개 엔트리 포인트를 설정할 수 있다.
 
-```js
+![entry-options](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/entry-options.png)
 
+---
+## 여러가지 Entry 유형
+
+```js
 var config = {
   // #1 - 간단한 entry 설정
   entry: './path/to/my/entry/file.js'
@@ -186,7 +190,7 @@ webpack output is served from /dist/
 
 ---
 - output.[path](http://webpack.github.io/docs/configuration.html#output-path) : 번들링한 결과가 위치할 번들링 파일의 **절대 경로**
-- output.[publicPath](http://webpack.github.io/docs/configuration.html#output-publicpath) : 브라우저가 참고할 번들링 결과 파일의 URL 주소를 지정
+- output.[publicPath](http://webpack.github.io/docs/configuration.html#output-publicpath) : 브라우저가 참고할 번들링 결과 파일의 URL 주소를 지정. (CDN 을 사용하는 경우 CDN 호스트 지정)
 
 ```js
 // publicPath 예제 #1
@@ -200,6 +204,21 @@ output: {
   path: "/home/proj/cdn/assets/[hash]",
   publicPath: "http://cdn.example.com/assets/[hash]/"
 }
+```
+
+---
+CDN 에 이미지를 올려놓은 경우
+
+```js
+// webpack.config.js
+output: {
+  publicPath: 'https://cdn.example.com/assets/'
+}
+```
+
+```html
+<!-- 템플릿 -->
+<img src=”img/webpack.png” />
 ```
 
 ---
@@ -248,6 +267,35 @@ var jquery = __webpack_require__(1);
 ```
 
 > [Loader 더 많은 설정](https://webpack.js.org/concepts/loaders/)
+
+---
+#### Babel Loader - ES6
+- [preset](https://babeljs.io/docs/plugins/#presets) : Babel 플러그인 리스트
+
+```js
+module: {
+  rules: [{
+    test: /\.js$/,
+    use: [{
+      loader: 'babel-loader',
+      options: {
+        presets: [
+          ['es2015', 'react', {modules: false}] // Tree Shaking : 모듈에서 사용되지 않은 코드 삭제
+        ]
+      }
+    }]
+  }]
+}
+```
+
+---
+
+```js
+//.bablerc
+{
+ “presets”: [“react”, “es2015”]
+}
+```
 
 ---
 ## 짚고 넘어가기 - Webpack 설정
@@ -525,6 +573,8 @@ app.listen(3000, function () {
 #### Public Path 짚고 넘어가기
 - 여태까지 [Public Path](https://webpack.js.org/guides/public-path/) 는 모두 로컬의 정적인 파일이나, 로컬 서버의 환경에서 접근한 사례
 - 아래는 실제 앱을 배포하여 CDN 으로 접근할 때의 설정
+- 플러그인을 이용하여 **Production Build** 시에 URL 업데이트를 도와줌.
+  - ex) CSS 의 url 속성 `./test.png` 의 앞에 Public Path (URL) 삽입
 
 ```js
 import webpack from 'webpack';
@@ -536,7 +586,6 @@ export default {
   output: {
     publicPath: ASSET_PATH
   },
-
   plugins: [
     // This makes it possible for us to safely use env vars on our code
     new webpack.DefinePlugin({
@@ -544,6 +593,21 @@ export default {
     })
   ]
 };
+```
+
+---
+
+![public-path-sample](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/template-engines.png)
+
+```js
+// Development: Both Server and the image are on localhost
+.image {
+  background-image: url(‘./test.png’);
+ }
+// Production: Server is on Heroku but the image is on a CDN
+.image {
+  background-image: url(‘https://someCDN/test.png’);
+ }
 ```
 
 ---
@@ -698,14 +762,21 @@ path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif');
 - [Webpack1 Doc](http://webpack.github.io/docs/)
 - [webpack-howto](https://github.com/petehunt/webpack-howto)
 - [webpack-howto2](https://gist.github.com/xjamundx/b1c800e9282e16a6a18e)
+- [webpack beginners guide, Site Point](https://www.sitepoint.com/beginners-guide-to-webpack-2-and-module-bundling/?utm_source=frontendfocus&utm_medium=email)
 - [requireJS-to-webpackConfig](https://www.npmjs.com/package/requirejs-to-webpack-cli)
 - [migration from requirejs to webpack](https://medium.com/@ArtyomTrityak/migration-from-require-js-to-webpack-2-a733a4366ab5)
 - [webpack-shimming](https://webpack.js.org/guides/shimming/)
 - [Critical-Dependencies](http://webpack.github.io/docs/context.html#critical-dependencies)
 - [Gulp Webpack plugin](https://www.npmjs.com/package/gulp-webpack)
+
+---
 - [from require to webpac](http://j-query.blogspot.kr/2015/06/from-requirejs-to-webpack-part-1-reasons.html)
 - [Webpack Dev Server StackOverFlow](https://stackoverflow.com/questions/42712054/content-not-from-webpack-is-served-from-foo)
 - [Webpack Dev Middleware in Express](http://madole.github.io/blog/2015/08/26/setting-up-webpack-dev-middleware-in-your-express-application/)
+- [Webpack Confusing Part](https://medium.com/@rajaraodv/webpack-the-confusing-parts-58712f8fcad9)
+- [Regular Expression, MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/%EC%A0%95%EA%B7%9C%EC%8B%9D)
+- [Regular Expression Test](http://regexr.com/)
+- [Webpack First Principle, Video](https://www.youtube.com/watch?v=WQue1AN93YU)
 
 ---
 <!-- footer : -->
