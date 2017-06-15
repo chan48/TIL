@@ -3,6 +3,10 @@
 # Service Worker - Caching, Offline, Native Features
 
 ---
+## 개요
+- 
+
+---
 <!-- footer : Service Worker - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
 ## 목차
 - 서비스 워커 소개
@@ -16,11 +20,16 @@
 - 서비스 워커 푸시
 
 ---
+## 시연
+
+[https://github.com/joshua1988/PWA-Roadshow-Lighthouse Step 3 Checkout 후 동작 시연](https://github.com/joshua1988/PWA-Roadshow-Lighthouse)
+
+---
 ## Service Worker 소개
 - **브라우저와 서버 사이의 미들웨어 역할을 하는 스크립트 파일**
 - PWA 에서 가장 중요한 역할을 하고, **Offline 경험** 과 **모바일 Push 알람** 구현을 제공하는 기반기술
 
-![Service Worker location](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4st_week/images/sw-location.png)
+![Service Worker location](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/sw-location.png)
 
 ---
 ## Service Worker 특징
@@ -31,6 +40,8 @@
   - 프로그래밍 가능한 네트워크 프록시
 
 3. **브라우저 종속적인 생명주기로 백그라운드 동기화 기능 제공**
+  - Push 알람의 진입점을 제공
+
 4. **Web & Mobile Push** 수신이 가능하도록 notification 제공
 5. **navigator.serviceworker** 로 접근
 
@@ -65,6 +76,11 @@ images/logo1.png
 - 종류 :
   - [Dedicated Workers](https://www.html5rocks.com/en/tutorials/workers/basics/), 라이프싸이클 - 페이지 종속적
   - [Shared Workers](https://html.spec.whatwg.org/multipage/workers.html#sharedworker), 브라우징 컨텍스트
+---
+#### Shared Worker
+- Javascript UI 쓰레드와 별개의 쓰레드. Global script scope
+- 페이지에 비종속적 (페이지 라이프 싸이클과 별개)
+- 직접적인 DOM 접근 불가
 
 ---
 ## Service Worker 등록
@@ -95,6 +111,10 @@ navigator.serviceWorker.register('/service-worker.js', {
   scope: './myApp'
 });
 ```
+
+---
+## 실습 #1 - Service Worker 등록
+
 
 ---
 ## Service Worker 설치
@@ -138,12 +158,73 @@ self.addEventListener('install', function(event) {
 **주의 : 캐쉬할 파일 중 한개라도 실패하면 전체 실패. 이를 해결하기 위해 sw-toolbox 사용**
 
 ---
-#### [sw-toolbox](https://github.com/googlechrome/sw-toolbox)
+## 실습 #2 - Service Worker 설치
 
+![https://github.com/w3c/ServiceWorker/blob/master/explainer.md](https://github.com/w3c/ServiceWorker/blob/master/explainer.md)
+
+---
+#### [sw-toolbox](https://github.com/googlechrome/sw-toolbox)
+- 네트워크 요청과 캐쉬 관리에 추가적인 옵션(만료기한 등)을 제공해주는 서비스워커 보조 라이브러리
+
+```
+# 설치
+npm install --save sw-toolbox
+```
+
+- 사용방법은 아래와 같이 단순하다.
+
+```js
+// service-worker.js
+importScripts('bower_components/sw-toolbox/sw-toolbox.js');
+
+// 참고 - importScripts
+importScripts('a.js', 'b.js', ...); // 복수 라이브러리 로딩 가능
+```
+
+- 상세한 사용법은 [여기서](https://googlechrome.github.io/sw-toolbox/#main)
+
+[동작확인](https://developers.google.com/web/tools/service-worker-libraries/?hl=ko)
 
 ---
 #### [sw-precache](https://github.com/googlechrome/sw-precache) in Gulp
+- 웹 자원을 런타임 시점 이전에 **사전 캐싱 가능한 서비스워커 생성 모듈**
+- sw toolbox 라이브러리와 [같이 사용](https://github.com/GoogleChrome/sw-precache/blob/master/sw-precache-and-sw-toolbox.md) 가능
+- 캐싱 시점을 런타임 이전 또는 런타임 시로 [변경 가능](https://github.com/GoogleChrome/sw-precache#runtimecaching-arrayobject)
+- [Cache First Strategy](https://jakearchibald.com/2014/offline-cookbook/)
 
+```
+# 설치
+npm install --save-dev sw-precache
+npm install --global sw-precache
+```
+
+---
+#### 사용조건
+1. HTTPS - 서비스워커 조건
+2. sw-precache NPM 모듈 - 기본적인 설치
+3. 페이지 전체를 제어하는 서비스워커가 등록 - top 레벨
+
+#### 사용방법
+Gulp task 로 사용하는 [방법](https://github.com/GoogleChrome/sw-precache/blob/master/demo/gulpfile.js)
+
+```js
+var swPrecache = require('sw-precache');
+
+gulp.task('generate-service-worker', function(callback) {
+  swPrecache.write(`${rootDir}/service-worker.js`, {
+    staticFileGlobs: [rootDir + '/**/*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff}'], // 캐쉬할 파일 패턴 지정
+    stripPrefix: 'app' // 빌드시점과 런타임 시점에 다를 수 있는 상대경로를 위해 앞 특정 문자열 제거
+  }, callback);
+});
+```
+
+---
+CLI 를 이용하여 사용 가능
+
+```
+sw-precache
+sw-precache --root=dist --static-file-globs='dist/**/*.html'
+```
 
 ---
 ## Service Worker 네트워크 요청 응답
@@ -190,14 +271,24 @@ self.addEventListener('activate', function(event) {
 > 기존에 실행 중인 서비스워커와 사이즈를 비교하여 1 바이트라도 차이나면 새걸로 간주
 
 ---
-## Service Worker 실습 #1 - 함께하는 예제
+## Service Worker 실습 #3 - 함께하는 예제
 - [Lighthouse Sample Source, branch - step3](https://github.com/joshua1988/PWA-Roadshow-Lighthouse)
 
 해당 예제를 같이 작성합니다..!
 
 ---
 ## Service Worker 라이프 싸이클
-- 
+- **서비스워커는 웹 페이지와 별개의 생명주기**
+- 서비스워커 등록 & 설치 & 활성화 과정을 잠깐 보면
+  1. **웹페이지 에서** 서비스워커 스크립트 **호출**
+  2. 브라우저 **백그라운드** 에서 서비스워커 **설치**
+  3. **설치 과정에서** 정적 자원 **캐싱** (캐싱 실패시 설치 실패)
+  4. **설치 후 활성화**. 네트워크 요청에 대한 가로채기 가능
+- 사용하지 않을 때는 휴지상태. 필요시에만 해당 기능 수행
+- 메모리 상태에 따라 자체적으로 종료하는 영리함
+
+---
+![sw-lifecycle](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/sw-lifecycle.png)
 
 ---
 ## Service Worker 디버깅
@@ -207,7 +298,7 @@ self.addEventListener('activate', function(event) {
   - *event.waitUntil() 내부 콜백 로직 확인 권고*
 
 ---
-## 실습 #2 - 과제
+## 실습 #4 - 과제
 - 금일 배운 내용을 바탕으로 Offline 서비스를 지원하는 간단한 1 개의 웹 페이지 제작후 Github Page 에 호스팅
   - Github 복수개 Repository 호스팅 방법 같이 [실습]
 
@@ -224,8 +315,10 @@ self.addEventListener('activate', function(event) {
 ## 참고
 - [Service Worker Spec](https://w3c.github.io/ServiceWorker/)
 - [Instant and Offline Apps, Google - Slide Share](https://www.slideshare.net/cwdoh/instant-and-offline-apps-with-service-worker)
+- [Offline Cookbook, Google](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/)
 - [Cache Storage - MDN](https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage)
 - [Fetch() Spec](https://fetch.spec.whatwg.org/)
+- [Workbox, Google](https://developers.google.com/web/tools/workbox/)
 
 ---
 <!-- footer : -->
