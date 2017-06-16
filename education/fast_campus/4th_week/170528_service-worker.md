@@ -3,6 +3,7 @@
 # Service Worker - Caching, Offline, Native Features
 
 ---
+<!-- footer : Service Worker - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
 ## 개요
 - PWA 의 오프라인 경험, 네이티브 기능의 구현 기반이 되는 서비스워커 학습
 - 기존 워커들과 차별화되는 서비스워커의 특징 이해 및 배경 소개
@@ -11,7 +12,6 @@
 - 서비스워커 보조 라이브러리 소개 및 사용법 학습
 
 ---
-<!-- footer : Service Worker - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
 ## 목차
 - 서비스 워커 소개
 - 서비스 워커 특징
@@ -137,7 +137,12 @@ navigator.serviceWorker.register('/service-worker.js', {
 
 ---
 ## 실습 #1 - Service Worker 등록
-
+1. Node & Express 설치 후 간단한 로컬 서버 구성
+2. HTML, Image, CSS, JS 파일로 간단한 웹 페이지 생성
+3. Service Worker 스크립트 파일 생성
+4. 브라우저의 Service Worker 지원여부 확인
+5. `navigator.serviceWorker.register()` 를 HTML 파일에 추가
+6. 등록 여부 콘솔로 확인
 
 ---
 ## Service Worker 설치

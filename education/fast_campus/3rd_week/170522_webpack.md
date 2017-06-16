@@ -574,7 +574,9 @@ app.listen(3000, function () {
 
 ---
 
-![public-path-sample 50%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/public-path-sample.png)
+![public-path-sample 45%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/public-path-sample.png)
+
+---
 
 ```js
 // Development: Both Server and the image are on localhost
@@ -642,12 +644,12 @@ config 파일에 `resolve` 를 추가하여 모듈 로딩에 관련된 옵션 �
     Utilities: path.resolve(__dirname, 'src/path/utilities/')
   }
 
-  // 일반 모듈 로딩
   import Utility from '../../src/path/utilities/utility';
   // alias 사용시 '/src/path/utilities/' 대신 'Utilities' 활용
   import Utility from 'Utilities/utility';
   ```
 
+---
 #### modules
 - `require()` `import ''` 등의 모듈 로딩시에 어느 폴더를 기준할 것인지 정하는 옵션
 
