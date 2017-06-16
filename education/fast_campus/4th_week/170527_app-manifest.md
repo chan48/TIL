@@ -16,6 +16,36 @@
   - **App Icon** : 앱 아이콘 이미지와 크기
 
 ---
+**완전 새로운게 아니라 기존에 있던 겁니다.**
+
+```html
+<!-- iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png">
+<link rel="apple-touch-startup-image" href="/splash-startup.png">
+```
+
+```html
+<!-- Android & Chrome -->
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="icon" sizes="72x72"href="/icon72.png">
+<link rel="icon" sizes="57x57"href="/icon57.png">
+```
+
+---
+
+```html
+<!-- IE 10 -->
+<meta name="application-name" content="my app"/>
+<meta name="msapplication-TileColor" content="#000000"/>
+<meta name="msapplication-square150x150logo" content="square.png"/>
+<meta name="msapplication-wide310x150logo" content="wide.png"/>
+```
+
+그리하여 Web App Manifest 종합세트가..
+
+---
 ## Web App Manifest 파일 구조
 
 ```json
@@ -44,8 +74,6 @@
 <link rel="manifest" href="/manifest.json">
 ```
 
-![브라우저 별로 meta 별도로 설정해야 하나?]()
-
 ---
 ## Wev App Manifest 주요 구성 정보
 #### 1) App Icon
@@ -56,7 +84,8 @@
 ---
 
 ```json
-"icons": [{
+{
+  "icons": [{
     "src": "images/touch/icon-128x128.png",
     "type": "image/png",
     "sizes": "128x128"
@@ -69,6 +98,7 @@
     "type": "image/png",
     "sizes": "192x192"
   }],
+}
 ```
 
 - `src` : 로딩할 이미지 파일 경로
@@ -93,7 +123,7 @@
 - **모바일 앱의 시작과 동일한 느낌을 가져감**
 - 화면의 조합 : 아이콘 + 배경색 + 아이콘 이름
 
-![vue-with-pwa](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/splash-screen.png)
+![vue-with-pwa 35%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/splash-screen.png)
 
 ---
 - 배경색 설정은 `background_color` 속성 이용
@@ -104,11 +134,6 @@
 
 - 아이콘은 icon 에 지정한 이미지 중 128[dp](https://developers.google.com/web/updates/2015/10/splashscreen) = 192px 에 가장 가까운 크기로 지정
 - 따라서, 192px 크기의 이미지는 꼭 지정
-
----
-어떻게 Splash Screen 이 생성이 되는가?
-  -
-
 
 ---
 #### 3) Start URL
@@ -129,7 +154,7 @@
 - 웹앱 화면의 전체적인 모양을 정할 수 있다.
 - **웹앱이 모바일 앱의 느낌을 가져갈 수 있도록 결정짓는 속성**
 
-![구글 display 이미지](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-display-options.png)
+![구글 display 이미지 60%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-display-options.png)
 
 ---
 
@@ -144,17 +169,18 @@
   - `minimul-ui` : fullscreen 과 비슷하나 네비게이션 관련 최소 UI 를 제공
 
 ---
-주의 사항 : iOS 에서 standalone 사용시
-  - <a> 를 이용한 네비게이션 이동 시 새 브라우저 열기로 인해 context 을 잃게 됨.
+#### 주의사항 : iOS 에서 standalone 사용시
+  - `<a>` 를 이용한 네비게이션 이동 시 새 브라우저 열기로 인해 context 을 잃게 됨.
   - 따라서, location.href 또는 SPA 를 이용한 네비게이팅으로 전체 UX 를 가져갈 필요가 있음
 
-> 참고 : create a SPA experience or use location.href instead of <a> links for internal navigation `<meta name=”apple-mobile-web-app-capable” content=”yes”>`
-
-[Medium 글](create a SPA experience or use location.href instead of <a> links for internal navigation)
+```html
+<meta name=”apple-mobile-web-app-capable” content=”yes”>
+```
 
 ---
+#### Theme Color
 - `theme-color` 를 이용하여 앱 테마 색상을 정의할 수 있다.
-- *홈 화면에서 시작해야 설정한 도메인의 모든 페이지에 적용됨*
+- 홈 화면에서 시작해야 설정한 도메인의 모든 페이지에 적용됨
 
 ```json
 "theme_color": "#2196F3"
@@ -163,6 +189,7 @@
 ---
 #### 5) Display Orientation
 - 화면 방향은 `orientation` 속성을 이용하고 옵션 값은 아래와 같다.
+
   - `portrait` : 세로 방향
   - `landscape` : 가로 방향
 
@@ -170,18 +197,24 @@
 "orientation": "landscape"
 ```
 
-![orientation-option s](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-orientation-options.png)
+![orientation-option 50%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-orientation-options.png)
 
 ---
 ## Web App Install Banner
+- PWA 가 모바일적인 특징을 가지는 큰 부분의 하나
+- 기존 모바일 앱 개발주기 : 구현 -> SDK 빌드 -> 스토어 배포 -> 검색 -> 앱 다운로드 -> 설치 -> 사용
+- PWA 의 앱 개발주기 : 구현 -> 사이트 배포 -> 검색 -> 사용 (자동설치)
+
+![wp-install-banner 30%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/install-banner.png)
+
+---
+## Install Banner 동작 조건
 App Manifest 파일을 설정 후 아래 조건 만족시 동일 웹사이트에 대해 [설치 배너 표시](https://www.youtube.com/watch?v=PaIh3ty5gT0)
 - 최소 2 번 접속 (5 분 간격)
 - `start_url`, `short_name`, `name` 설정
 - 앱 아이콘 144 x 144 px 이미지 (PNG)
 - Service Worker 등록
 - HTTPS
-
-![wp-install-banner](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/install-banner.png)
 
 ---
 `beforeinstallprompt` 로 설치 배너의 표시 시기를 **지연하거나 disable 가능**
@@ -220,7 +253,7 @@ window.addEventListener('beforeinstallprompt', function(e) {
 - 크롬 개발자 도구의 `Application tab` 을 이용하여 설정 정보 확인가능
 - **앱 아이콘 설치** 등을 테스트 해볼 수 있다.
 
-![manifest-debugging](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-debugging.png)
+![manifest-debugging 30%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-debugging.png)
 
 ---
 ## 지원되는 브라우저 (17년 5월 기준)
@@ -234,7 +267,8 @@ window.addEventListener('beforeinstallprompt', function(e) {
 - [Web App Manifest Spec, W3C](https://www.w3.org/TR/appmanifest/)
 - [Web App Manifest Spec, html5doctor](http://html5doctor.com/web-manifest-specification/)
 - [Web App Manifest Spec, MDN](https://developer.mozilla.org/en-US/docs/Web/Manifest#Splash_screens)
-- [Getting Started w PWA, Eddy](https://addyosmani.com/blog/getting-started-with-progressive-web-apps/)
+- [Getting Started w PWA, Addy](https://addyosmani.com/blog/getting-started-with-progressive-web-apps/)
+- [Don’t use iOS meta tags irresponsibly](https://medium.com/@firt/dont-use-ios-web-app-meta-tag-irresponsibly-in-your-progressive-web-apps-85d70f4438cb)
 - [Understanding the manifest](https://thishereweb.com/understanding-the-manifest-for-web-app-3f6cd2b853d6)
 - [포켓몬 도감 PWA](http://www.pocketjavascript.com/blog/2015/11/23/introducing-pokedex-org)
 

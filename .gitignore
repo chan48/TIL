@@ -11,3 +11,6 @@ fad/*
 til-english/*
 interview/*
 algorithm/*.html
+
+# Mac
+*.key
