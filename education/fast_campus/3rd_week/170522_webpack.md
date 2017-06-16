@@ -83,14 +83,10 @@ npm i jquery angular lodash --save
 ## Webpack 명령어
 - `webpack` : 웹팩 빌드 기본 명령어 (주로 개발용)
 - `webpack -p` : minification 기능이 들어간 빌드 (주로 배포용)
-
-```js
-webpack --optimize-minimize --define process.env.NODE_ENV="'production'"
-```
-
-- `webpack --watch(-w)` : 개발에서 빌드할 파일의 변화를 감지
+- `webpack -watch(-w)` : 개발에서 빌드할 파일의 변화를 감지
 - `webpack -d` : sourcemap 포함하여 빌드
 - `webpack --display-error-details` : error 발생시 디버깅 정보를 상세히 출력
+- `webpack --optimize-minimize --define process.env.NODE_ENV="'production'"` : 배포용
 
 ---
 ## Webpack Getting Started
@@ -108,7 +104,7 @@ webpack --optimize-minimize --define process.env.NODE_ENV="'production'"
 ## Webpack Entry
 - webpack 으로 묶은 모든 라이브러리들을 로딩할 시작점 설정
 - a,b,c 라이브러리를 모두 번들링한 bundle.js 를 로딩한다
-- 1개 또는 2개 이상의 복수개 엔트리 포인트를 설정할 수 있다.
+- 1개 또는 2개 이상의 엔트리 포인트를 설정할 수 있다.
 
 ![entry-options](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/entry-options.png)
 
@@ -150,7 +146,7 @@ module.exports = {
   }
 };
 
-// 최종 Profile.js 를 <script src="build/Profile.js"></script> 로 삽입
+// 번들파일 Profile.js 를 <script src="build/Profile.js"></script> 로 HTML 에 삽입
 ```
 
 ---
@@ -190,7 +186,7 @@ webpack output is served from /dist/
 
 ---
 - output.[path](http://webpack.github.io/docs/configuration.html#output-path) : 번들링한 결과가 위치할 번들링 파일의 **절대 경로**
-- output.[publicPath](http://webpack.github.io/docs/configuration.html#output-publicpath) : 브라우저가 참고할 번들링 결과 파일의 URL 주소를 지정. (CDN 을 사용하는 경우 CDN 호스트 지정)
+- output.[publicPath](http://webpack.github.io/docs/configuration.html#output-publicpath) : 브라우저가 참고할 번들링 결과 **파일의 URL 주소**를 지정. (CDN 을 사용하는 경우 CDN 호스트 지정)
 
 ```js
 // publicPath 예제 #1
@@ -252,7 +248,7 @@ module.exports = {
   test: /backbone/,
   use: [
     'expose-loader?Backbone',
-    'imports-loader?_=underscore,jquery,this=>window'
+    'imports-loader?_=underscore,jquery'
     // 순서대로 (1) jquery , (2) underscore 로딩
   ]
 }
@@ -318,11 +314,11 @@ require("./style.css");
 5. `webpack` 실행
 
 ---
-#### [ExtractTextWebpackPlugin](https://webpack.js.org/plugins/extract-text-webpack-plugin/)
+#### [ExtractTextWebpackPlugin](https://webpack.js.org/plugins/extract-text-webpack-plugin/) 로 css 파일 분리 실습
 - CSS 를 bundle.js 파일 안에 번들링 하지 않고, 빌드시에 별도의 `.css` 파일로 분리해준다.
 
 ```js
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   module: {
@@ -570,34 +566,15 @@ app.listen(3000, function () {
 ```
 
 ---
-#### Public Path 짚고 넘어가기
+#### Public Path 되짚고 넘어가기
 - 여태까지 [Public Path](https://webpack.js.org/guides/public-path/) 는 모두 로컬의 정적인 파일이나, 로컬 서버의 환경에서 접근한 사례
 - 아래는 실제 앱을 배포하여 CDN 으로 접근할 때의 설정
 - 플러그인을 이용하여 **Production Build** 시에 URL 업데이트를 도와줌.
   - ex) CSS 의 url 속성 `./test.png` 의 앞에 Public Path (URL) 삽입
 
-```js
-import webpack from 'webpack';
-
-// Whatever comes as an environment variable, otherwise use root
-const ASSET_PATH = process.env.ASSET_PATH || '/';
-
-export default {
-  output: {
-    publicPath: ASSET_PATH
-  },
-  plugins: [
-    // This makes it possible for us to safely use env vars on our code
-    new webpack.DefinePlugin({
-      'process.env.ASSET_PATH': JSON.stringify(ASSET_PATH)
-    })
-  ]
-};
-```
-
 ---
 
-![public-path-sample](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/template-engines.png)
+![public-path-sample 50%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/3rd_week/images/public-path-sample.png)
 
 ```js
 // Development: Both Server and the image are on localhost
@@ -621,22 +598,6 @@ export default {
 4. `index.html`, `app/index.js` 생성
 5. `webpack.config.js` 생성
 6. `server.js` 실행
-
----
-## Webpack watch 옵션
-webpack 설정에 해당되는 파일의 변경이 일어나면 자동으로 번들링을 다시 진행
-
-```
-webpack --progress --watch
-```
-
-참고 : `npm install --save-dev serve` 한 후 아래처럼 `package.json` 에 명령어 설정 가능
-
-```
-"scripts": {
-  "start": "serve"
-}
-```
 
 ---
 ## Webpack [Resolve](https://webpack.js.org/concepts/module-resolution/)
@@ -706,6 +667,22 @@ config 파일에 `resolve` 를 추가하여 모듈 로딩에 관련된 옵션 �
 4. `webpack.config.js` 생성
 5. `webpack` 실행
 6. `app/index.js`, `webpack.config.js` 변경하여 alias & Provide 동작 확인
+
+---
+## Webpack watch 옵션
+webpack 설정에 해당되는 파일의 변경이 일어나면 자동으로 번들링을 다시 진행
+
+```
+webpack --progress --watch
+```
+
+참고 : `npm install --save-dev serve` 한 후 아래처럼 `package.json` 에 명령어 설정 가능
+
+```
+"scripts": {
+  "start": "serve"
+}
+```
 
 ---
 ## Gulp [연동](https://webpack.github.io/docs/usage-with-gulp.html)
