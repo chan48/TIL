@@ -4,7 +4,11 @@
 
 ---
 ## 개요
-- 
+- PWA 의 오프라인 경험, 네이티브 기능의 구현 기반이 되는 서비스워커 학습
+- 기존 워커들과 차별화되는 서비스워커의 특징 이해 및 배경 소개
+- 서비스워커를 구현하기 위한 등록, 설치, 활성화, 업데이트 학습 및 실습
+- 서비스워커 구현을 위한 라이프싸이클 이해 및 학습
+- 서비스워커 보조 라이브러리 소개 및 사용법 학습
 
 ---
 <!-- footer : Service Worker - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
@@ -44,6 +48,10 @@
 
 4. **Web & Mobile Push** 수신이 가능하도록 notification 제공
 5. **navigator.serviceworker** 로 접근
+6. 기존 Javascript 와의 **별개의 자체 스코프**를 가짐
+  - 크롬 개발자 도구의 Console 과의 별개의 서비스워커 전용 Console 존재
+7. DOM 에 직접적으로 접근이 불가능
+8. 사용하지 않을 때 **자체적으로 종료**, **필요시에 다시 동작** (event-driven 방식)
 
 ---
 ## Service Worker 배경
@@ -89,9 +97,20 @@ images/logo1.png
 ```js
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/service-worker.js');
+  navigator.serviceWorker.register('/service-worker.js').
+    then(function (reg) {
+      // 성공하면
+      console.log('Okay it worked!', reg);
+    }).catch(function (err) {
+      // 실패해서 에러가 발생하면
+      console.log('Oops, an error occured', err);
+    })
 }
 ```
 
+[then? catch? - Promise](https://developers.google.com/web/fundamentals/getting-started/primers/promises)
+
+---
 > 기억하시죠? 초기 렌더링에 방해되는 리소스는 최대한 뒤로 미룹니다.
 
 ```js
@@ -103,6 +122,8 @@ if ('serviceWorker' in navigator) {
 }
 ```
 
+[load? DOMContentLoaded? 직접 눈으로 확인](http://web.archive.org/web/20150405114023/http://ie.microsoft.com/testdrive/HTML5/DOMContentLoaded/Default.html)
+
 ---
 - 서비스워커가 동작할 url scope 지정하기
 
@@ -111,6 +132,8 @@ navigator.serviceWorker.register('/service-worker.js', {
   scope: './myApp'
 });
 ```
+
+서비스워커의 위치는 주 도메인과 같은 위치에 있어야 합니다.
 
 ---
 ## 실습 #1 - Service Worker 등록
@@ -163,7 +186,62 @@ self.addEventListener('install', function(event) {
 ![https://github.com/w3c/ServiceWorker/blob/master/explainer.md](https://github.com/w3c/ServiceWorker/blob/master/explainer.md)
 
 ---
-#### [sw-toolbox](https://github.com/googlechrome/sw-toolbox)
+## Service Worker 네트워크 요청 응답
+- 서비스워커 설치 후 캐쉬된 자원에 대한 네트워크 요청이 있을 때는 캐쉬로 돌려준다.
+
+```js
+self.addEventListener('fetch', function(event) {
+  event.respondWith(
+    caches.match(event.request).then(function(response) {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request);
+    })
+  );
+});
+```
+
+- `respondWith()` : 안의 로직에서 반환된 값으로 화면에 돌려줌
+- `match()` : 해당 request 에 상응하는 캐쉬가 있으면 찾아서 돌려주고 아니면 네트워크 요청을 날려 (fetch) 자원을 획득
+
+---
+## Service Worker 활성화 및 업데이트
+
+- 새로운 서비스워커가 설치되면 활성화 단계로 넘어온다.
+- 이전에 사용하던 서비스워커와 이전 캐쉬는 모두 삭제하는 작업 진행
+
+```js
+self.addEventListener('activate', function(event) {
+  event.waitUntil(
+    caches.keys().then(function(cacheNames) {
+      return Promise.all(
+        cacheNames.map(function(cacheName) {
+          // 새로운 서비스 워커에서 사용할 캐쉬 이외의 캐쉬는 모두 삭제
+          if (cacheWhitelist.indexOf(cacheName) === -1) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
+  );
+});
+```
+
+> 기존에 실행 중인 서비스워커와 사이즈를 비교하여 1 바이트라도 차이나면 새걸로 간주
+
+---
+## 실습 #3 - Offline Web Service 제작
+서비스워커를 이용하여 오프라인 동작가능한 [웹 페이지](https://github.com/joshua1988/PWA-Roadshow-Lighthouse/tree/step1)를 제작
+
+#### 실습절차
+1. 간단한 웹 페이지 생성 (HTML, JS, CSS, Images)
+2. Service Worker 파일 생성
+3. Register, Install, Register, Activate, Fetch 구현
+4. 인터넷 미연결 상태에서 동작 확인
+
+---
+## [sw-toolbox](https://github.com/googlechrome/sw-toolbox)
 - 네트워크 요청과 캐쉬 관리에 추가적인 옵션(만료기한 등)을 제공해주는 서비스워커 보조 라이브러리
 
 ```
@@ -186,7 +264,7 @@ importScripts('a.js', 'b.js', ...); // 복수 라이브러리 로딩 가능
 [동작확인](https://developers.google.com/web/tools/service-worker-libraries/?hl=ko)
 
 ---
-#### [sw-precache](https://github.com/googlechrome/sw-precache) in Gulp
+## [sw-precache](https://github.com/googlechrome/sw-precache) in Gulp
 - 웹 자원을 런타임 시점 이전에 **사전 캐싱 가능한 서비스워커 생성 모듈**
 - sw toolbox 라이브러리와 [같이 사용](https://github.com/GoogleChrome/sw-precache/blob/master/sw-precache-and-sw-toolbox.md) 가능
 - 캐싱 시점을 런타임 이전 또는 런타임 시로 [변경 가능](https://github.com/GoogleChrome/sw-precache#runtimecaching-arrayobject)
@@ -227,56 +305,6 @@ sw-precache --root=dist --static-file-globs='dist/**/*.html'
 ```
 
 ---
-## Service Worker 네트워크 요청 응답
-- 서비스워커 설치 후 캐쉬된 자원에 대한 네트워크 요청이 있을 때는 캐쉬로 돌려준다.
-
-```js
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    caches.match(event.request).then(function(response) {
-      if (response) {
-        return response;
-      }
-      return fetch(event.request);
-    })
-  );
-});
-```
-
-- `respondWith()` : 안의 로직에서 반환된 값으로 화면에 돌려줌
-- `match()` : 해당 request 에 상응하는 캐쉬가 있으면 찾아서 돌려주고 아니면 네트워크 요청을 날려 (fetch) 자원을 획득
-
----
-## Service Worker 활성화 및 업데이트
-- 새로운 서비스워커가 설치되면 활성화 단계로 넘어온다.
-- 이전에 사용하던 서비스워커와 이전 캐쉬는 모두 삭제하는 작업 진행
-
-```js
-self.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.map(function(cacheName) {
-          // 새로운 서비스 워커에서 사용할 캐쉬 이외의 캐쉬는 모두 삭제
-          if (cacheWhitelist.indexOf(cacheName) === -1) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
-});
-```
-
-> 기존에 실행 중인 서비스워커와 사이즈를 비교하여 1 바이트라도 차이나면 새걸로 간주
-
----
-## Service Worker 실습 #3 - 함께하는 예제
-- [Lighthouse Sample Source, branch - step3](https://github.com/joshua1988/PWA-Roadshow-Lighthouse)
-
-해당 예제를 같이 작성합니다..!
-
----
 ## Service Worker 라이프 싸이클
 - **서비스워커는 웹 페이지와 별개의 생명주기**
 - 서비스워커 등록 & 설치 & 활성화 과정을 잠깐 보면
@@ -289,6 +317,7 @@ self.addEventListener('activate', function(event) {
 
 ---
 ![sw-lifecycle](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/sw-lifecycle.png)
+
 
 ---
 ## Service Worker 디버깅
