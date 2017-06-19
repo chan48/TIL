@@ -16,11 +16,17 @@
 - 서비스 워커 소개
 - 서비스 워커 특징
 - 서비스 워커 배경 & 워커 종류 소개
+- 서비스 워커 등록
 - 서비스 워커 실습 #1 - 예제
+- 서비스 워커 설치
+- 서비스 워커 실습 #2 - 예제
+- 서비스 워커 네트워크 요청 응답
+- 서비스 워커 실습 #3 - 예제
+- 서비스 워커 활성화 및 업데이트
 - 서비스 워커 라이프 싸이클
 - 서비스 워커 캐싱
 - 서비스 워커 디버깅
-- 서비스 워커 실습 #2 - 과제
+- 서비스 워커 실습 #4 - 제출
 - 서비스 워커 푸시
 
 ---
@@ -187,6 +193,10 @@ self.addEventListener('install', function(event) {
 
 ---
 ## 실습 #2 - Service Worker 설치
+1. `self.addEventListener('install', fn)` 로 서비스워커 설치
+2. cache 명 및 cache 할 파일 목록 지정
+3. `install` 시에 위에서 지정한 캐쉬 등록
+4. 개발자 도구로 서비스워커 설치 및 캐쉬 정상 등록 여부 확인
 
 ![https://github.com/w3c/ServiceWorker/blob/master/explainer.md](https://github.com/w3c/ServiceWorker/blob/master/explainer.md)
 
@@ -209,6 +219,12 @@ self.addEventListener('fetch', function(event) {
 
 - `respondWith()` : 안의 로직에서 반환된 값으로 화면에 돌려줌
 - `match()` : 해당 request 에 상응하는 캐쉬가 있으면 찾아서 돌려주고 아니면 네트워크 요청을 날려 (fetch) 자원을 획득
+
+---
+## 실습 #3 - Service Worker 캐쉬 응답
+1. `self.addEventListener('fetch', fn)` 로 캐쉬 응답 설정
+2. `event.respondWith()` 로 네트워크 요청 가로채기 및 캐쉬 응답
+3. 개발자 도구 Network 패널의 offline 체크 후 캐쉬응답 확인
 
 ---
 ## Service Worker 활성화 및 업데이트
@@ -234,16 +250,6 @@ self.addEventListener('activate', function(event) {
 ```
 
 > 기존에 실행 중인 서비스워커와 사이즈를 비교하여 1 바이트라도 차이나면 새걸로 간주
-
----
-## 실습 #3 - Offline Web Service 제작
-서비스워커를 이용하여 오프라인 동작가능한 [웹 페이지](https://github.com/joshua1988/PWA-Roadshow-Lighthouse/tree/step1)를 제작
-
-#### 실습절차
-1. 간단한 웹 페이지 생성 (HTML, JS, CSS, Images)
-2. Service Worker 파일 생성
-3. Register, Install, Register, Activate, Fetch 구현
-4. 인터넷 미연결 상태에서 동작 확인
 
 ---
 ## [sw-toolbox](https://github.com/googlechrome/sw-toolbox)
@@ -323,27 +329,36 @@ sw-precache --root=dist --static-file-globs='dist/**/*.html'
 ---
 ![sw-lifecycle](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/sw-lifecycle.png)
 
-
 ---
 ## Service Worker 디버깅
 - 크롬 개발자 도구의 `Application` 패널에서 Service Workers
-- 주소창에 `chrome://inspect/#service-workers` & `chrome://serviceworker-internals`
+- 주소창에 `chrome://inspect/#service-workers`
+- 주소창에 `chrome://serviceworker-internals`
 - 주의사항 : 등록 과정에서 실패하였더라도 콘솔에 로그가 찍히지 않는 경우가 있음
   - *event.waitUntil() 내부 콜백 로직 확인 권고*
 
 ---
-## 실습 #4 - 과제
-- 금일 배운 내용을 바탕으로 Offline 서비스를 지원하는 간단한 1 개의 웹 페이지 제작후 Github Page 에 호스팅
-  - Github 복수개 Repository 호스팅 방법 같이 [실습]
+## 실습 #4 - Offline Web Service 제작
+금일 배운 내용을 바탕으로 Offline 서비스를 지원하는 간단한 1 개의 [웹 페이지](https://github.com/joshua1988/PWA-Roadshow-Lighthouse/tree/step1) 제작후 Github Page 에 호스팅
+서비스워커를 이용하여 오프라인 동작가능한 [웹 페이지](https://github.com/joshua1988/PWA-Roadshow-Lighthouse/tree/step1)를 제작
 
-- 조건 : 실습에 포함할 파일
-  - html 1 개
-  - css 1 개
-  - js 1 개 이상
-  - 최소 images 1 개 이상
+#### 실습절차
+1. 간단한 웹 페이지 생성 (HTML, JS, CSS, Images)
+2. Service Worker 파일 생성
+3. Register, Install, Register, Activate, Fetch 구현
+4. 인터넷 미연결 상태에서 동작 확인
 
-- 제출 : 소통 채널 (FB & Slack) 에 해당 페이지 호스팅된 링크 보내주세요.
-주제는 자유 선택. ex) 신문 기사, Instargram Feed, 날씨 예보 등
+---
+#### 조건 : 실습에 포함할 파일
+- html 1 개
+- css 1 개
+- js 1 개 이상
+- 최소 image 1 개 이상
+
+#### 주제 : 자유
+- ex) 신문 기사, Instargram Feed, 날씨 예보 등
+
+> 제출 : jangkeehyo@gmail.com 로 해당 페이지 호스팅된 링크 보내주세요.
 
 ---
 ## 참고
