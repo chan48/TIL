@@ -26,7 +26,7 @@
 - 서비스 워커 라이프 싸이클
 - 서비스 워커 캐싱
 - 서비스 워커 디버깅
-- 서비스 워커 실습 #4 - 제출
+- 서비스 워커 실습 #4 - 과제
 - 서비스 워커 푸시
 
 ---
@@ -363,6 +363,7 @@ sw-precache --root=dist --static-file-globs='dist/**/*.html'
 ---
 ## 참고
 - [Service Worker Spec](https://w3c.github.io/ServiceWorker/)
+- [Service Worker Intro](https://developers.google.com/web/fundamentals/getting-started/primers/service-workers)
 - [Instant and Offline Apps, Google - Slide Share](https://www.slideshare.net/cwdoh/instant-and-offline-apps-with-service-worker)
 - [Offline Cookbook, Google](https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook/)
 - [Cache Storage - MDN](https://developer.mozilla.org/en-US/docs/Web/API/CacheStorage)
