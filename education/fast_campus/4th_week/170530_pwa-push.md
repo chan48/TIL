@@ -8,6 +8,54 @@
 
 ---
 ## 목차
+- PWA 의 Push API & Notification API 소개
+- Push 알람 사례 및 활용 방안
+- 일반적인 모바일 Push 알람 구조
+- PWA 의 Push 알람 구조
+- Firebase Cloud Messaging 서비스 소개
+- 구현할 샘플 서비스의 구조
+- 구현절차 - 실습
+
+---
+## PWA 의 Push API & Notification API 소개
+- 모바일에서만 가능했던 Push 알람 기능을 API 로 간단하게 구현 가능
+- 브라우저 기반 Push 알람. Windows & Mac & [Android](https://www.youtube.com/watch?v=PaIh3ty5gT0) 에서 동작
+- 구현하기 위해서는 Service Worker 를 필수로 구현해야 한다.
+
+![mobile-push-noti](mobile-push.png)
+
+---
+## Push 알람 사례 및 활용 방안
+- Facebook 새 게시글 알람
+
+![facebook-sw-push.png](sw-push.png)
+
+- Twitter Lite [소개 영상](https://blog.twitter.com/official/en_us/topics/product/2017/introducing-twitter-lite.html). [Case Study](https://developers.google.com/web/showcase/2017/twitter)
+- Alibaba [Case Studies](https://developers.google.com/web/showcase/2016/alibaba)
+- [Wego](https://developers.google.com/web/showcase/2017/wego) (PWA + AMP + Web Payment + Credential API)
+
+---
+## 일반적인 Mobile Push 알람 구조
+- Android : GCM (Google Cloud Messaging) & FCM
+- iOS : APNS (Apple Push Notification Service) & FCM
+
+![gcm-architecture](gcm-archi.png)
+
+---
+## PWA 의 Push 알람 구조
+- FCM : GCM 의 최신버전으로 Mobile + Web 모두 지원
+
+![fcm](fcm.png)
+
+---
+## Firebase Cloud Messaging 서비스 소개
+- Mobile & Web Push 알람을 위한 콘솔창 제공
+- Push 등록된 기기에 대한 정보 및 알림 전송 기능
+- 보낸 Push 메시지에 대한 분석 기능 제공
+- 가능한 프로토콜 HTTP & XMPP (미들웨어 메시징 프로토콜)
+
+---
+## 오늘 구현할 샘플 서비스 구조
 -
 
 ---
