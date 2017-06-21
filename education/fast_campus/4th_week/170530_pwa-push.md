@@ -1,6 +1,9 @@
-# Simple Push App with Service Worker & Manifest
+<!-- $size: 16:9 -->
+<!-- page_number: true -->
+# Simple Push App with Service Worker & Manifest & Firebase
 
 ---
+<!-- footer : Simple Push App - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
 ## 개요
 - 앞에서 배운 Service Worker 를 활용하여 Push Messaging 구현방법 학습
 - Firebase Cloud Messaging 서비스를 활용하기 위한 기본절차 학습
@@ -153,8 +156,8 @@ swRegistration.pushManager.subscribe({
 
 ---
 #### Firebase 구현 - 해당 Key 제거
-19. `unSubscribeUser()` 구현하여
-20. DB 확인
+19. `unSubscribeUser()` 로 구독 비활성화 기능 구현
+20. 비활성화된 이전 subscription 객체 콘솔 로그로 확인
 
 ---
 #### 추가 과제
@@ -168,3 +171,7 @@ swRegistration.pushManager.subscribe({
 - [Push Notifications on the Open Web](https://developers.google.com/web/updates/2015/03/push-notifications-on-the-open-web)
 - [FCM, Firebase Cloud Messaging](https://firebase.google.com/docs/cloud-messaging/)
 - [GCM Image reference](http://blog.nkdroidsolutions.com/android-push-notification-with-image/)
+
+---
+<!-- footer : -->
+# 끝
