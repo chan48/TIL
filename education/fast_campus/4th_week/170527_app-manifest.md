@@ -1,13 +1,34 @@
 <!-- $size: 16:9 -->
 <!-- page_number: true -->
-# Web App Manifest - Install Banner & App Icon
+# Web App Manifest - Install Banner & App Icon & Launch Screen
 
 ---
 <!-- footer : Web App Manifest - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
+## 개요
+- PWA 의 주요 기술 중 하나인 Web App Manifest 파일의 세부 속성을 학습
+- 모바일 앱 설치의 편이성을 가진 Install banner 의 장점과 동작조건을 학습
+- Web App Manifest 를 가지고 개발할 때 주의할점 학습 (Navigation Scope, Deep link)
+
+---
+## 목차
+- Web App Manifest 소개
+- Web App Manifest 파일 구조 & 등록
+- Wev App Manifest 주요 구성 정보
+  - App Icon
+  - Launch Image
+  - Start URL
+  - Display Type
+  - Display Orientation
+- Web App Install Banner
+- Web App Manifest Navigation Scope
+- Web App Manifest 디버깅
+
+---
 ## Web App Manifest 란?
 - Progressive Web App 의 설치와 앱 구성정보를 담고 있는 **json** 형식의 설정 파일
   - 앱 아이콘, 화면 런쳐 방식 및 배경색, 시작 페이지 등을 설정할 수 있는 JSON 파일
 
+---
 - 앱 관련 구성정보에는 아래와 같은 항목들이 설정됩니다.
   - **Start URL** : 웹 앱이 시작되는 지점
   - **Launch Image** : 웹 앱 시작 화면
@@ -16,7 +37,7 @@
   - **App Icon** : 앱 아이콘 이미지와 크기
 
 ---
-**완전 새로운게 아니라 기존에 있던 겁니다.**
+**주의! 완전 새로운게 아니라 기존에 있던 겁니다.**
 
 ```html
 <!-- iOS -->
@@ -135,6 +156,8 @@
 - 아이콘은 icon 에 지정한 이미지 중 128[dp](https://developers.google.com/web/updates/2015/10/splashscreen) = 192px 에 가장 가까운 크기로 지정
 - 따라서, 192px 크기의 이미지는 꼭 지정
 
+> dp : 다양한 모바일 화면 크기에서 동일한 비율로 출력되게 하는 픽셀 단위
+
 ---
 #### 3) Start URL
 - 앱이 시작될 때 로딩될 페이지 위치 지정
@@ -143,7 +166,7 @@
 "start_url": "./"
 ```
 
-- GA 분석을 위해 query string 을 뒤에 붙일 수 있다.
+- GA 분석이나 기타 목적으로 query string 을 뒤에 붙일 수 있다.
 
 ```js
 "start_url": "index.html?launcher=homescreen"
@@ -154,18 +177,19 @@
 - 웹앱 화면의 전체적인 모양을 정할 수 있다.
 - **웹앱이 모바일 앱의 느낌을 가져갈 수 있도록 결정짓는 속성**
 
-![구글 display 이미지 60%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-display-options.png)
+![display-type](display-type.png)
 
 ---
 
-```json
+```js
 "display": "standalone"
 ```
 
-- `display` 속성을 이용하고 옵션 값은 아래와 같다.
+- `display` 속성의 옵션 값은 아래와 같다.
+
   - `standalone` : 상단 URL 바 제거하여 네이티브 앱 느낌 제공
   - `browser` : 해당 OS 브라우저에서 웹앱 실행
-  - `fullscreen` : 크롬이 아닌 기타 브라우저에서 네이티브 앱 느낌 제공 **(확인 필요)**
+  - `fullscreen` : 크롬이 아닌 기타 브라우저에서 네이티브 앱 느낌 제공
   - `minimul-ui` : fullscreen 과 비슷하나 네비게이션 관련 최소 UI 를 제공
 
 ---
@@ -182,7 +206,7 @@
 - `theme-color` 를 이용하여 앱 테마 색상을 정의할 수 있다.
 - 홈 화면에서 시작해야 설정한 도메인의 모든 페이지에 적용됨
 
-```json
+```js
 "theme_color": "#2196F3"
 ```
 
@@ -193,11 +217,11 @@
   - `portrait` : 세로 방향
   - `landscape` : 가로 방향
 
-```json
+![orientation-option 50%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-orientation-options.png)
+
+```js
 "orientation": "landscape"
 ```
-
-![orientation-option 50%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-orientation-options.png)
 
 ---
 ## Web App Install Banner
@@ -230,12 +254,13 @@ window.addEventListener('beforeinstallprompt', function(e) {
 
 ---
 ## Install Banner 디버깅
-- URL 에 `chrome://flags` 입력 후
-- 사용자 참여 검사 우회 체크하여 조건 충족
+- 주소창에 `chrome://flags` 입력
+- 설정 옵션 중 **사용자 참여 검사 우회** 체크하여 조건 충족
 
 ---
 ## Web App Manifest Navigation Scope
 - "같은 도메인 아래의 웹 페이지들을 같은 scope 에 있다" 한다.
+
   - scope : 일반적인 네이티브 앱의 context 와 동일
 
 ```json
@@ -244,9 +269,9 @@ window.addEventListener('beforeinstallprompt', function(e) {
 
 - scope 밖의 웹 페이지로 이동할 경우 새로운 브라우저를 실행한다.
 - 위 문제를 피하는 방법으로 `<a href="">` 사용하지 않고 deep link 를 사용
-- deep link 를 이용해 모바일 앱과 웹 앱 간의 매끄러운 전환도 가능
+- deep link 를 이용해 [모바일 앱과 웹 앱 간의 매끄러운 전환](https://www.w3.org/TR/appmanifest/#deep-links)도 가능
 
-> 'deep link' : 설치된 웹 앱의 지정된 scope 안의 url 들을 지칭
+> 'deep link' : 설치된 웹 앱의 지정된 scope 안의 url 들을 지칭 = 같은 도메인
 
 ---
 ## Web App Manifest 디버깅
@@ -254,6 +279,16 @@ window.addEventListener('beforeinstallprompt', function(e) {
 - **앱 아이콘 설치** 등을 테스트 해볼 수 있다.
 
 ![manifest-debugging 30%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/manifest-debugging.png)
+
+---
+## 까먹기 전에 같이 실습
+앱의 상세 정보를 갖는 manifest.json 파일을 생성하여 개발자 도구 `Application` 에서 확인
+
+1. index.html 생성
+2. manifest.json 생성
+3. 앞에서 배운 name, icon, display, background_color 등 지정
+4. index.html 을 브라우저에서 로딩 후 개발자도구 `Application` 확인
+5. 작성 정보 확인
 
 ---
 ## 지원되는 브라우저 (17년 5월 기준)
@@ -271,6 +306,7 @@ window.addEventListener('beforeinstallprompt', function(e) {
 - [Don’t use iOS meta tags irresponsibly](https://medium.com/@firt/dont-use-ios-web-app-meta-tag-irresponsibly-in-your-progressive-web-apps-85d70f4438cb)
 - [Understanding the manifest](https://thishereweb.com/understanding-the-manifest-for-web-app-3f6cd2b853d6)
 - [포켓몬 도감 PWA](http://www.pocketjavascript.com/blog/2015/11/23/introducing-pokedex-org)
+- [Fullscreen Image](http://www.androidpolice.com/2017/03/23/chrome-beta-58-adds-support-full-screen-progressive-web-apps-minor-ui-changes-tweaks-custom-tabs-apk-download/)
 
 ---
 <!-- footer : -->
