@@ -60,12 +60,12 @@
 6. 기존 Javascript 와의 **별개의 자체 스코프**를 가짐
 
 	- 크롬 개발자 도구의 Console 과의 별개의 서비스워커 전용 Console 존재
-7. DOM 에 직접적으로 접근이 불가능. [postMessage() 이용](https://developer.mozilla.org/ko/docs/Web/API/Web_Workers_API/basic_usage)
+7. DOM 에 직접적으로 접근이 불가능 - [postMessage() 이용](https://developer.mozilla.org/ko/docs/Web/API/Web_Workers_API/basic_usage)
 8. 사용하지 않을 때 **자체적으로 종료**, **필요시에 다시 동작** (event-driven 방식)
 
 ---
 ## Service Worker 배경
-**기존에 이미 존재하던 기술들을 보완 -> 그리고 진화**
+기존에 이미 존재하던 기술들을 **보완 -> 그리고 진화**
 
 ---
 #### [AppCache](https://www.html5rocks.com/en/tutorials/appcache/beginner/)
@@ -107,6 +107,7 @@ images/logo1.png
 그리하여 Service Worker 가 등장합니다.
 
 > A service worker is a type of web worker. - W3C Spec -
+
 > Service workers are a new browser feature that provide event-driven scripts that run independently of web pages - W3C Spec repo -
 
 ---

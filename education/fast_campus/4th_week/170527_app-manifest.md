@@ -1,6 +1,6 @@
 <!-- $size: 16:9 -->
 <!-- page_number: true -->
-# Web App Manifest - Install Banner & App Icon & Launch Screen
+# Web App Manifest - Install Banner & App Icon
 
 ---
 <!-- footer : Web App Manifest - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
@@ -22,14 +22,17 @@
 - Web App Install Banner
 - Web App Manifest Navigation Scope
 - Web App Manifest 디버깅
+- Web App Manifest 실습
 
 ---
 ## Web App Manifest 란?
 - Progressive Web App 의 설치와 앱 구성정보를 담고 있는 **json** 형식의 설정 파일
-  - 앱 아이콘, 화면 런쳐 방식 및 배경색, 시작 페이지 등을 설정할 수 있는 JSON 파일
+
+	- 앱 아이콘, 화면 런쳐 방식 및 배경색, 시작 페이지 등을 설정할 수 있는 JSON 파일
 
 ---
 - 앱 관련 구성정보에는 아래와 같은 항목들이 설정됩니다.
+
   - **Start URL** : 웹 앱이 시작되는 지점
   - **Launch Image** : 웹 앱 시작 화면
   - **Display Type** : 웹 앱의 화면 형태
@@ -127,7 +130,7 @@
 - `sizes` : 로딩할 이미지 크기
 
 ---
-주의사항
+**주의사항**
 - app icon 미지정시 html 파일의 `<link rel=”icon”>` 태그를 검색한다.
 - Safari 의 경우 아래의 meta 태그를 head 에 별도로 추가해주어야 한다.
 
@@ -149,7 +152,7 @@
 ---
 - 배경색 설정은 `background_color` 속성 이용
 
-```json
+```js
 "background_color": "#2196F3",
 ```
 
@@ -177,7 +180,7 @@
 - 웹앱 화면의 전체적인 모양을 정할 수 있다.
 - **웹앱이 모바일 앱의 느낌을 가져갈 수 있도록 결정짓는 속성**
 
-![display-type](display-type.png)
+![display-type 70%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/display-type.png)
 
 ---
 
