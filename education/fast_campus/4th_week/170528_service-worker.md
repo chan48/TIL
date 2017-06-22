@@ -25,7 +25,7 @@
 
 ---
 - 서비스 워커 활성화 및 업데이트
-- 서비스 워커 라이프 싸이클e
+- 서비스 워커 라이프 싸이클
 - 서비스 워커 캐싱
 - 서비스 워커 디버깅
 - 서비스 워커 실습 #4 - 과제
@@ -34,12 +34,12 @@
 ---
 ## Service Worker 시연
 
-[Offline Experience](https://github.com/joshua1988/PWA-Roadshow-Lighthouse)
+[Offline Experience](https://pwa.rocks/)
 
 ---
 ## Service Worker 소개
 - **브라우저와 서버 사이의 미들웨어 역할을 하는 스크립트 파일**
-- PWA 에서 가장 중요한 역할을 하고, **Offline 경험** 과 **모바일 Push 알람** 구현을 제공하는 기반기술
+- PWA 에서 가장 중요한 역할을 하고, **Offline Experience** 과 **Mobile & Web Push** 의 기반기술
 
 ![Service Worker location 35%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/sw-location.png)
 
@@ -49,22 +49,25 @@
 	- Javascript UI 쓰레드랑 별도로 동작하는 또 다른 쓰레드
 
 2. **네트워크 요청을 가로챌 수 있어** 해당 자원에 대한 캐쉬 제공 또는 서버에 자원 요청
-	- 프로그래밍 가능한 네트워크 프록시
+	- 프로그래밍 가능한 네트워크 [프록시](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9D%EC%8B%9C_%EC%84%9C%EB%B2%84)
 
 3. **브라우저 종속적인 생명주기로 백그라운드 동기화 기능 제공**
 	- Push 알람의 진입점을 제공
 
-4. **Web & Mobile Push** 수신이 가능하도록 notification 제공
+4. **Web & Mobile Push** 수신이 가능하도록 **Notification** 제공
 ---
 5. **navigator.serviceworker** 로 접근
 6. 기존 Javascript 와의 **별개의 자체 스코프**를 가짐
 
 	- 크롬 개발자 도구의 Console 과의 별개의 서비스워커 전용 Console 존재
-7. DOM 에 직접적으로 접근이 불가능
+7. DOM 에 직접적으로 접근이 불가능. [postMessage() 이용](https://developer.mozilla.org/ko/docs/Web/API/Web_Workers_API/basic_usage)
 8. 사용하지 않을 때 **자체적으로 종료**, **필요시에 다시 동작** (event-driven 방식)
 
 ---
 ## Service Worker 배경
+**기존에 이미 존재하던 기술들을 보완 -> 그리고 진화**
+
+---
 #### [AppCache](https://www.html5rocks.com/en/tutorials/appcache/beginner/)
 - 오프라인 경험을 제공하기 위한 캐시 제공, HTML 표준
 - 복수 페이지 앱에서 오동작, 파일 변화에 대해 둔감한 캐싱등의 [문제](https://alistapart.com/article/application-cache-is-a-douchebag)
@@ -75,6 +78,7 @@
 ```
 
 ```js
+// 서버에 추가 설정 필요 mime-type = text/cache-manifest
 CACHE MANIFEST
 # 2010-06-18:v3
 
@@ -92,7 +96,7 @@ images/logo1.png
 - 특정 작업을 병렬 스크립트로 백그라운드에서 실행 및 처리하기 위한 수단, HTML 표준
 - 종류 :
   - [Dedicated Workers](https://www.html5rocks.com/en/tutorials/workers/basics/), 라이프싸이클 - 페이지 종속적
-  - [Shared Workers](https://html.spec.whatwg.org/multipage/workers.html#sharedworker), 브라우징 컨텍스트
+  - [Shared Workers](https://html.spec.whatwg.org/multipage/workers.html#sharedworker), 브라우징 (브라우저) 컨텍스트
 ---
 #### Shared Worker
 - Javascript UI 쓰레드와 별개의 쓰레드. Global script scope
@@ -100,12 +104,20 @@ images/logo1.png
 - 직접적인 DOM 접근 불가
 
 ---
+그리하여 Service Worker 가 등장합니다.
+
+> A service worker is a type of web worker. - W3C Spec -
+> Service workers are a new browser feature that provide event-driven scripts that run independently of web pages - W3C Spec repo -
+
+---
 ## Service Worker 등록
 - 브라우저에 존재 유무를 확인 후 `register()` 사용
 
 ```js
 if ('serviceWorker' in navigator) {
+	// 간단한 실행
   navigator.serviceWorker.register('/service-worker.js');
+	// Promise 이용
   navigator.serviceWorker.register('/service-worker.js').
     then(function (reg) {
       // 성공하면
@@ -254,7 +266,7 @@ self.addEventListener('activate', function(event) {
 
 ---
 ## [sw-toolbox](https://github.com/googlechrome/sw-toolbox)
-- 네트워크 요청과 캐쉬 관리에 추가적인 옵션(만료기한 등)을 제공해주는 서비스워커 보조 라이브러리
+- **네트워크 요청과 캐쉬 관리에 추가적인 옵션(만료기한 등)을 제공**해주는 서비스워커 보조 라이브러리
 
 ```
 # 설치
@@ -291,8 +303,8 @@ npm install --global sw-precache
 ---
 #### 사용조건
 1. HTTPS - 서비스워커 조건
-2. sw-precache NPM 모듈 - 기본적인 설치
-3. 페이지 전체를 제어하는 서비스워커가 등록 - top 레벨
+2. sw-precache NPM modules - 기본적인 설치
+3. Registered Service Worker - top 레벨에 위치
 
 ---
 #### 사용방법
