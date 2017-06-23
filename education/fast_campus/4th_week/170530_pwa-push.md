@@ -1,6 +1,6 @@
 <!-- $size: 16:9 -->
 <!-- page_number: true -->
-# Simple Push App with Service Worker & Manifest & Firebase
+# Push App with Service Worker + Manifest + Firebase
 
 ---
 <!-- footer : Simple Push App - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
@@ -25,13 +25,13 @@
 - 브라우저 기반 Push 알람. Windows & Mac & [Android](https://www.youtube.com/watch?v=PaIh3ty5gT0) 에서 동작
 - 구현하기 위해서는 Service Worker 를 필수로 구현해야 한다.
 
-![mobile-push-noti](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/mobile-push.png)
+![mobile-push-noti 40%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/mobile-push.png)
 
 ---
 ## Push 알람 사례 및 활용 방안
 - Facebook 새 게시글 알람
 
-![facebook-sw-push.png](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/sw-push.png)
+	![facebook-sw-push.png](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/sw-push.png)
 
 - Twitter Lite [소개 영상](https://blog.twitter.com/official/en_us/topics/product/2017/introducing-twitter-lite.html). [Case Study](https://developers.google.com/web/showcase/2017/twitter)
 - Alibaba [Case Studies](https://developers.google.com/web/showcase/2016/alibaba)
@@ -42,24 +42,26 @@
 - Android : GCM (Google Cloud Messaging) & FCM
 - iOS : APNS (Apple Push Notification Service) & FCM
 
-![gcm-architecture](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/gcm-archi.png)
+![gcm-architecture 60%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/gcm-archi.png)
 
 ---
 ## PWA 의 Push 알람 구조
 - FCM : GCM 의 최신버전으로 Mobile + Web 모두 지원
 
-![fcm](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/fcm.png)
+![fcm 35%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/fcm.png)
 
 ---
-## Firebase Cloud Messaging 서비스 소개
-- Mobile & Web Push 알람을 위한 콘솔창 제공
+## Firebase Cloud Messaging 서비스 [소개](https://firebase.google.com/products/cloud-messaging/?hl=ko)
+- Mobile & Web Push 알람을 위한 [콘솔창](https://console.firebase.google.com/) 제공
 - Push 등록된 기기에 대한 정보 및 알림 전송 기능
 - 보낸 Push 메시지에 대한 분석 기능 제공
 - 가능한 프로토콜 HTTP & XMPP (미들웨어 메시징 프로토콜)
 
 ---
 ## 오늘 구현할 실습 예제 설명
-서비스워커를 지원하는 단말기의 키를 획득하여 DB에 저장하고 DB 에 저장된 키로 해당 단말기에 Push 메시지를 보내 수신하는 예제
+- 서비스워커를 지원하는 단말기의 키를 획득하여 DB에 저장하고 
+- DB 에 저장된 키로 해당 단말기에 Push 메시지를 보내 수신하는 예제
+
 [완성된 예제 시연](https://friendlychat-34059.firebaseapp.com/)
 
 ---
@@ -107,7 +109,7 @@ var config = {
 ---
 ## 참고 #1 : 웹 사이트의 Push 알림 설정 확인
 
-![push-permission-check](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/push-permission-check.png)
+![push-permission-check 70%](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/4th_week/images/push-permission-check.png)
 
 ---
 ## 참고 #2 : Subscribe 시 [기존 예제](https://developers.google.com/web/fundamentals/getting-started/codelabs/push-notifications/?hl=ko)의 public key 제외
