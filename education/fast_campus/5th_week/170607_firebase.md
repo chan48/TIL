@@ -23,7 +23,7 @@
 - Firebase DB - 실습 #4
 
 ---
-## Firebase 란?
+## Firebase 소개에 앞서..
 앱 개발을 시작하는 분들에게 가장 부담스러운 부분들
 - DB 조사, 선택, 설치, 구성, 테이블 설계
 - Server 조사, 선택, 설치, 구성, 세부 내용 설정
@@ -32,12 +32,13 @@
 > 이제 겨우 화면 그리기 시작했는데... 이건 다 뭔가.....??
 
 ---
-- Firebase 는 BasS (Backend as a Service)
-- BasS : 애플리케이션 개발에서 화면 부분을 제외한 뒷단의 DB, 서버, 인증 등의 기능을 서비스하는 SW
+- Firebase 는 BaaS (Backend as a Service)
+- BaaS : 애플리케이션 개발에서 화면 부분을 제외한 뒷단의 DB, 서버, 인증 등의 기능을 서비스하는 SW
 
 ![baas-structure](/Users/gihyojoshuajang/Documents/Programming/TIL/education/fast_campus/5th_week/images/baas-structure.png)
 
 ---
+## Firebase 란?
 - **Firebase 는 Android, iOS 등의 모바일 앱과 Web 앱을 개발하기 위한 통합 Backend 플랫폼**
 - **Push, Analytics, Storage, Auth, Hosting** 등의 다양한 기능 제공
 - SDK 및 API 사용에 관한 전반적인 문서화가 잘되어 있고 한글 번역 품질 우수
