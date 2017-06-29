@@ -100,6 +100,100 @@ var myObj = {
 console.log(myObj.c()); // NaN
 ```
 
+## Promise
+> A promise is an object that may produce a single value some time in the future
+
+- 비동기 함수를 순차적으로 처리할 수 있는 객체를 의미
+- node.js 에서 `promise` 를 코어로 구현하였음
+
+---
+- 실제 js 앱 로직의 대부분의 작업은 비동기 방식이다.
+
+```js
+function getWeatherInfo() {
+  $("#btn").click(function () {
+    $.get('temperature.json', function (data1) {
+      $.get('precipitation.xml', function (data2) {
+        // ...
+      });
+    });
+  })
+}
+```
+
+- ES5 Promise 의 resolve, reject 의 방식을 then 의 success, fail 콜백으로 변환
+- 주목 : **`then()` , `catch()` 로 프로미스를 간편하게 사용할 수 있게 되었다** 는 점
+
+---
+#### then()
+Promise 객체의 resolve() 메서드 결과 값에 반응하는 콜백함수
+
+```js
+var promise = new Promise(function(resolve, reject) {
+  // do a thing, possibly async, then…
+
+  if (/* everything turned out fine */) {
+    resolve("Stuff worked!");
+  }
+  else {
+    reject(Error("It broke"));
+  }
+});
+```
+
+```js
+promise.then(function(result) { // 성공 콜백
+  console.log(result); // "Stuff worked!"
+}.catch(function(err) { // 실패 콜백
+  console.log(err); // Error: "It broke"
+}));
+```
+
+---
+then 을 아래와 같이 또 다른 then 으로 연결할 수 있다.
+
+```js
+getJSON('story1.json').then(function(story1data) {
+  console.log(story1data);
+  return getJSON('story2.json');
+}).then(function(story2data) {
+  console.log(story2data);
+})
+```
+
+```js
+new Promise(function(resolve, reject) {
+	// A mock async action using setTimeout
+	setTimeout(function() { resolve(10); }, 3000);
+})
+.then(function(num) { console.log('first then: ', num); return num * 2; })
+.then(function(num) { console.log('second then: ', num); return num * 2; })
+.then(function(num) { console.log('last then: ', num);});
+```
+
+---
+[promise-chain](/Users/gihyojoshuajang/Documents/Programming/TIL/javascript/images/promise-then-catch-chain.png)
+
+---
+#### catch()
+Promise 객체의 reject() 메서드 결과 값에 반응하는 콜백함수
+
+```js
+new Promise(function(resolve, reject) {
+	// A mock async action using setTimeout
+	setTimeout(function() { reject('Done!'); }, 3000);
+})
+.then(function(e) { console.log('done', e); })
+.catch(function(e) { console.log('catch: ', e); });
+
+// From the console:
+// 'catch: Done!'
+```
+
+---
 ## 참고
 - [ES6 Features, Babel](https://babeljs.io/learn-es2015/#ecmascript-2015-features-symbols)
 - [var, let, const](http://blog.nekoromancer.kr/2016/01/26/es6-var-let-%EA%B7%B8%EB%A6%AC%EA%B3%A0-const/)
+- [Promise, david walsh tutorial](https://davidwalsh.name/promises)
+- [Promise Medium](https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-promise-27fc71e77261)
+- [Promise 한글](http://programmingsummaries.tistory.com/325)
