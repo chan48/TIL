@@ -59,7 +59,7 @@
 
 ---
 ## 오늘 구현할 실습 예제 설명
-- 서비스워커를 지원하는 단말기의 키를 획득하여 DB에 저장하고 
+- 서비스워커를 지원하는 단말기의 키를 획득하여 DB에 저장하고
 - DB 에 저장된 키로 해당 단말기에 Push 메시지를 보내 수신하는 예제
 
 [완성된 예제 시연](https://friendlychat-34059.firebaseapp.com/)
@@ -100,7 +100,7 @@ var config = {
 };
 ```
 
-- App Manifest Json 파일에 **gcm_sender_id** 속성 생성 후 값 붙여넣기
+- App Manifest Json 파일 생성 후 [설정](https://github.com/joshua1988/DevCampWAP/blob/master/%234-progressive-web-apps/push-with-firebase/manifest.json) 및 **gcm_sender_id** 속성 추가
 
 ```json
 "gcm_sender_id": "800635767370"
@@ -139,7 +139,7 @@ swRegistration.pushManager.subscribe({
 
 ---
 #### 서비스워커 구현 - Subscription
-9. 구독 상태로 전환하는 `subscribeUser()` 구현 및 `subscription` 객체 확인
+9. [구독](https://developer.mozilla.org/en-US/docs/Web/API/PushManager/subscribe) 상태로 전환하는 `subscribeUser()` 구현 및 `subscription` 객체 확인
 10. 등록한 subscription 정보를 화면에 표시하는 `updateSubscriptionOnServer()` 구현
 11. 애플리케이션 실행하여 알람 허용여부 경고창 뜨는지 확인
 
