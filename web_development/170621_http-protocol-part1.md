@@ -31,8 +31,22 @@
 
 > 404 indicates that the resource is invalid and does not exist on the server.
 
-## Reqeust and Reponse Message Formats
-- 
+## Request and Reponse Message Formats
+-
+
+## HTTP Connections
+- A connection for Server and Client must be established to communicate each other
+- A TCP stream is broken into IP packets (TCP port : 80)
+- HTTP is an application layer protocol over TCP & IP
+- HTTPS is a secure version of HTTP, inserting additional layer between HTTP and TCP & IP
+
+![https](https://cdn.tutsplus.com/net/authors/jeremymcpeak/http2-http-https.png)
+
+- Transport Layer Security (TLS), Secure Sockets Layer (SSL)
+- The Key Difference between HTTP 1.0 / HTTP 1.1 is 1.0 opens a connection for each web resource which would cause lot of network delays whereas 1.1 keeps the connection persistent.
+- **Parallel Connections** : A pool of connections that accepts 6 connections at once to download assets from clients.
+
+
 
 ## 참고
 - [The Protocol Every Web Developer Must Know](https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177d)
