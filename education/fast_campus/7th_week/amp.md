@@ -6,8 +6,9 @@
 <!-- footer : AMP - 프론트엔드 개발자를 위한 웹앱 프로젝트 CAMP -->
 ## 개요
 - Instant Loading 이 장점인 AMP 를 소개 및 학습
-- 최신 웹 기술 AMP 의 동작원리를 소개 및 학습
-- 간단한 AMP 페이지를 제작하는 실습
+- AMP 의 동작원리를 소개 및 학습
+- 간단한 AMP 페이지 제작 실습
+- PWA 와 AMP 를 결합하는 방법에 대해 학습
 
 ---
 ## AMP (Accelarated Mobile Page)
@@ -34,40 +35,46 @@
 - 커스텀 스크립트를 사용하는 경우 커스텀 태그 지정
 
 ``` javascript
-<script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
+<script async custom-element="amp-iframe" 
+	      src="https://cdn.ampproject.org/v0/amp-youtube-0.1.js"></script>
 ```
 
 ---
 - 외부 라이브러리들이 페이지 렌더링에 방해되지 않도록 제한
-  - AMP 는 외부 자바스크립트 라이브러리를 iframes 안에서만 허용하여 메인 페이지 렌더링에 방해되지 않음
-  - iframes 에서 스타일 재계산이나 페이지 레이아웃 재조정시 DOM 사이즈가 작아 작업 속도가 매우 빠릅니다.
+
+  - AMP 는 외부 js 라이브러리를 iframe 안에서만 허용하여 메인 페이지 렌더링에 방해되지 않음
+  - iframes 에서 스타일 재계산이나 페이지 레이아웃 재조정시 DOM 크기가 작아 속도가 빠름
 
 ---
 - 모든 CSS 스타일은 인라인만 허용, 사이즈는 제한
-  - 인라인 스타일로 HTTP 요청을 최소화하여 빠른 페이지 렌더링
+
+  - 인라인 스타일로 HTTP 요청을 최소화 -> 빠른 페이지 렌더링
   - 인라인 스타일 시트의 사이즈는 50KB 로 제한
 
 ---
 - 효율적인 웹 폰트 요청
+
   - 일반적으로 페이지 렌더링 시 외부 자바스크립트와 스타일 시트를 로딩하고 나서 폰트를 다운
-  - AMP 에서는 폰트를 받기까지 외부 자바스크립트와 스타일 시트를 다운받는 HTTP 요청이 존재하지 않음
+  - AMP 에서는 폰트를 받기까지 외부 자바스크립트와 스타일 시트를 다운받는 HTTP 요청이 존재 X
 
 ---
 - 스타일 재계산 최소화하기
-  - 페이지에서 요소를 변경할 때 스타일 재계산이 발생됨 (전체 페이지 레이아웃 재조정과 연결되어 많은 비용 소모)
+
+  - 페이지에서 요소를 변경할 때 스타일 재계산 발생 (전체 페이지 레이아웃 재조정 = 많은 비용 소모)
   - AMP 에서는 모든 DOM 을 화면에 그리기 전에 미리 요소의 위치를 다 정의
-  - 따라서, 한 프레임당 한번의 스타일 재 계산이 일어나 빠른 로딩이 가능
+  - 따라서, 한 프레임당 한번의 스타일 계산이 일어나 빠른 로딩이 가능
 
 ---
 - 리소스 로딩 순서 재조정
+
   - AMP 는 리소스 다운로드를 모두 제어하여 중요도에 따라 순서를 재조정
   - 이미지나 광고는 필요한 경우 (스크롤 해서 보여지는 경우) 에만 미리 다운로드
   - Lazy loading 이 필요한 리소스는 pre-fetch 로 로딩 (로딩이 필요한 시점에 로딩)
 
 ---
 - Instant Page Loading
-  - DNS Lookup, TCP Handshake 등을 미리 처리하는 [preconnect API](https://www.w3.org/TR/resource-hints/#dfn-preconnect) 로 HTTP 요청을 빠르게 처리.
-  - pre-rendering 을 하는 경우 많은 양의 대역폭과 CPU 를 소비. AMP 자체 내부에서 이 부분을 최적화
+  - DNS Lookup, TCP Handshake 등을 미리 처리하는 [preconnect](https://www.w3.org/TR/resource-hints/#dfn-preconnect) 로 HTTP 요청을 빠르게 처리.
+  - pre-rendering 시 많은 양의 대역폭과 CPU 를 소비. AMP 자체 내부에서 이 부분을 최적화
   - Instant Loading 이 될 수 있도록 초기 렌더링에 필요한 자원들에 집중한다는 점을 명심 (CPU 소비가 많은 리소스 일수록 뒤로 밀림)
 
 ---
@@ -83,10 +90,9 @@
 ```
 
 - HTML 표준 태그들도 사용되지만 위와 같이 img 태그는 amp-img 로 변환하여 사용
-
-> amp-img 와 같은 별도 태그 사용 이유 : 해당 리소스가 로딩되기 전에 페이지 레이아웃을 정하고 레이지 로딩에 대한 네트워크 제어와 리소스 로딩 우선순위를 효율적으로 관리하기 위해서다.
-
 - embed, param 등등 몇 개의 HTML 표준 태그들은 AMP 에서 사용할 수 없다. [참고](https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md)
+
+> amp-img 와 같은 별도 태그 사용 이유 : 해당 리소스가 로딩되기 전에 페이지 레이아웃을 정하고 레이지 로딩에 대한 네트워크 제어와 리소스 로딩 우선순위를 효율적으로 관리하기 위함
 
 ---
 ## AMP 실습 - 이미지 추가
@@ -108,7 +114,8 @@
 ## AMP 스타일링 주의사항
 - 모든 AMP 페이지는 `<style amp-custom>` 태그 한 개만 포함할 수 있다.
 - HTML 요소 인라인 속성을 사용할 수 없다. 모든 스타일 규칙은 head 안에 선언되어야 함.
-- `!important` 를 비롯하여 몇몇 표준 스타일 규칙을 사용할 수 없고, 외부 스타일 시트 참조도 불가능하다. (커스텀 폰트 제외)
+- `!important` 를 비롯하여 몇몇 표준 스타일 규칙을 사용할 수 없다. 
+- 외부 스타일 시트 참조 불가능 (커스텀 폰트 제외)
 
 ---
 ## AMP 실습 - 스타일 조정
@@ -131,33 +138,64 @@ ul {
 - 이러한 경우 `<link>` 를 이용해서 두 페이지를 연결한다.
 
 ---
-- 일반 HTML 페이지에는
+- 일반 HTML 페이지
 
 ```html
-<link rel="amphtml" href="https://www.example.com/url/to/amp/document.html">
+<link rel="amphtml" href="https://www.example.com/amp.html">
 ```
 
-- AMP 페이지에는
+- AMP 페이지
 
 ```html
-<link rel="canonical" href="https://www.example.com/url/to/full/document.html">
+<link rel="canonical" href="https://www.example.com/index.html">
 ```
 
 ---
 - 만약 구분없이 AMP 페이지만 가지고 있을 경우
 
 ```html
-<link rel="canonical" href="https://www.example.com/url/to/amp/document.html">
+<link rel="canonical" href="https://www.example.com/amp.html">
 ```
+
+[Google 검색 엔진의 AMP 페이지 가이드 라인](https://support.google.com/webmasters/answer/6340290)
 
 ---
 ## AMP 컴포넌트
 - 다양한 컴포넌트가 아직 없는 상황이라 목적에 맞는 컴포넌트가 있는지 선조사 필요
-  - `<amp-tabs>` 아직 없음 -> `<amp-selector>`.
+  - `<amp-tabs>` -> `<amp-selector>`.
 - 없는 경우 대체할 수 있는 기존 컴포넌트를 활용할 수 있는 지 확인
   - `<amp-img-lightbox>` : 사진 클릭하면 크게 확대됨
 
 > 주의 : 컴포넌트가 다양하지 않으므로, 앱 설계 및 구현에 있어서 제공 여부부터 확인
+
+---
+## AMP with PWA
+- Web App Manifest 파일 추가 및 head 에 등록
+
+```html
+<head>
+  <link rel="manifest" href="/manifest.json">
+</head>
+```
+
+---
+- Service Worker 등록
+
+```html
+<head>
+  <script async custom-element="amp-install-serviceworker"
+  src="https://cdn.ampproject.org/v0/amp-install-serviceworker-0.1.js"></script>
+</head>
+
+<body>
+  <amp-install-serviceworker
+        src="https://www.your-domain.com/serviceworker.js"
+        layout="nodisplay">
+  </amp-install-serviceworker>
+</body>
+```
+
+[amp-install-serviceworker spec](https://www.ampproject.org/docs/reference/components/amp-install-serviceworker)
 
 ---
 ## 참고
