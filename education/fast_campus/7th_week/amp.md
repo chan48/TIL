@@ -8,13 +8,16 @@
 - Instant Loading 이 장점인 AMP 를 소개 및 학습
 - AMP 의 동작원리를 소개 및 학습
 - 간단한 AMP 페이지 제작 실습
+- AMP 구성요소 (이미지, 스타일, 컴포넌트) 소개
 - PWA 와 AMP 를 결합하는 방법에 대해 학습
 
 ---
 ## AMP (Accelarated Mobile Page)
 - 모바일 기기에서 웹 사이트의 접근성을 높이기 위한 가속화 모바일 페이지
 - 거의 즉시에 가까운 페이지 로딩을 위해 여러 기법들로 최적화
-- AMP HTML / JS / CSS 로 구성되어 있다.
+- AMP HTML / JS / [Cache](https://developers.google.com/amp/cache/) 로 구성되어 있다.
+- 정적인 콘텐츠를 제공하는 페이지로 적합, 동적인 기능을 넣을 때는 AMP 컴포넌트 활용
+- 구글 검색 엔진 알고리즘의 가점 및 상위 [노출](https://36bvmt283fg61unuud3h7qua-wpengine.netdna-ssl.com/wp-content/uploads/2016/08/builtvisible-amp-ranking-examples.jpg), [SEO](https://developers.google.com/web/fundamentals/discovery-and-monetization/search-optimization/?hl=ko)
 
 ---
 ## AMP 동작원리
@@ -73,6 +76,7 @@
 
 ---
 - Instant Page Loading
+
   - DNS Lookup, TCP Handshake 등을 미리 처리하는 [preconnect](https://www.w3.org/TR/resource-hints/#dfn-preconnect) 로 HTTP 요청을 빠르게 처리.
   - pre-rendering 시 많은 양의 대역폭과 CPU 를 소비. AMP 자체 내부에서 이 부분을 최적화
   - Instant Loading 이 될 수 있도록 초기 렌더링에 필요한 자원들에 집중한다는 점을 명심 (CPU 소비가 많은 리소스 일수록 뒤로 밀림)
@@ -86,7 +90,7 @@
 - 아래와 같이 커스텀 태그로 이미지 삽입 가능
 
 ```html
-<amp-img src="welcome.jpg" alt="Welcome" height="400" width="800"></amp-img>
+<amp-img src="welcome.jpg" alt="AMP Image" height="400" width="800"></amp-img>
 ```
 
 - HTML 표준 태그들도 사용되지만 위와 같이 img 태그는 amp-img 로 변환하여 사용
@@ -99,7 +103,7 @@
 - 아래 태그를 실습 페이지에 추가해보자
 
 ```html
-<amp-img src="welcome.jpg" alt="Welcome" height="400" width="800"></amp-img>
+<amp-img src="welcome.jpg" alt="AMP Image" height="400" width="800"></amp-img>
 ```
 
 ---
@@ -112,7 +116,7 @@
 
 ---
 ## AMP 스타일링 주의사항
-- 모든 AMP 페이지는 `<style amp-custom>` 태그 한 개만 포함할 수 있다.
+- 모든 AMP 페이지는 `<style amp-custom>` 태그 한 개만 포함할 수 있다. `< 50kb`
 - HTML 요소 인라인 속성을 사용할 수 없다. 모든 스타일 규칙은 head 안에 선언되어야 함.
 - `!important` 를 비롯하여 몇몇 표준 스타일 규칙을 사용할 수 없다. 
 - 외부 스타일 시트 참조 불가능 (커스텀 폰트 제외)
@@ -202,6 +206,7 @@ ul {
 - [AMP Official Site](https://www.ampproject.org/)
 - [AMP Start](https://www.ampstart.com/)
 - [AMP Slack](https://amphtml.slack.com)
+- [AMP 는 어떻게 웹 페이지 성능을 높이는가?, Naver D2](http://d2.naver.com/helloworld/6856597)
 
 ---
 # 끝
