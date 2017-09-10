@@ -9,21 +9,20 @@
 
 ---
 ## 강의 목표
-1. 지불하신 금액 이상의 가치를 돌려드리는 Professional 한 수업
-2. 개인 목표 달성에 도움이 되는 Helpful 한 수업 (개인 프로젝트, 회사 업무, 취업)
-3. 수업 기간 만큼에는 학습 효율을 보장하는 수업
+1. Professional, 지불하신 금액 이상의 가치를 돌려드리는 수업
+2. Helpful, 개인 목표 달성에 도움이 되는 수업 (개인 프로젝트, 회사 업무, 취업)
+3. Growing, 한 단계 더 성장하는 수업
 
 ---
 ## 강사 소개
 - 이름 : 장기효
 - 직무 : 웹 개발자
-- 경력
+- 직무 경력
   - 포스코 ICT, Software Engineer, 2013 ~ 현재
   - Upwardly Global, IT Intern, 2012
-- 관심사
-  - Web Performance Optimization
-  - Progressive Web Apps
-  - Reactive Programming, Vue, Angular
+- 강의 경력
+  - 패스트캠퍼스 1기, 2017.05 ~ 07
+  - 포스코 ICT, 2015 ~
 
 ---
 ## 수강생 자기 소개
